@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-end-rgb: 214, 219, 220;
+  --background-start-rgb: 245, 245, 245;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 245, 245, 245;
+    --background-end-rgb: 0, 0, 0;
+    --background-start-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+body::-webkit-scrollbar{
+  display: none;
+}
+
+body {
+  -ms-overflow-style: none;
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+.logoParent {
+  display: flex !important;
+  width: auto;
+}
+
+.navBarParent {
+  padding: 0;
+  margin: 0;
+}
+
+.navButton {
+  display: contents;
+}
+
+.navButtonIn {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.navDropChange {
+  position: absolute;
+  z-index: 100;
+  width: 100%;
+  background: teal;
+  padding-top: 1rem;
+}
+
+
+.line {
+  width: 100%;
+  background-color: black;
+  height: 2px;
+}
+
+
+.content {
+  display: flex;
+}
