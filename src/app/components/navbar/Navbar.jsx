@@ -17,12 +17,12 @@ const Navbar = () => {
         //{ name: "Service 3", url: "" },
       //],
     },
-    { name: "About", url: "/about" },
+    { name: "CV", url: "/cv" },
     { name: "Contact", url: "/contact" },
   ];
   return (
     <nav className="w-full bg-gray-800 shadow ">
-      <div className="justify-between mx-auto md:items-center md:flex md:px-32 px-6">
+      <div className="justify-between mx-auto md:items-center md:flex md:px-32 px-6 xl:px-16">
         <div>
           <div className="flex items-center justify-between">
             <a href="#" className="">
