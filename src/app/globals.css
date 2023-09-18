@@ -61,10 +61,8 @@ body {
 }
 
 .navDropChange {
-  position: absolute;
   z-index: 100;
   width: 100%;
-  background: teal;
   padding-top: 1rem;
 }
 
@@ -78,4 +76,11 @@ body {
 
 .content {
   display: flex;
+}
+
+.bulletIcon {
+  min-width: 15px;
+  min-height: 15px;
+  max-width: 15px;
+  max-height: 15px;
 }

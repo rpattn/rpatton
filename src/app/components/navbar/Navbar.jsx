@@ -22,14 +22,14 @@ const Navbar = () => {
   ];
   return (
     <nav className="w-full bg-gray-800 shadow ">
-      <div className="justify-between mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
+      <div className="justify-between mx-auto md:items-center md:flex md:px-32 px-6">
         <div>
-          <div className="flex items-center justify-between px-4">
+          <div className="flex items-center justify-between">
             <a href="#" className="">
               <div className="avatar logoParentDiv">
                 <div className="w-16 rounded logoParent">
                   {/* <img src="" /> */}
-                  <h1 className="text-3xl text-white font-bold logo m-2">Robert Patton </h1>
+                  <h1 className="text-3xl text-white font-bold logo mt-2 mb-2">Robert Patton </h1>
                 </div>
               </div>
             </a>
@@ -49,12 +49,12 @@ const Navbar = () => {
         </div>
         <div>
           <div
-            className={`flex-1 justify-self-center pb-3  md:block md:pb-0 md:mt-0 navDrop ${
-              navbar ? "block px-4 navDropChange" : "hidden"
+            className={`flex-1 justify-self-center pb-3 md:block md:pb-0 md:mt-0 navDrop ${
+              navbar ? "block navDropChange" : "hidden"
             }`}
           >
-            <ul className={`items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0 ${
-              navbar ? "" : "px-8"
+            <ul className={`items-center justify-centre space-y-8 md:flex md:space-x-6 md:space-y-0 ${
+              navbar ? "" : ""
             }`}
             >
               {menu.map(({ name, url, dropdown }, index) => (
