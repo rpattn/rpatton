@@ -6,7 +6,7 @@ const Dropdown = ({ name, dropdownItems }) => {
       <label tabIndex={0} >
         {name}
       </label>
-      <ul className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 navDropItem">
+      <ul className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-30 navDropItem lg:absolute lg:bg-gray-700 lg:pt-5">
         {dropdownItems.map(({ name, url }, index) => (
           <li key={index}>
             <Link href={url}>{name}</Link>

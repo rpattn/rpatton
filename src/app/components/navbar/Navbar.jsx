@@ -9,12 +9,11 @@ const Navbar = () => {
   const menu = [
     { name: "Home", url: "/" },
     {
-      name: "Services",
-      url: "/",
+      name: "Projects",
+      url: "/projects",
       //dropdown: [
-        //{ name: "Service 1", url: "" },
-        //{ name: "Service 2", url: "" },
-        //{ name: "Service 3", url: "" },
+        //{ name: "SearchMap", url: "/projects/searchmap" },
+        //{ name: "VisEng", url: "/projects/viseng" },
       //],
     },
     { name: "CV", url: "/cv" },
@@ -22,7 +21,7 @@ const Navbar = () => {
   ];
   
   return (
-    <nav className={`w-full bg-gray-800 shadow `}>
+    <nav className={`w-full bg-gray-800 shadow dark:bg-indigo-900 `}>
       <div className="justify-between mx-auto md:items-center md:flex md:px-32 px-6 xl:px-16">
         <div>
           <div className="flex items-center justify-between">

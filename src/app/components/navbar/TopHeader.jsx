@@ -9,8 +9,8 @@ const TopHeader = () => {
   ];
   
   return (
-    <div className="mx-3 py-5 text-center">
-      <div className="flex gap-3 flex-wrap justify-around">
+    <div className="mx-3 py-5 text-center pt-6">
+      <div className="flex gap-3 flex-wrap justify-center self-center">
         <div className="bg-gradient-to-r from-fuchsia-600 to-pink-600 bg-clip-text text-transparent font-bold text-2xl">
           
         </div>

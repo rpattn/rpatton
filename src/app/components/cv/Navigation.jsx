@@ -2,6 +2,7 @@
 import Link from "next/link";
 import React, { useRef } from "react";
 import { useEffect, useState } from "react";
+import { AiOutlineInfoCircle } from "react-icons/ai";
 
 const Navigation = () => {
 
@@ -29,53 +30,63 @@ const Navigation = () => {
         <ul ref={main} style={(scrollY>50)? {transform: "translate(0px,-60px)"} : {}}   className={`mt-4 hidden xl:block ${(scrollY>50)? " lg:fixed" : ""}`}>
 
             <li className="mt-2 mb-1"><strong>Education</strong></li>
-            <ul className="ml-2 flex mb-2">
-                <div className={`border-2 h-12 w-0 m-1 mt-0 ${
-                (scrollY>490) ? "border-gray-300" : "border-lime-500"}`}></div>
-                <div>
-                <li className="ml-2"> <Link href="#uol">University of Leeds</Link></li>
-                <li className="ml-2"> <Link href="#alevels">A-Levels</Link></li>
-                </div>
+            <ul className="ml-4 mb-2">
+                <div className={`border-2 w-0 mt-0 ${(scrollY<380) 
+                    ? "border-lime-500 dark:border-blue-600" : "border-gray-300"}`}>
+                    <li className="ml-3 w-48"> <Link href="#uol">University of Leeds</Link></li></div>
+                <div className={`border-2 w-0 mt-0 ${(scrollY<480 & scrollY>380) 
+                    ? "border-lime-500 dark:border-blue-600" : "border-gray-300"}`}>
+                    <li className="ml-3 w-48"> <Link href="#alevels">A-Levels</Link></li></div>
             </ul>
             <li className="mt-2 mb-1"><strong>Industry Experience</strong></li>
-            <ul className="ml-2 flex mb-2">
-                <div className={`border-2 h-12 w-0 m-1 mt-0 ${
-                (scrollY<710 & scrollY>490) ? "border-lime-500" : "border-gray-300"}`}></div>
-                <div>
-                <li className="ml-2"> <Link href="#uol">Cummins</Link></li>
-                <li className="ml-2"> <Link href="#alevels">Rolls-Royce</Link></li>
-                </div>
+            <ul className="ml-4 mb-2">
+                <div className={`border-2 w-0 mt-0 ${(scrollY<550 & scrollY>480) 
+                    ? "border-lime-500 dark:border-blue-600" : "border-gray-300"}`}>
+                    <li className="ml-3 w-48"> <Link href="#cummins">Cummins</Link></li></div>
+                <div className={`border-2 w-0 mt-0 ${(scrollY<640 & scrollY>550) 
+                    ? "border-lime-500 dark:border-blue-600" : "border-gray-300"}`}>
+                    <li className="ml-3 w-48"> <Link href="#rolls-royce">Rolls-Royce</Link></li></div>
             </ul>
             <li className="mt-2"><strong>Leadership Activities</strong></li>
-            <ul className="ml-2 flex mb-2">
-                <div className={`border-2 h-18 w-0 m-1 mt-0 ${
-                (scrollY<1160 & scrollY>710) ? "border-lime-500" : "border-gray-300"}`}></div>
-                <div>
-                <li className="ml-2"> <Link href="#uol">Project Management</Link></li>
-                <li className="ml-2"> <Link href="#alevels">Daring Dash Comp.</Link></li>
-                <li className="ml-2"> <Link href="#alevels">Volunteering </Link></li>
-                </div>
+            <ul className="ml-4 mb-2">
+                <div className={`border-2 w-0 mt-0 ${(scrollY<780 & scrollY>640) 
+                    ? "border-lime-500 dark:border-blue-600" : "border-gray-300"}`}>
+                    <li className="ml-3 w-48"> <Link href="#projectman">Project Management | Cummins</Link></li></div>
+                <div className={`border-2 w-0 mt-0 ${(scrollY<950 & scrollY>780) 
+                    ? "border-lime-500 dark:border-blue-600" : "border-gray-300"}`}>
+                    <li className="ml-3 w-48"> <Link href="#daringdash">Daring Dash Competition</Link></li></div>
+                <div className={`border-2 w-0 mt-0 ${(scrollY<1110 & scrollY>950) 
+                    ? "border-lime-500 dark:border-blue-600" : "border-gray-300"}`}>
+                    <li className="ml-3 w-48"> <Link href="#volunteering">Volunteering</Link></li></div>
             </ul>
             <li className="mt-2"><strong>Employment History</strong></li>
-            <ul className="ml-2 flex mb-2">
-                <div className={`border-2 h-12 w-0 m-1 mt-0 ${
-                (scrollY<1570 & scrollY>1160) ? "border-lime-500" : "border-gray-300"}`}></div>
-                <div>
-                <li className="ml-2"> <Link href="#uol">British Food Box</Link></li>
-                <li className="ml-2"> <Link href="#alevels">The Edge</Link></li>
-                </div>
+            <ul className="ml-4 mb-2">
+                <div className={`border-2 w-0 mt-0 ${(scrollY<1280 & scrollY>1110) 
+                    ? "border-lime-500 dark:border-blue-600" : "border-gray-300"}`}>
+                    <li className="ml-3 w-48"> <Link href="#bfb">British Food Box</Link></li></div>
+                <div className={`border-2 w-0 mt-0 ${(scrollY<1500 & scrollY>1280) 
+                    ? "border-lime-500 dark:border-blue-600" : "border-gray-300"}`}>
+                    <li className="ml-3 w-48"> <Link href="#edge">The Edge</Link></li></div>
             </ul>
             <li className="mt-2"><strong>Skills</strong></li>
             <ul className="ml-2 flex mb-2">
                 <div className={`border-2 h-12 w-0 m-1 mt-0 ${
-                (scrollY>1570) ? "border-lime-500" : "border-gray-300"}`}></div>
+                (scrollY>1500) ? "border-lime-500 dark:border-blue-600" : "border-gray-300"}`}></div>
                 <div>
-                <li className="ml-2"> <Link href="#uol">Technical</Link></li>
-                <li className="ml-2"> <Link href="#alevels">Project Management</Link></li>
+                <li className="ml-2"> <Link href="#technical">Technical</Link></li>
+                <li className="ml-2"> <Link href="#projectman2">Project Management</Link></li>
                 </div>
             </ul>
             <li className="mt-2"><strong>Hobbies & Interests</strong></li>
-            <li className="mt-2"><strong>Projects</strong></li>
+            <li className="mt-6"><strong>Projects</strong></li>
+            <ul className="ml-4 mb-2">
+                <div className={`border-2 w-0 mt-0 ${(scrollY>2000) 
+                    ? "border-lime-500 dark:border-blue-600" : "border-blue-300"}`}>
+                    <li className="ml-3 w-48"> <Link href="/projects#searchmap" className="flex">Search Map <AiOutlineInfoCircle className=" fill-blue-900 m-1 w-4 h-4" /></Link></li></div>
+                <div className={`border-2 w-0 mt-0 ${(scrollY>2500) 
+                    ? "border-lime-500 dark:border-blue-600" : "border-blue-300"}`}>
+                    <li className="ml-3 w-48"> <Link href="/projects#viseng" className="flex">VisEng <AiOutlineInfoCircle className=" fill-blue-900 m-1 w-4 h-4" /></Link></li></div>
+            </ul>
         </ul>
     )
 }

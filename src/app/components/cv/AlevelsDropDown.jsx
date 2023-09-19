@@ -12,7 +12,7 @@ const AlevelsDropDown = () => {
 
     return !dropDownOpen ? (
             <div id="alevels" className="mt-6 flex">
-                <h2 className="text-base font-semibold leading-7 text-gray-900">A-Levels: </h2>
+                <h2 className="text-base font-semibold leading-7 dark:text-gray-200  text-gray-900">A-Levels: </h2>
                 <p className="ml-2 leading-7">A*,A*,A</p>
                 <AiFillPlusCircle onClick={dropDownClick} className=" align-middle m-auto mr-0 ml-2 fill-indigo-700 hover:fill-teal-700 w-5 h-5"/>
             </div>
@@ -20,7 +20,7 @@ const AlevelsDropDown = () => {
             <div id="alevels">
             <div className="grid grid-cols-13 mt-6">
                 <div className="col-start-1 col-span-10">
-                <h2 className="text-base font-semibold leading-7 text-gray-900 flex">Ashby Sixth Form <AiFillMinusCircle onClick={dropDownClick} className=" align-middle m-auto mr-0 ml-2 fill-indigo-700 hover:fill-teal-700 w-5 h-5"/></h2>
+                <h2 className="text-base dark:text-gray-200  font-semibold leading-7 text-gray-900 flex">Ashby Sixth Form <AiFillMinusCircle onClick={dropDownClick} className=" align-middle m-auto mr-0 ml-2 fill-indigo-700 hover:fill-teal-700 w-5 h-5"/></h2>
                 <p className="text-base font-semibold leading-7 text-indigo-600 italic text-xs">A-Levels</p>
                 </div>
 
