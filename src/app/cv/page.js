@@ -5,6 +5,7 @@ import Header from "../components/navbar/Header";
 import AlevelsDropDown from "../components/cv/AlevelsDropDown";
 import TopHeader from "../components/navbar/TopHeader";
 import Image from "next/image";
+import Navigation from "../components/cv/Navigation";
 
 //bg-base-100 shadow-xl
 
@@ -16,9 +17,9 @@ export default function RootLayout({ children }) {
       <Header />
       {children}
 
-        <main className="min-h-screen grid xl:grid-cols-10 md:px-32 px-6 xl:px-16 splashCard">
+        <main className="min-h-screen grid xl:grid-cols-10 md:px-32 px-6 xl:px-16 splashCard mb-40">
           <div className="xl:col-start-1 xl:col-span-2 shadow-md hidden lg:block"> 
-            Navigation
+            <Navigation/>
           </div>
           <div className="xl:col-start-3 xl:col-span-7">
 
@@ -29,7 +30,7 @@ export default function RootLayout({ children }) {
             <p className="mt-2 ">Final year master’s student (MEng) at the University of Leeds. Looking to apply my strong analytical and project management skills to solve complex problems in the Engineering Industry. Experience gained as a Design Engineer at Cummins has developed my ability to work as part of a global team to find data driven solutions that work for both client and business.</p>
             </div>
 
-            <div className=" shadow-md">
+            <div id="uol" className=" shadow-md">
             <h1 className="mt-6 font-bold tracking-tight text-gray-900 text-4xl mb-1">Education</h1>
             <div className="line mb-0"></div>
             <div className="grid grid-cols-13">
@@ -98,7 +99,7 @@ export default function RootLayout({ children }) {
             <h1 className="mt-6 font-bold tracking-tight text-gray-900 text-4xl mb-1">Leadership Activities</h1>
             <div className="line mb-2"></div>
 
-            <h2 className="text-base font-semibold leading-7 text-gray-900 text-lg">Cummins Project Management</h2>   
+            <h2 className="text-base font-semibold leading-7 text-gray-900 text-lg">Project Management | Cummins</h2>   
             <ul>
             <li className="flex">
             <AiFillCheckCircle className="m-1 bulletIcon" />
@@ -110,7 +111,7 @@ export default function RootLayout({ children }) {
             </li>
             </ul>
 
-            <h2 className="text-base font-semibold leading-7 text-gray-900 text-lg mt-2">Daring Dash Competition</h2>   
+            <h2 className="text-base font-semibold leading-7 text-gray-900 text-lg mt-2">Daring Dash Competition | UoL</h2>   
             <ul>
             <li className="flex">
             <AiFillCheckCircle className="m-1 bulletIcon" />
@@ -282,17 +283,25 @@ export default function RootLayout({ children }) {
                 <div className="m-8 mb-0"><Image src="/web.png" width={50} height={50}></Image></div>
                 <div className="m-8 mb-0"><Image src="/fire.png" width={50} height={50}></Image></div>
                 <div className="m-8 mb-0"><Image src="/next.svg" width={50} height={50}></Image></div>
-                <div className="m-8 mb-0"><Image src="/mat.png" width={50} height={50}></Image></div>
+                <div className="m-8 mb-0"><Image src="/sql.png" width={50} height={50}></Image></div>
                 <div className="m-8 mb-0"><Image src="/cpp.png" width={50} height={50}></Image></div>
                 <div className="m-8 mb-0"><Image src="/cshrp.png" width={50} height={50}></Image></div>
+                <div className="m-8 mb-0"><Image src="/py.png" width={50} height={50}></Image></div>
                 <div className="m-8 mb-0"><Image src="/java.png" width={50} height={50}></Image></div>
                 <div className="m-8 mb-0"><Image src="/linux.png" width={50} height={50}></Image></div>
-                <div className="m-8"><Image src="/office.png" width={50} height={50}></Image></div>
-                <div className="m-8 mb-0"><Image src="/sql.png" width={50} height={50}></Image></div>
-                <div className="m-8"><Image src="/sw.png" width={50} height={50}></Image></div>
+                <div className="m-8 mb-0"><Image src="/office.png" width={50} height={50}></Image></div>
+                <div className="m-8 mb-0"><Image src="/mat.png" width={50} height={50}></Image></div>
+                <div className="m-8 mb-0"><Image src="/sw.png" width={50} height={50}></Image></div>
+                <div className="m-8 mb-0 ml-9"><Image src="/ad.png" width={44} height={44}></Image></div>
+                <div className="m-8 mb-0 ml-9"><Image src="/creo.svg" width={44} height={44}></Image></div>
+                <div className="m-8 mb-0 ml-9"><Image src="/lbv.svg" width={44} height={44}></Image></div>
+                <div className="m-8 mb-0 ml-9"><Image src="/ad.png" width={44} height={44}></Image></div>
+                <div className="m-8 mb-0 ml-9"><Image src="/asys.png" width={44} height={44}></Image></div>
             </div>
           </div>
         </main>
+
+        <TopHeader/>
     </body>
   )
 }

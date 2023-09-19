@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 import { RxCross1 } from "react-icons/rx";
 import Link from "next/link";
@@ -20,8 +20,9 @@ const Navbar = () => {
     { name: "CV", url: "/cv" },
     { name: "Contact", url: "/contact" },
   ];
+  
   return (
-    <nav className="w-full bg-gray-800 shadow ">
+    <nav className={`w-full bg-gray-800 shadow `}>
       <div className="justify-between mx-auto md:items-center md:flex md:px-32 px-6 xl:px-16">
         <div>
           <div className="flex items-center justify-between">

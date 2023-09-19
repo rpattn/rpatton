@@ -14,7 +14,7 @@ export default function RootLayout({ children }) {
       <Header />
       {children}
 
-        <main className="min-h-screen splashCard">
+        <main className="min-h-screen splashCard pt-12">
 
         </main>
       <TopHeader/>
