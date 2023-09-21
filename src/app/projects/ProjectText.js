@@ -10,39 +10,10 @@ import { useInView } from "react-intersection-observer";
 
 const ProjectText = () => {
 
-    const [scrollY, setScrollY] = useState(0);
-    const [isVis, setVis] = useState(true);
-    const main = useRef();
+    const [scrollY, setScrollY] = useState(0); //used to track current project in view
+    const [isVis, setVis] = useState(true);    //used to track if a project or splash page is in view 
 
-    function setActive(int) {
-        setScrollY(int)
-    }
-
-    /*useEffect(() => {
-        const handleScroll = () => {
-            var scrollIndex = Math.round((window.scrollY-150)/(window.screen.width/3))
-            if (scrollIndex < 0) {
-                scrollIndex = 0
-            }
-            if (scrollIndex > (projectInfo.length - 2)) {
-                scrollIndex = projectInfo.length - 1
-            }
-            setScrollY(scrollIndex);
-        };
-
-        // just trigger this so that the initial state 
-        // is updated as soon as the component is mounted
-        // related: https://stackoverflow.com/a/63408216
-        handleScroll();
-
-        window.addEventListener("scroll", handleScroll);
-        return () => {
-        window.removeEventListener("scroll", handleScroll);
-        };
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);*/
-
+    //project info to display on left
     const projectInfo = [
         {
             name: "My Projects",
@@ -70,7 +41,8 @@ const ProjectText = () => {
         width: '100%',
         height: 'auto'
       }
-
+    
+    //image info for right pane
     const imagesInfo = [
         {
             link: "splash",
@@ -98,6 +70,7 @@ const ProjectText = () => {
         }
     ]
 
+    //set the current project window when images info changes - triggered by inViewEffect
     useEffect(()=> {
         var i = 0;
         var vis = false;
@@ -113,43 +86,46 @@ const ProjectText = () => {
         setVis(vis)
     }, [imagesInfo])
 
+    //assign a ref and in view hook for each image card in imageInfo
     imagesInfo.forEach(prj => {
-        var {ref, inView, entry } = useInView({threshold: 0})
+        var {ref, inView } = useInView({threshold: 0.2})
         prj.prjRef = ref
         prj.isVisible = inView
     });
 
     return (
-        <div className="md:grid md:grid-cols-2 ">
-            {isVis?
+        <div className="md:grid md:grid-cols-2 "> {isVis?  //Render if there is an image card visible
         <div className="col-start-1 col-span-1 p-6 transition-all" >
             <h1 className="text-4xl ml-3 md:mt-12 lg:mt-12 md:fixed font-bold tracking-tight text-gray-900 sm:text-6xl xl:max-w-md lg:max-w-sm pr-12 md:max-w-sm sm:max-w-none">{projectInfo[scrollY].name}</h1>
             <p class="md:mt-32 mt-4 ml-3 mb-4 text-lg md:fixed xl:max-w-md lg:max-w-sm pr-12 md:max-w-xs sm:max-w-none leading-8 text-gray-600">{projectInfo[scrollY].desc}</p>
-            <ul className="flex flex-wrap transition-all md:fixed xl:mt-60 lg:mt-64 md:mt-72 xl:max-w-md lg:max-w-sm pr-12 md:max-w-xs sm:max-w-none">
-            {projectInfo.splice(1).map(({ name, link }, index) => (
+            <ul className="flex flex-wrap transition-all md:fixed xl:mt-64 lg:mt-64 md:mt-72 xl:max-w-md lg:max-w-sm pr-12 md:max-w-xs sm:max-w-none">
+            {projectInfo.splice(1).map(({ name, link }, index) => (  //remove first spalsh page, then add links
                 <li key={index} className={`${(scrollY==(index+1))? "shadow-xl" : ""} rounded-full transition-all ml-1 mr-1 mt-3 mb-1 px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20`}>
                 <a href={link} class="font-semibold text-indigo-600">{name}  </a>
-                </li>
+                </li> 
             ))}
             </ul>
         </div> : <></>}
 
         <div className="md:col-start-2 md:col-span-1 md:block">
             {imagesInfo.map(({ images, prjRef, isVisible, link }, index) => (
-            <div id={link} key={index} className={`p-4 pt-8 transition-all ${(isVisible && (index>0))? 
-                (imagesInfo[index-1].isVisible)? "" : "md:shadow-xl md:scale-105 md:-translate-x-3 lg:translate-x-0" 
-                : (isVisible)? "md:shadow-xl" : ""}`}>
-            <Image ref={prjRef} src={images[0].src} style={imageStyle} width={images[0].w} height={images[0].h} alt="todo"/>
+            <div ref={prjRef} id={link} key={index} 
+                className={`p-4 pt-8 transition-all 
+                ${(isVisible && (index>0))?         //if visible and not first card, check card above then render, else render if visible
+                    (imagesInfo[index-1].isVisible)? "" : "md:shadow-xl md:scale-105 md:-translate-x-3 lg:translate-x-0" 
+                : (isVisible)? "md:shadow-xl" : ""}`}> 
+
+            <Image src={images[0].src} style={imageStyle} width={images[0].w} height={images[0].h} alt="todo"/>
             <div className="grid grid-cols-2">
                 <div className="col-start-1 col-span-1">
                     <Image src={images[1].src} style={imageStyle} width={images[1].w} height={images[1].h} alt="todo"/></div>
                 <div className="col-start-2 col-span-1">
                     <Image src={images[2].src} style={imageStyle} width={images[2].w} height={images[2].h} alt="todo"/></div>
-            </div>
+                </div>
             </div>
             ))}
 
-            <div className="md:h-20"></div>
+            <div className="md:h-28 lg:h-16"></div>
         </div>
         </div>
     )
@@ -172,3 +148,29 @@ export default ProjectText;
 className={`${(isVisible && (index>0))? 
                     (imagesInfo[index-1].isVisible)? "hidden" : "" 
                     : (isVisible)? "" : "hidden"}`}*/
+
+
+                    /*useEffect(() => {
+        const handleScroll = () => {
+            var scrollIndex = Math.round((window.scrollY-150)/(window.screen.width/3))
+            if (scrollIndex < 0) {
+                scrollIndex = 0
+            }
+            if (scrollIndex > (projectInfo.length - 2)) {
+                scrollIndex = projectInfo.length - 1
+            }
+            setScrollY(scrollIndex);
+        };
+
+        // just trigger this so that the initial state 
+        // is updated as soon as the component is mounted
+        // related: https://stackoverflow.com/a/63408216
+        handleScroll();
+
+        window.addEventListener("scroll", handleScroll);
+        return () => {
+        window.removeEventListener("scroll", handleScroll);
+        };
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);*/
