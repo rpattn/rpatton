@@ -94,8 +94,8 @@ const ProjectText = () => {
     });
 
     return (
-        <div className="md:grid md:grid-cols-2 "> {isVis?  //Render if there is an image card visible
-        <div className="col-start-1 col-span-1 p-6 transition-all" >
+        <div className="md:grid md:grid-cols-2"> {isVis?  //Render if there is an image card visible
+        <div className="col-start-1 col-span-1 p-6 transition-all hidden sm:block" >
             <h1 className="text-4xl ml-3 md:mt-12 lg:mt-12 md:fixed font-bold tracking-tight text-gray-900 sm:text-6xl xl:max-w-md lg:max-w-sm pr-12 md:max-w-sm sm:max-w-none">{projectInfo[scrollY].name}</h1>
             <p class="md:mt-32 mt-4 ml-3 mb-4 text-lg md:fixed xl:max-w-md lg:max-w-sm pr-12 md:max-w-xs sm:max-w-none leading-8 text-gray-600">{projectInfo[scrollY].desc}</p>
             <ul className="flex flex-wrap transition-all md:fixed xl:mt-64 lg:mt-64 md:mt-72 xl:max-w-md lg:max-w-sm pr-12 md:max-w-xs sm:max-w-none">
@@ -107,7 +107,7 @@ const ProjectText = () => {
             </ul>
         </div> : <></>}
 
-        <div className="md:col-start-2 md:col-span-1 md:block">
+        <div className="md:col-start-2 md:col-span-1 sm:block hidden">
             {imagesInfo.map(({ images, prjRef, isVisible, link }, index) => (
             <div ref={prjRef} id={link} key={index} 
                 className={`p-4 pt-8 transition-all 

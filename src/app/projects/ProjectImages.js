@@ -36,18 +36,11 @@ const ProjectImages = ({setScroll}) => {
         }
     ]
 
-    imagesInfo.forEach(prj => {
-        prj.prjRef = useRef(null)
-        prj.isVisible = useOnScreen(prj.prjRef)
-    });
-
     return (
         <div className="md:col-start-2 md:col-span-1   md:block">
-            {imagesInfo.map(({ images, prjRef, isVisible }, index) => (
-            <div  key={index} className={`p-4 pt-8 ${(isVisible && (index>0))? 
-                (imagesInfo[index-1].isVisible)? "" : "md:shadow-xl" 
-                : (isVisible)? "md:shadow-xl" : ""}`}>
-            <Image ref={prjRef} src={images[0].src} style={imageStyle} width={images[0].w} height={images[0].h} alt="todo"/>
+            {imagesInfo.map(({ images }, index) => (
+            <div  key={index} className={`p-4 pt-8`}>
+            <Image src={images[0].src} style={imageStyle} width={images[0].w} height={images[0].h} alt="todo"/>
             <div className="grid grid-cols-2">
                 <div className="col-start-1 col-span-1">
                     <Image src={images[1].src} style={imageStyle} width={images[1].w} height={images[1].h} alt="todo"/></div>
