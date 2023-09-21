@@ -4,8 +4,9 @@ import React, { useRef } from "react";
 import { useEffect, useState } from "react";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import ProjectImages from "./ProjectImages";
-import useOnScreen from "../components/useOnScreen";
+//import useOnScreen from "../components/useOnScreen";
 import Image from "next/image";
+import { useInView } from "react-intersection-observer";
 
 const ProjectText = () => {
 
@@ -113,8 +114,9 @@ const ProjectText = () => {
     }, [imagesInfo])
 
     imagesInfo.forEach(prj => {
-        prj.prjRef = useRef(null)
-        prj.isVisible = useOnScreen(prj.prjRef)
+        var {ref, inView, entry } = useInView({threshold: 0})
+        prj.prjRef = ref
+        prj.isVisible = inView
     });
 
     return (
