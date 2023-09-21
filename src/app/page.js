@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
       {children}
 
         <main className="min-h-screen grid xl:grid-cols-10 lg:px-32 px-6 xl:px-16 splashCard mb-20">
-          <GearBg/>
+
         </main>
       <TopHeader/>
     </body>
