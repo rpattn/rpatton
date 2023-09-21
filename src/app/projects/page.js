@@ -16,10 +16,11 @@ export default function RootLayout({ children }) {
       {children}
 
         <main className="min-h-screen sm:grid xl:grid-cols-10 lg:px-32 px-6 xl:px-16 splashCard mb-20">
+          <GearBg />
             <div className="xl:col-start-1 xl:col-span-1  hidden lg:block"> 
                 
             </div>
-
+          
             <div className="xl:col-start-2 xl:col-span-8 ">
                 <ProjectText />
                 <div className="block sm:hidden">
