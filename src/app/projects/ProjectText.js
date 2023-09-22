@@ -103,9 +103,9 @@ const ProjectText = () => {
         (ready) ? 
         <div className="md:grid md:grid-cols-2"><div ref={pageBorder} className="h-8"></div> 
         <div className="col-start-1 col-span-1 p-6 transition-all hidden sm:block" >
-            <h1 className={`text-4xl ml-3 md:mt-12 lg:mt-12 ${(borderInView)? "" : "md:fixed top-10 "} ${isVis? "" : "hidden"} font-bold tracking-tight text-gray-900 sm:text-6xl md:max-w-xs xl:max-w-none md:pr-12 pr-0  sm:max-w-none`}>{projectInfo[scrollY].name}</h1>
+            <h1 className={`text-4xl ml-3 md:mt-12 lg:mt-12 transition-all ${(borderInView)? "" : "md:fixed top-10 "} ${isVis? "" : "hidden"} font-bold tracking-tight text-gray-900 sm:text-6xl md:max-w-xs xl:max-w-none md:pr-12 pr-0  sm:max-w-none`}>{projectInfo[scrollY].name}</h1>
             <p class={` mt-4 ml-3 mb-4 text-lg ${(borderInView)? "" : "md:fixed md:top-52 md:mt-0 xl:top-40 lg:top-54 lg:pt-3 xl:pt-2"} ${isVis? "" : "hidden"} xl:max-w-md lg:max-w-sm pr-12 md:max-w-xs sm:max-w-none leading-8 text-gray-600`}>{projectInfo[scrollY].desc}</p>
-            <ul className={`flex flex-wrap transition-all ${(borderInView)? "" : "md:fixed md:top-96 xl:top-72 lg:top-80 lg:pt-8 xl:pt-4"}  ${isVis? "" : "hidden"}  xl:max-w-md lg:max-w-sm pr-12 md:max-w-xs sm:max-w-none`}>
+            <ul className={`flex flex-wrap  ${(borderInView)? "" : "md:fixed md:top-96 xl:top-64 lg:top-80 lg:pt-8 xl:pt-12"}  ${isVis? "" : "hidden"}  xl:max-w-md lg:max-w-sm pr-12 md:max-w-xs sm:max-w-none`}>
             {projectInfo.splice(1).map(({ name, link }, index) => (  //remove first spalsh page, then add links
                 <li key={index} className={`${(scrollY==(index+1))? "shadow-xl" : ""} rounded-full transition-all ml-1 mr-1 mt-3 mb-1 px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20`}>
                 <a href={link} class="font-semibold text-indigo-600">{name}  </a>

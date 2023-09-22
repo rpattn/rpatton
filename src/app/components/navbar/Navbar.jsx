@@ -10,7 +10,7 @@ const Navbar = () => {
     { name: "Home", url: "/" },
     {
       name: "Projects",
-      url: "/projects",
+      url: "#projects",
       //dropdown: [
         //{ name: "SearchMap", url: "/projects/searchmap" },
         //{ name: "VisEng", url: "/projects/viseng" },

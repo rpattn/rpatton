@@ -9,7 +9,10 @@ import GearBg from "../components/GearBg";
 //bg-base-100 shadow-xl
 
 export default function RootLayout({ children }) {
-    
+  const imageStyle = {
+    width: '100%',
+    height: 'auto'
+  }
   return (
     <body>
       <Header />
@@ -18,12 +21,24 @@ export default function RootLayout({ children }) {
         <main >
           <GearBg />
 
-            <div className="min-h-screen">
+            <div className="sm:grid xl:grid-cols-10 lg:px-32 px-6 xl:px-16 splashCard mt-4">
+              <div className="xl:col-start-1 xl:col-span-1  hidden lg:block">
+                  
+              </div>
 
+              <div className="xl:col-start-2 xl:col-span-8 ">
+                <h1 className="absolute text-8xl pt-24 pl-12 font-bold tracking-tight text-gray-900">HI</h1>
+                <div className="hidden md:block"><Image src="/title-block-ls.svg" width={500} height={500} style={imageStyle}/></div>
+                <div className="block md:hidden"><Image src="/title-block-pt.svg" width={500} height={500} style={imageStyle}/></div>
+              </div>
+
+              <div className="xl:col-start-10 xl:col-span-1 hidden lg:block"> 
+              </div>
             </div>
 
             <div className="min-h-screen sm:grid xl:grid-cols-10 lg:px-32 px-6 xl:px-16 splashCard mb-20">
               <div className="xl:col-start-1 xl:col-span-1  hidden lg:block">
+                
               </div>
               
               <div className="xl:col-start-2 xl:col-span-8 ">
