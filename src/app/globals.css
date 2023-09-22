@@ -44,7 +44,7 @@ body {
 }
 
 .draftLinext {
-  height: 1px;
+  height: 2px;
   width: 7.5rem;
   margin-left: 2rem;
   margin-right: 4.5rem;
@@ -56,15 +56,15 @@ body {
   width: 7.5rem;
   margin-left: 2rem;
   margin-right: 4.5rem;
-  transform: translate(0px,10.35rem);
+  transform: translate(0px,10.45rem);
 }
 
 .draftLinext2 {
-  height: 1px;
+  height: 2px;
   width: 9.5rem;
   margin-left: 2rem;
   margin-right: 4.5rem;
-  transform: translate(0px,14.3rem);
+  transform: translate(0px,14.4rem);
 }
 
 .draftLinexb2 {
@@ -72,15 +72,15 @@ body {
   width: 12.5rem;
   margin-left: 2rem;
   margin-right: 4.5rem;
-  transform: translate(0px,17.2rem);
+  transform: translate(0px,17.25rem);
 }
 
 .draftLinext3 {
-  height: 1px;
+  height: 2px;
   width: 19rem;
   margin-left: 2rem;
   margin-right: 4.5rem;
-  transform: translate(0px,20.1rem);
+  transform: translate(0px,20.15rem);
 }
 
 .draftLinexb3 {
@@ -88,15 +88,15 @@ body {
   width: 7.5rem;
   margin-left: 2rem;
   margin-right: 4.5rem;
-  transform: translate(0px,23rem);
+  transform: translate(0px,23.05rem);
 }
 
 .draftLinext4 {
-  height: 1px;
+  height: 2px;
   width: 14rem;
   margin-left: 2rem;
   margin-right: 4.5rem;
-  transform: translate(0px,26rem);
+  transform: translate(0px,25.9rem);
 }
 
 .draftLinexb4 {
@@ -108,13 +108,13 @@ body {
 }
 
 .draftLineyl {
-  width: 1px;
+  width: 2px;
   margin-left: 3.35rem;
   transform: translate(0px,4rem);
 }
 
 .draftLineyr {
-  width: 1px;
+  width: 2px;
   height: 30rem;
   transform: translate(0px,10.35rem);
 }
