@@ -43,6 +43,90 @@ body {
     rgb(var(--background-start-rgb));
 }
 
+.draftLinext {
+  height: 1px;
+  width: 7.5rem;
+  margin-left: 2rem;
+  margin-right: 4.5rem;
+  transform: translate(0px,6rem);
+}
+
+.draftLinexb {
+  height: 2px;
+  width: 7.5rem;
+  margin-left: 2rem;
+  margin-right: 4.5rem;
+  transform: translate(0px,10.35rem);
+}
+
+.draftLinext2 {
+  height: 1px;
+  width: 9.5rem;
+  margin-left: 2rem;
+  margin-right: 4.5rem;
+  transform: translate(0px,14.3rem);
+}
+
+.draftLinexb2 {
+  height: 2px;
+  width: 12.5rem;
+  margin-left: 2rem;
+  margin-right: 4.5rem;
+  transform: translate(0px,17.2rem);
+}
+
+.draftLinext3 {
+  height: 1px;
+  width: 19rem;
+  margin-left: 2rem;
+  margin-right: 4.5rem;
+  transform: translate(0px,20.1rem);
+}
+
+.draftLinexb3 {
+  height: 2px;
+  width: 7.5rem;
+  margin-left: 2rem;
+  margin-right: 4.5rem;
+  transform: translate(0px,23rem);
+}
+
+.draftLinext4 {
+  height: 1px;
+  width: 14rem;
+  margin-left: 2rem;
+  margin-right: 4.5rem;
+  transform: translate(0px,26rem);
+}
+
+.draftLinexb4 {
+  height: 2px;
+  width: 12.5rem;
+  margin-left: 2rem;
+  margin-right: 4.5rem;
+  transform: translate(0px,28.8rem);
+}
+
+.draftLineyl {
+  width: 1px;
+  margin-left: 3.35rem;
+  transform: translate(0px,4rem);
+}
+
+.draftLineyr {
+  width: 1px;
+  height: 30rem;
+  transform: translate(0px,10.35rem);
+}
+
+.draftText {
+  line-height: 0.75 !important;
+}
+
+.draftText2{
+  transform: translate(0.24rem,0px);
+}
+
 .logoParent {
   display: flex !important;
   width: auto;

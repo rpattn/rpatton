@@ -12,6 +12,9 @@ export default function RootLayout({ children }) {
     width: '100%',
     height: 'auto'
   }
+  const gearImg = {
+    position: 'absolute',
+  }
   return (
     <body>
       <Header />
@@ -20,15 +23,32 @@ export default function RootLayout({ children }) {
         <main >
           <GearBg />
 
-            <div className="sm:grid xl:grid-cols-10 lg:px-32 px-6 xl:px-16 splashCard mt-4">
+            <div className="sm:grid xl:grid-cols-10 lg:px-32 xl:px-16 splashCard mt-0">
               <div className="xl:col-start-1 xl:col-span-1  hidden lg:block">
                   
               </div>
 
-              <div className="xl:col-start-2 xl:col-span-8 ">
-                <h1 className="absolute text-8xl pt-24 pl-12 font-bold tracking-tight text-gray-900">HI</h1>
+              <div className="xl:col-start-2 xl:col-span-8 lg:ml-8 lg:mr-2">
+                <h1 className="absolute draftText text-8xl pt-24 pl-12 font-bold tracking-tight text-gray-900 dark:text-gray-200">Hi</h1>
+                <h1 className="absolute draftText2 text-5xl pt-48 pl-12 font-bold tracking-tight text-gray-900 w-48 dark:text-gray-300">I love design, engineering and problem solving</h1>
+                <div className="draftLinext bg-blue-900 bg-opacity-30 dark:bg-blue-500"></div>
+                <div className="draftLinexb bg-blue-900  bg-opacity-30 dark:bg-blue-500"></div>
+                <div className="draftLinext2 bg-blue-900 bg-opacity-30 dark:bg-blue-500"></div>
+                <div className="draftLinexb2 bg-blue-900  bg-opacity-30 dark:bg-blue-500"></div>
+                <div className="draftLinext3 bg-blue-900 bg-opacity-30 dark:bg-blue-500"></div>
+                <div className="draftLinexb3 bg-blue-900  bg-opacity-30 dark:bg-blue-500"></div>
+                <div className="draftLinext4 bg-blue-900 bg-opacity-30 dark:bg-blue-500"></div>
+                <div className="draftLinexb4 bg-blue-900  bg-opacity-30 dark:bg-blue-500"></div>
+                <div className="draftLineyl absolute bg-blue-900 bg-opacity-30 xl:h-3/5 lg:h-3/5 md:h-3/5 sm:h-3/5 h-2/5 dark:bg-blue-500"></div>
+                <div className="dark:hidden  sm:mt-0 mt-4 ">
                 <div className="hidden md:block"><Image src="/title-block-ls.svg" width={500} height={500} style={imageStyle}/></div>
                 <div className="block md:hidden"><Image src="/title-block-pt.svg" width={500} height={500} style={imageStyle}/></div>
+
+                </div>
+                <div className="hidden dark:block sm:mt-0 mt-4 ">
+                <div className="hidden md:block"><Image src="/title-block-ls-drk.svg" width={500} height={500} style={imageStyle}/></div>
+                <div className="block md:hidden"><Image src="/title-block-pt-drk.svg" width={500} height={500} style={imageStyle}/></div>
+                </div>
               </div>
 
               <div className="xl:col-start-10 xl:col-span-1 hidden lg:block"> 
