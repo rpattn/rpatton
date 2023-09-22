@@ -49,14 +49,14 @@ const GearBg = () => {
         width: (50*scale) + "vh",
         height: (50*scale) + "vh",
         transform: "translate(" + ((-40*scale) + "vh") + ", " + (((20*scale)+25) + "vh") + ")" + 
-                    "rotate(" + (scrollY/5) + "deg)"
+                    "rotate(" + (scrollY/15) + "deg)"
       })
     setImageStyle2({
         display: "fixed",
         width: (50*scale) + "vh",
         height: (50*scale) + "vh",
         transform: "translate(" + ((-7*scale) + "vh") + ", " + (((49*scale)+25) + "vh") + ")" + 
-                    "rotate(" + (-scrollY/5) + "deg)"
+                    "rotate(" + (-scrollY/15) + "deg)"
       })
   }, [scrollY])
       

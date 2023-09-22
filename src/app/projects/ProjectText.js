@@ -21,17 +21,17 @@ const ProjectText = () => {
             link: "none",
         },
         {
-            name: "Project 1",
+            name: "Project 100",
             desc: "Anim auto Magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.",
             link: "#project1",
         },
         {
-            name: "Project 2",
+            name: "Project 200",
             desc: "Anim auto Magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.",
             link: "#project2",
         },
         {
-            name: "Project 3",
+            name: "Project 300",
             desc: "Anim auto Magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.",
             link: "#project3",
         },
@@ -88,26 +88,33 @@ const ProjectText = () => {
 
     //assign a ref and in view hook for each image card in imageInfo
     imagesInfo.forEach(prj => {
-        var {ref, inView } = useInView({threshold: 0.2})
+        var {ref, inView } = useInView({threshold: 0.35})
         prj.prjRef = ref
         prj.isVisible = inView
     });
 
+    var [pageBorder, borderInView] = useInView({threshold:1})
+    const [ready, setShow] = useState(false);
+    useEffect(() => {
+        setShow(true)
+    })
+
     return (
-        <div className="md:grid md:grid-cols-2"> {isVis?  //Render if there is an image card visible
+        (ready) ? 
+        <div className="md:grid md:grid-cols-2"><div ref={pageBorder} className="h-8"></div> 
         <div className="col-start-1 col-span-1 p-6 transition-all hidden sm:block" >
-            <h1 className="text-4xl ml-3 md:mt-12 lg:mt-12 md:fixed font-bold tracking-tight text-gray-900 sm:text-6xl xl:max-w-md lg:max-w-sm pr-12 md:max-w-sm sm:max-w-none">{projectInfo[scrollY].name}</h1>
-            <p class="md:mt-32 mt-4 ml-3 mb-4 text-lg md:fixed xl:max-w-md lg:max-w-sm pr-12 md:max-w-xs sm:max-w-none leading-8 text-gray-600">{projectInfo[scrollY].desc}</p>
-            <ul className="flex flex-wrap transition-all md:fixed xl:mt-64 lg:mt-64 md:mt-72 xl:max-w-md lg:max-w-sm pr-12 md:max-w-xs sm:max-w-none">
+            <h1 className={`text-4xl ml-3 md:mt-12 lg:mt-12 ${(borderInView)? "" : "md:fixed top-10 "} ${isVis? "" : "hidden"} font-bold tracking-tight text-gray-900 sm:text-6xl md:max-w-xs xl:max-w-none md:pr-12 pr-0  sm:max-w-none`}>{projectInfo[scrollY].name}</h1>
+            <p class={` mt-4 ml-3 mb-4 text-lg ${(borderInView)? "" : "md:fixed md:top-52 md:mt-0 xl:top-40 lg:top-54 lg:pt-3 xl:pt-2"} ${isVis? "" : "hidden"} xl:max-w-md lg:max-w-sm pr-12 md:max-w-xs sm:max-w-none leading-8 text-gray-600`}>{projectInfo[scrollY].desc}</p>
+            <ul className={`flex flex-wrap transition-all ${(borderInView)? "" : "md:fixed md:top-96 xl:top-72 lg:top-80 lg:pt-8 xl:pt-4"}  ${isVis? "" : "hidden"}  xl:max-w-md lg:max-w-sm pr-12 md:max-w-xs sm:max-w-none`}>
             {projectInfo.splice(1).map(({ name, link }, index) => (  //remove first spalsh page, then add links
                 <li key={index} className={`${(scrollY==(index+1))? "shadow-xl" : ""} rounded-full transition-all ml-1 mr-1 mt-3 mb-1 px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20`}>
                 <a href={link} class="font-semibold text-indigo-600">{name}  </a>
                 </li> 
             ))}
             </ul>
-        </div> : <></>}
+        </div>
 
-        <div className="md:col-start-2 md:col-span-1 sm:block hidden">
+        <div className="md:col-start-2 md:col-span-1 md:block hidden">
             {imagesInfo.map(({ images, prjRef, isVisible, link }, index) => (
             <div ref={prjRef} id={link} key={index} 
                 className={`p-4 pt-8 transition-all 
@@ -128,6 +135,7 @@ const ProjectText = () => {
             <div className="md:h-28 lg:h-16"></div>
         </div>
         </div>
+        : <></>
     )
 }
 
