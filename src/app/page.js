@@ -46,7 +46,7 @@ export default function RootLayout({ children }) {
                 </div>
                 <div className="hidden dark:block mt-0 ">
                 <div className="hidden md:block"><Image src="/title-block-ls-drk.svg" width={500} height={500} style={imageStyle}/></div>
-                <div className="block md:hidden"><Image src="/title-block-pt-drk.svg" width={500} height={500} style={imageStyle}/></div>
+                <div className="block md:hidden sm:mt-0 mt-7"><Image src="/title-block-pt-drk.svg" width={500} height={500} style={imageStyle}/></div>
                 </div>
               </div>
 
