@@ -119,6 +119,49 @@ body {
   transform: translate(0px,10.35rem);
 }
 
+.gearLine1 {
+  position: absolute;
+  width: 2px;
+  height: 17vw;
+  top: 22vw;
+  margin-left: 4vw;
+}
+
+.gearLine2 {
+  position: absolute;
+  width: 4.5rem;
+  height: 2px;
+  top: 22vw;
+  margin-left: 12vw;
+  z-index: 200;
+}
+
+.gearLine3 {
+  position: absolute;
+  width: 3rem;
+  height: 2px;
+  top: 38.8vw;
+  margin-left: 12vw;
+}
+
+.gearLine2s {
+  position: absolute;
+  width: 2rem;
+  height: 2px;
+  top: 22vw;
+  margin-left: 4vw;
+  z-index: 200;
+}
+
+.gearLine3s {
+  position: absolute;
+  width: 2rem;
+  height: 2px;
+  top: 38.8vw;
+  margin-left: 4vw;
+}
+
+
 .draftText {
   line-height: 0.75 !important;
 }
@@ -169,11 +212,42 @@ body {
   animation-timing-function: linear;
 }
 
+.aboutText1 {
+  width: 0;
+}
+
+@keyframes ping {
+  75%, 100% {
+      transform: scale(2);
+      opacity: 0;
+  }
+}
+.cursor-ping {
+  animation: ping 1s cubic-bezier(1, 0, 0, 0) infinite;
+}
+
 @media only screen and (min-width: 1030px) {
 .gearImg1 {
   top: 6vw;
 }
-
+.gearLine1 {
+  top: 17vw;
+  height: 17vw;
+}
+.gearLine2 {
+  top: 17vw;
+  width: 6rem;
+}
+.gearLine3 {
+  top: 34vw;
+  width: 4.2rem;
+}
+.gearLine2s {
+  top: 17vw;
+}
+.gearLine3s {
+  top: 34vw;
+}
 .gearImg2 {
   top: 25.4vw;
 }
@@ -183,7 +257,28 @@ body {
   .gearImg1 {
     width: 26vw;
   }
-  
+  .gearLine1 {
+    top: 24vw;
+    height: 20vw;
+  }
+  .gearLine2 {
+    top: 23.8vw;
+    width: 4rem;
+    margin-left: 13vw;
+  }
+  .gearLine3 {
+    top: 44vw;
+    width: 2.7rem;
+    margin-left: 13vw;
+  }
+  .gearLine2s {
+    top: 23.8vw;
+    width: 1rem;
+  }
+  .gearLine3s {
+    top: 44vw;
+    width: 1rem;
+  }
   .gearImg2 {
     width: 20vw;
     top: 34vw;

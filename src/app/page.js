@@ -5,6 +5,7 @@ import TopHeader from "./components/navbar/TopHeader";
 import ProjectText from "./projects/ProjectText";
 import ProjectImages from "./projects/ProjectImages";
 import GearBg from "./components/GearBg";
+import TypeText from "./TypeText";
 //bg-base-100 shadow-xl
 
 export default function RootLayout({ children }) {
@@ -30,7 +31,7 @@ export default function RootLayout({ children }) {
                 <div className="sm:grid sm:grid-cols-2">
                 <div className="sm:col-start-1 sm:col-span-1">
                 <h1 className="absolute draftText text-8xl pt-24 pl-12 font-bold tracking-tight text-gray-900 dark:text-gray-200">Hi</h1>
-                <h1 className="absolute draftText2 text-5xl pt-48 pl-12 font-bold tracking-tight text-gray-900 w-48 dark:text-gray-300">I love design, engineering and problem solving</h1>
+                <h1 className="absolute draftText2 transition-all text-5xl pt-48 pl-12 font-bold tracking-tight text-gray-900 w-60 dark:text-gray-300"><TypeText text="I love design, engineering and problem solving" /></h1>
                 <div className="draftLinexb bg-blue-900  bg-opacity-30 dark:bg-blue-500"></div>
                 <div className="draftLinext2 bg-blue-900 bg-opacity-30 dark:bg-blue-500"></div>
                 <div className="draftLinexb2 bg-blue-900  bg-opacity-30 dark:bg-blue-500"></div>
@@ -42,11 +43,17 @@ export default function RootLayout({ children }) {
                 </div>
                 <div className="sm:col-start-2 sm:col-span-1 hidden sm:block">
                   <div className="block dark:hidden">
-                <Image src="/gear3.svg" width={300} height={300} className="gearImg1"/>
-                <Image src="/pinion-1.svg" width={100} height={100} className="gearImg2"/></div>
-                <div className="dark:block hidden">
-                <Image src="/gear3-drk.svg" width={300} height={300} className="gearImg1"/>
-                <Image src="/pinion-1-drk.svg" width={100} height={100} className="gearImg2"/></div>
+                    <Image src="/gear3.svg" width={300} height={300} className="gearImg1"/>
+                    <Image src="/pinion-1.svg" width={100} height={100} className="gearImg2"/></div>
+                  <div className="dark:block hidden">
+                    <Image src="/gear3-drk.svg" width={300} height={300} className="gearImg1"/>
+                    <Image src="/pinion-1-drk.svg" width={100} height={100} className="gearImg2"/>
+                  </div>
+                  <div className="gearLine1 bg-gray-900  bg-opacity-30 dark:bg-gray-100" ></div>
+                  <div className="gearLine2 bg-blue-900  bg-opacity-30 dark:bg-blue-500"></div>
+                  <div className="gearLine3 bg-blue-900 bg-opacity-30 dark:bg-blue-500"></div>
+                  <div className="gearLine2s bg-blue-900  bg-opacity-30 dark:bg-blue-500"></div>
+                  <div className="gearLine3s bg-blue-900 bg-opacity-30 dark:bg-blue-500"></div>
                 </div>
                 </div>
                 <div className="dark:hidden mt-0 -z-50 relative">
