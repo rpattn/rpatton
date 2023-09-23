@@ -12,9 +12,7 @@ export default function RootLayout({ children }) {
     width: '100%',
     height: 'auto'
   }
-  const gearImg = {
-    position: 'absolute',
-  }
+  
   return (
     <body>
       <Header />
@@ -29,6 +27,8 @@ export default function RootLayout({ children }) {
               </div>
 
               <div className="xl:col-start-2 xl:col-span-8 lg:ml-8 lg:mr-2 sm:-translate-y-0 -translate-y-14 -z-50 relative">
+                <div className="sm:grid sm:grid-cols-2">
+                <div className="sm:col-start-1 sm:col-span-1">
                 <h1 className="absolute draftText text-8xl pt-24 pl-12 font-bold tracking-tight text-gray-900 dark:text-gray-200">Hi</h1>
                 <h1 className="absolute draftText2 text-5xl pt-48 pl-12 font-bold tracking-tight text-gray-900 w-48 dark:text-gray-300">I love design, engineering and problem solving</h1>
                 <div className="draftLinexb bg-blue-900  bg-opacity-30 dark:bg-blue-500"></div>
@@ -39,10 +39,19 @@ export default function RootLayout({ children }) {
                 <div className="draftLinext4 bg-blue-900 bg-opacity-30 dark:bg-blue-500"></div>
                 <div className="draftLinexb4 bg-blue-900  bg-opacity-30 dark:bg-blue-500"></div>
                 <div className="draftLineyl absolute bg-blue-900 bg-opacity-30 xl:h-3/5 lg:h-3/5 md:h-3/5 sm:h-3/5 h-4/6 dark:bg-blue-500"></div>
+                </div>
+                <div className="sm:col-start-2 sm:col-span-1 hidden sm:block">
+                  <div className="block dark:hidden">
+                <Image src="/gear3.svg" width={300} height={300} className="gearImg1"/>
+                <Image src="/pinion-1.svg" width={100} height={100} className="gearImg2"/></div>
+                <div className="dark:block hidden">
+                <Image src="/gear3-drk.svg" width={300} height={300} className="gearImg1"/>
+                <Image src="/pinion-1-drk.svg" width={100} height={100} className="gearImg2"/></div>
+                </div>
+                </div>
                 <div className="dark:hidden mt-0 -z-50 relative">
                 <div className="hidden md:block -z-50 relative"><Image src="/title-block-ls.svg" width={500} height={500} style={imageStyle}/></div>
                 <div className="block md:hidden sm:translate-y-0 translate-y-11 -z-50 relative"><Image src="/title-block-pt.svg" width={500} height={500} style={imageStyle} className="-z-50 relative"/></div>
-
                 </div>
                 <div className="hidden dark:block mt-0 ">
                 <div className="hidden md:block"><Image src="/title-block-ls-drk.svg" width={500} height={500} style={imageStyle}/></div>

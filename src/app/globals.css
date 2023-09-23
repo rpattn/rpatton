@@ -127,6 +127,70 @@ body {
   transform: translate(0.24rem,0px);
 }
 
+@keyframes spinl {
+  from {
+      transform:rotate(0deg);
+  }
+  to {
+      transform:rotate(360deg);
+  }
+}
+
+@keyframes spinr {
+  from {
+      transform:rotate(0deg);
+  }
+  to {
+      transform:rotate(-360deg);
+  }
+}
+
+.gearImg1 {
+  position: absolute;
+  top: 11vw;
+  margin-left: 8vw;
+  width: 22vw;
+  height: auto;
+  animation-name: spinr;
+  animation-duration: 14444ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.gearImg2 {
+  position: absolute;
+  top: 30.4vw;
+  margin-left: 8.1vw;
+  width: 17vw;
+  height: auto;
+  animation-name: spinl;
+  animation-duration: 10000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@media only screen and (min-width: 1030px) {
+.gearImg1 {
+  top: 6vw;
+}
+
+.gearImg2 {
+  top: 25.4vw;
+}
+}
+
+@media only screen and (max-width: 900px) {
+  .gearImg1 {
+    width: 26vw;
+  }
+  
+  .gearImg2 {
+    width: 20vw;
+    top: 34vw;
+    margin-left: 8.2vw;
+  }
+}
+
 .logoParent {
   display: flex !important;
   width: auto;
