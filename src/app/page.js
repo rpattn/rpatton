@@ -39,7 +39,7 @@ export default function RootLayout({ children }) {
                 <div className="draftLinexb3 bg-blue-900  bg-opacity-30 dark:bg-blue-500"></div>
                 <div className="draftLinext4 bg-blue-900 bg-opacity-30 dark:bg-blue-500"></div>
                 <div className="draftLinexb4 bg-blue-900  bg-opacity-30 dark:bg-blue-500"></div>
-                <div className="draftLineyl absolute bg-blue-900 bg-opacity-30 xl:h-3/5 lg:h-3/5 md:h-3/5 sm:h-3/5 h-4/6 dark:bg-blue-500"></div>
+                <div className="draftLineyl absolute bg-blue-900 bg-opacity-30 xl:h-3/5 lg:h-3/5 md:h-3/5 sm:h-3/5 h-5/6 dark:bg-blue-500"></div>
                 </div>
                 <div className="sm:col-start-2 sm:col-span-1 hidden sm:block">
                   <div className="block dark:hidden">
@@ -58,6 +58,14 @@ export default function RootLayout({ children }) {
                   <div className="gearLine3s bg-gray-900  bg-opacity-30 dark:bg-gray-100"></div>
                   <div className="gearLine2s2 bg-gray-900  bg-opacity-30 dark:bg-gray-100"></div>
                   <div className="gearLine3s2 bg-gray-900  bg-opacity-30 dark:bg-gray-100"></div>
+                  <div className="gearDim1 italic font-serif"><p className=" text-3xl">x</p></div>
+                </div>
+                <div className="block sm:hidden">
+                  <div className="block dark:hidden">
+                    <Image src="/gear3.svg" width={100} height={100} className="gearImgMobile"/></div>
+                  <div className="dark:block hidden">
+                    <Image src="/gear3-drk.svg" width={100} height={100} className="gearImgMobile"/>
+                  </div>
                 </div>
                 </div>
                 <div className="dark:hidden mt-0 -z-50 relative">
