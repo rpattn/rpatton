@@ -40,7 +40,7 @@ const ProjectText = () => {
 
     const projectBullets = [
         {text1: "", text2: "", text3: "", extLink: ""},
-        {text1: "Built using HTML, CSS, JS", text2: "Powered by React, Firebase, Google APIs", text3: "Responsive design", extLink: "https://www.searchmap.web.app"},
+        {text1: "Built using HTML, CSS, JS", text2: "Powered by React, Firebase, Google APIs", text3: "Responsive design", extLink: "searchmap.web.app"},
         {text1: "Built using Reasct", text2: "Built using React", text3: "Built using React", extLink: ""},
         {text1: "Built using React", text2: "Built using React", text3: "Builts using React", extLink: ""},
     ]
