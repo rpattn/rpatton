@@ -40,7 +40,7 @@ const ProjectText = () => {
 
     const projectBullets = [
         {text1: "", text2: "", text3: "", extLink: ""},
-        {text1: "Built using HTML, CSS, JS", text2: "Powered by React, Firebase, Google APIs", text3: "Responsive design", extLink: "searchmap.web.app"},
+        {text1: "Built using HTML, CSS, JS", text2: "Powered by React, Firebase, Google APIs", text3: "Responsive design", extLink: "https://searchmap.web.app/"},
         {text1: "Built using Reasct", text2: "Built using React", text3: "Built using React", extLink: ""},
         {text1: "Built using React", text2: "Built using React", text3: "Builts using React", extLink: ""},
     ]
@@ -119,7 +119,7 @@ const ProjectText = () => {
                 <li className="text-lg xl:mb-1 text-gray-700 dark:text-gray-200">{projectBullets[scrollY].text2}</li>
                 <li className="text-lg xl:mb-1 text-gray-700 dark:text-gray-200">{projectBullets[scrollY].text3}</li>
             </ul>
-            <button href={projectBullets[scrollY].extLink}  className={`xl:mt-44 lg:mt-52 md:mt-36 ml-4 pl-4 pr-4 pt-2 pb-2 bg-blue-500 rounded-lg  ${(borderInView)? "" : "md:fixed md:top-96 xl:top-64 lg:top-80 "}  ${isVis? "" : "hidden"} flex text-xl font-bold text-gray-100 `}>
+            <button href={projectBullets[scrollY].extLink}  className={` z-50 xl:mt-44 lg:mt-52 md:mt-36 ml-4 pl-4 pr-4 pt-2 pb-2 bg-blue-500 rounded-lg  ${(borderInView)? "" : "md:fixed md:top-96 xl:top-64 lg:top-80 "}  ${isVis? "" : "hidden"} flex text-xl font-bold text-gray-100 `}>
                 <Link href={projectBullets[scrollY].extLink}> Check it out</Link> <RxExternalLink className="mt-1 ml-2" /></button>
             </>
             : <></>}
