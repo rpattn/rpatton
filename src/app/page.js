@@ -6,6 +6,8 @@ import ProjectText from "./projects/ProjectText";
 import ProjectImages from "./projects/ProjectImages";
 import GearBg from "./components/GearBg";
 import TypeText from "./TypeText";
+import GearComp3 from "./Gears/Gear3Comp";
+import Pinion1Comp from "./Gears/Pinion1Comp";
 //bg-base-100 shadow-xl
 
 export default function RootLayout({ children }) {
@@ -43,11 +45,12 @@ export default function RootLayout({ children }) {
                 </div>
                 <div className="sm:col-start-2 sm:col-span-1 hidden sm:block">
                   <div className="block dark:hidden">
-                    <Image src="/gear3.svg" width={300} height={300} className="gearImg1"/>
-                    <Image src="/pinion-1.svg" width={100} height={100} className="gearImg2"/></div>
+                    <GearComp3 mode="light" />
+                    <Pinion1Comp mode="light" />
+                    </div>
                   <div className="dark:block hidden">
-                    <Image src="/gear3-drk.svg" width={300} height={300} className="gearImg1"/>
-                    <Image src="/pinion-1-drk.svg" width={100} height={100} className="gearImg2"/>
+                    <GearComp3 mode="dark" />
+                    <Pinion1Comp mode="dark" />
                   </div>
                   <div className="gearLine1 bg-gray-900  bg-opacity-30 dark:bg-gray-100" ></div>
                   <div className="gearLine2 bg-blue-900  bg-opacity-30 dark:bg-blue-500"></div>
@@ -62,19 +65,20 @@ export default function RootLayout({ children }) {
                 </div>
                 <div className="block sm:hidden">
                   <div className="block dark:hidden">
-                    <Image src="/gear3.svg" width={100} height={100} className="gearImgMobile"/></div>
+                    <Image src="/gear3.svg" alt="img" width={100} height={100} className="gearImgMobile"/>
+                    </div>
                   <div className="dark:block hidden">
-                    <Image src="/gear3-drk.svg" width={100} height={100} className="gearImgMobile"/>
+                    <Image src="/gear3-drk.svg" alt="img" width={100} height={100} className="gearImgMobile"/>
                   </div>
                 </div>
                 </div>
                 <div className="dark:hidden mt-0 -z-50 relative">
-                <div className="hidden md:block -z-50 relative"><Image src="/title-block-ls.svg" width={500} height={500} style={imageStyle}/></div>
-                <div className="block md:hidden sm:translate-y-0 translate-y-11 -z-50 relative"><Image src="/title-block-pt.svg" width={500} height={500} style={imageStyle} className="-z-50 relative"/></div>
+                <div className="hidden md:block -z-50 relative"><Image alt="img" src="/title-block-ls.svg" width={500} height={500} style={imageStyle}/></div>
+                <div className="block md:hidden sm:translate-y-0 translate-y-11 -z-50 relative"><Image alt="img" src="/title-block-pt.svg" width={500} height={500} style={imageStyle} className="-z-50 relative"/></div>
                 </div>
                 <div className="hidden dark:block mt-0 ">
-                <div className="hidden md:block"><Image src="/title-block-ls-drk.svg" width={500} height={500} style={imageStyle}/></div>
-                <div className="block md:hidden sm:translate-y-0 translate-y-11"><Image src="/title-block-pt-drk.svg" width={500} height={500} style={imageStyle}/></div>
+                <div className="hidden md:block"><Image alt="img" src="/title-block-ls-drk.svg" width={500} height={500} style={imageStyle}/></div>
+                <div className="block md:hidden sm:translate-y-0 translate-y-11"><Image alt="img" src="/title-block-pt-drk.svg" width={500} height={500} style={imageStyle}/></div>
                 </div>
               </div>
 

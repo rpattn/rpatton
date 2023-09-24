@@ -281,36 +281,36 @@ export default function RootLayout({ children }) {
           <div className="row-start-8 row-span-1 hidden lg:block xl:ml-4">
             <div className="xl:flex xl:flex-col lg:grid lg:grid-cols-7 lg:dark:grid-cols-6">
               <div className="lg:col-span-1 lg:col-start-1">
-                <div className="m-8 mb-0"><Image src="/web.png" width={50} height={50}></Image></div>
-                <div className="m-8 mb-0"><Image src="/fire.png" width={50} height={50}></Image></div>
+                <div className="m-8 mb-0"><Image alt="img" src="/web.png" width={50} height={50}></Image></div>
+                <div className="m-8 mb-0"><Image alt="img" src="/fire.png" width={50} height={50}></Image></div>
               </div>
               <div className="lg:col-span-1 lg:col-start-2 dark:hidden">
-                <div className="m-8 mb-0 lg:pt-6 dark:hidden"><Image src="/next.svg" width={50} height={50}></Image></div>
-                <div className="m-8 mb-0 lg:pt-4 dark:hidden"><Image src="/linux.png" width={50} height={50}></Image></div>
+                <div className="m-8 mb-0 lg:pt-6 dark:hidden"><Image alt="img" src="/next.svg" width={50} height={50}></Image></div>
+                <div className="m-8 mb-0 lg:pt-4 dark:hidden"><Image alt="img" src="/linux.png" width={50} height={50}></Image></div>
               </div>
               <div className="lg:col-span-1 lg:col-start-3 lg:dark:col-start-2">
-                <div className="m-8 mb-0"><Image src="/sql.png" width={50} height={50}></Image></div>
-                <div className="m-8 mb-0"><Image src="/cpp.png" width={50} height={50}></Image></div>
+                <div className="m-8 mb-0"><Image alt="img" src="/sql.png" width={50} height={50}></Image></div>
+                <div className="m-8 mb-0"><Image alt="img" src="/cpp.png" width={50} height={50}></Image></div>
               </div>
               <div className="lg:col-span-1 lg:col-start-4 lg:dark:col-start-3">
-                <div className="m-8 mb-0"><Image src="/cshrp.png" width={50} height={50}></Image></div>
-                <div className="m-8 mb-0"><Image src="/py.png" width={50} height={50}></Image></div>
+                <div className="m-8 mb-0"><Image alt="img" src="/cshrp.png" width={50} height={50}></Image></div>
+                <div className="m-8 mb-0"><Image alt="img" src="/py.png" width={50} height={50}></Image></div>
               </div>
               <div className="lg:col-span-1 lg:col-start-5 lg:dark:col-start-4">
-                <div className="m-8 mb-0"><Image src="/office.png" width={50} height={50}></Image></div>
-                <div className="m-8 mb-0 lg:pt-2"><Image src="/mat.png" width={50} height={50}></Image></div>
+                <div className="m-8 mb-0"><Image alt="img" src="/office.png" width={50} height={50}></Image></div>
+                <div className="m-8 mb-0 lg:pt-2"><Image alt="img" src="/mat.png" width={50} height={50}></Image></div>
               </div>
               <div className="lg:col-span-1 lg:col-start-6 lg:dark:col-start-5">
-              <div className="m-8 mb-0 lg:pt-1"><Image src="/sw.png" width={50} height={50}></Image></div>
-              <div className="m-8 mb-0"><Image src="/java.png" width={50} height={50}></Image></div>
+              <div className="m-8 mb-0 lg:pt-1"><Image alt="img" src="/sw.png" width={50} height={50}></Image></div>
+              <div className="m-8 mb-0"><Image alt="img" src="/java.png" width={50} height={50}></Image></div>
               </div>
               <div className="lg:col-span-1 lg:col-start-7 lg:dark:col-start-6">
-                <div className="m-8 mb-0 ml-9 pt-1"><Image src="/creo.svg" width={44} height={44}></Image></div>
-                <div className="m-8 mb-0 ml-9 pt-1"><Image src="/lbv.svg" width={44} height={44}></Image></div>
+                <div className="m-8 mb-0 ml-9 pt-1"><Image alt="img" src="/creo.svg" width={44} height={44}></Image></div>
+                <div className="m-8 mb-0 ml-9 pt-1"><Image alt="img" src="/lbv.svg" width={44} height={44}></Image></div>
                 </div>
               <div className="lg:col-span-1 lg:col-start-8 lg:dark:col-start-7">
-                <div className="m-8 mb-0 ml-9 pt-2"><Image src="/ad.png" width={44} height={44}></Image></div>
-                <div className="m-8 mb-0 ml-9 pt-2 lg:dark:hidden"><Image src="/asys.png" width={44} height={44}></Image></div>
+                <div className="m-8 mb-0 ml-9 pt-2"><Image alt="img" src="/ad.png" width={44} height={44}></Image></div>
+                <div className="m-8 mb-0 ml-9 pt-2 lg:dark:hidden"><Image alt="img" src="/asys.png" width={44} height={44}></Image></div>
                 </div>
             </div>
           </div>
