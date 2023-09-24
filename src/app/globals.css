@@ -127,38 +127,75 @@ body {
   margin-left: 4vw;
 }
 
+.gearLine4 {
+  position: absolute;
+  width: 2px;
+  height: 3vw;
+  top: 20.5vw;
+  margin-left: 18.7vw;
+}
+
+.gearLine5 {
+  position: absolute;
+  width: 2px;
+  height: 2.5vw;
+  top: 37.6vw;
+  margin-left: 16.7vw;
+}
+
 .gearLine2 {
   position: absolute;
-  width: 4.5rem;
+  width: 9.6rem;
   height: 2px;
   top: 22vw;
-  margin-left: 12vw;
+  margin-left: 4vw;
   z-index: 200;
 }
 
 .gearLine3 {
   position: absolute;
-  width: 3rem;
+  width: 8.3rem;
   height: 2px;
   top: 38.8vw;
-  margin-left: 12vw;
+  margin-left: 4vw;
 }
 
 .gearLine2s {
   position: absolute;
-  width: 2rem;
+  width: 1rem;
   height: 2px;
-  top: 22vw;
-  margin-left: 4vw;
+  top: 22.5vw;
+  margin-left: 3.9vw;
   z-index: 200;
+  transform: rotate(45deg);
+}
+
+.gearLine2s2 {
+  position: absolute;
+  width: 1rem;
+  height: 2px;
+  top: 22.5vw;
+  margin-left: 2.8vw;
+  z-index: 200;
+  transform: rotate(135deg);
 }
 
 .gearLine3s {
   position: absolute;
-  width: 2rem;
+  width: 1rem;
   height: 2px;
-  top: 38.8vw;
-  margin-left: 4vw;
+  top: 38.3vw;
+  margin-left: 3.8vw;
+  transform: rotate(-45deg);
+}
+
+.gearLine3s2 {
+  position: absolute;
+  width: 1rem;
+  height: 2px;
+  top: 38.3vw;
+  margin-left: 2.8vw;
+  transform: rotate(-135deg);
 }
 
 
@@ -195,7 +232,7 @@ body {
   width: 22vw;
   height: auto;
   animation-name: spinr;
-  animation-duration: 14444ms;
+  animation-duration: 72220ms;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
 }
@@ -207,7 +244,7 @@ body {
   width: 17vw;
   height: auto;
   animation-name: spinl;
-  animation-duration: 10000ms;
+  animation-duration: 50000ms;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
 }
@@ -234,19 +271,37 @@ body {
   top: 17vw;
   height: 17vw;
 }
+.gearLine4 {
+  top: 15.9vw;
+  height: 2.4vw;
+}
+.gearLine5 {
+  top: 33.2vw;
+  height: 1.7vw;
+}
 .gearLine2 {
   top: 17vw;
-  width: 6rem;
+  width: 14.5rem;
 }
 .gearLine3 {
   top: 34vw;
-  width: 4.2rem;
+  width: 12.4rem;
 }
 .gearLine2s {
-  top: 17vw;
+  top: 17.5vw;
+  margin-left: 3.9vw;
 }
 .gearLine3s {
-  top: 34vw;
+  top: 33.6vw;
+  margin-left: 3.9vw;
+}
+.gearLine2s2 {
+  top: 17.5vw;
+  margin-left: 3.1vw;
+}
+.gearLine3s2 {
+  top: 33.6vw;
+  margin-left: 3.1vw;
 }
 .gearImg2 {
   top: 25.4vw;
@@ -261,23 +316,41 @@ body {
     top: 24vw;
     height: 20vw;
   }
+  .gearLine4 {
+    top: 22.5vw;
+    margin-left: 20.5vw;
+  }
+  .gearLine5 {
+    top: 42.8vw;
+    margin-left: 18vw;
+  }
   .gearLine2 {
     top: 23.8vw;
-    width: 4rem;
-    margin-left: 13vw;
+    width: 8.2rem;
   }
   .gearLine3 {
     top: 44vw;
-    width: 2.7rem;
-    margin-left: 13vw;
+    width: 7rem;
   }
   .gearLine2s {
-    top: 23.8vw;
+    top: 24.8vw;
     width: 1rem;
+    margin-left: 3.9vw;
   }
   .gearLine3s {
-    top: 44vw;
+    top: 43vw;
     width: 1rem;
+    margin-left: 3.9vw;
+  }
+  .gearLine2s2 {
+    top: 24.8vw;
+    width: 1rem;
+    margin-left: 2.3vw;
+  }
+  .gearLine3s2 {
+    top: 43vw;
+    width: 1rem;
+    margin-left: 2.3vw;
   }
   .gearImg2 {
     width: 20vw;

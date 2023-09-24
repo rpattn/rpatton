@@ -10,10 +10,14 @@ const TypeText = ({text}) => {
 
     useEffect(()=> {
         if (count < targetText.length-1) {
+            var dt = 75
+            if (targetText[targetTextTyped.length] == " ") {
+                dt = 150
+            }
             setText(targetTextTyped + targetText[targetTextTyped.length])
-            setTimeout(()=>{
+            setTimeout((dt)=>{
                 setCount(targetTextTyped.length)
-            }, 75)
+            }, dt)
         }
     }, [count])
 

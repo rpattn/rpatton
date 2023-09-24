@@ -52,8 +52,12 @@ export default function RootLayout({ children }) {
                   <div className="gearLine1 bg-gray-900  bg-opacity-30 dark:bg-gray-100" ></div>
                   <div className="gearLine2 bg-blue-900  bg-opacity-30 dark:bg-blue-500"></div>
                   <div className="gearLine3 bg-blue-900 bg-opacity-30 dark:bg-blue-500"></div>
-                  <div className="gearLine2s bg-blue-900  bg-opacity-30 dark:bg-blue-500"></div>
-                  <div className="gearLine3s bg-blue-900 bg-opacity-30 dark:bg-blue-500"></div>
+                  <div className="gearLine4 bg-blue-900  bg-opacity-30 dark:bg-blue-500"></div>
+                  <div className="gearLine5 bg-blue-900 bg-opacity-30 dark:bg-blue-500"></div>
+                  <div className="gearLine2s bg-gray-900  bg-opacity-30 dark:bg-gray-100"></div>
+                  <div className="gearLine3s bg-gray-900  bg-opacity-30 dark:bg-gray-100"></div>
+                  <div className="gearLine2s2 bg-gray-900  bg-opacity-30 dark:bg-gray-100"></div>
+                  <div className="gearLine3s2 bg-gray-900  bg-opacity-30 dark:bg-gray-100"></div>
                 </div>
                 </div>
                 <div className="dark:hidden mt-0 -z-50 relative">
