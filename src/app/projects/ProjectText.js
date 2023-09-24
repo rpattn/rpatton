@@ -27,13 +27,13 @@ const ProjectText = () => {
             link: "#searchmap"
         },
         {
-            name: "Project 200",
-            desc: "Anim auto Magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.",
-            link: "#project2",
+            name: "Daring Dash",
+            desc: "Led a team that designed and manufactured an autonomous buggy. Optimised the vehicles suspension response using Matlab to evaluate a kinematic model constructed from 1st Principles.",
+            link: "#daringdash",
         },
         {
-            name: "Project 300",
-            desc: "Anim auto Magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.",
+            name: "Volunteering",
+            desc: "Travelled to Tanzania to participate in several aid projects, including Civil Engineering work redirecting rainwater around a local school, refrbishing desks and working with children",
             link: "#project3",
         },
     ]
@@ -41,8 +41,8 @@ const ProjectText = () => {
     const projectBullets = [
         {text1: "", text2: "", text3: "", extLink: ""},
         {text1: "Built using HTML, CSS, JS", text2: "Powered by React, Firebase, Google APIs", text3: "Responsive design", extLink: "https://searchmap.web.app/"},
-        {text1: "Built using Reasct", text2: "Built using React", text3: "Built using React", extLink: ""},
-        {text1: "Built using React", text2: "Built using React", text3: "Builts using React", extLink: ""},
+        {text1: "Computer aided, analysis led design.", text2: "Project Managed team", text3: "Achieved 86% in this coursework", extLink: "/cv#daringdash"},
+        {text1: "Fund raised over 2 years", text2: "Collaborated with a diverse team", text3: "Harboured a love for travel", extLink: ""},
     ]
 
     const imageStyle = {
@@ -54,9 +54,9 @@ const ProjectText = () => {
     const imagesInfo = [
         {
             link: "splash",
-            images: [{src: "/project_splash_1.jpg", h:424, w:238},
-                     {src: "/project_splash_2.jpg", h:539, w:360},
-                     {src: "/project_splash_3.jpg", h:508, w:339}]
+            images: [{src: "/buggy/buggy1.png", h:4267, w:4267},
+                     {src: "/searchmap2.png", h:862, w:862},
+                     {src: "/tanzania/tanzania1.png", h:654, w:654}]
         },
         {
             link: "searchmap",
@@ -65,16 +65,16 @@ const ProjectText = () => {
                      {src: "/searchmap3.png", h:529, w:529}]
         },
         {
-            link: "project2",
-            images: [{src: "/project_splash_1.jpg", h:424, w:238},
-                     {src: "/project_splash_2.jpg", h:539, w:360},
-                     {src: "/project_splash_3.jpg", h:508, w:339}]
+            link: "daringdash",
+            images: [{src: "/buggy/buggy1.png", h:4267, w:2400},
+                     {src: "/buggy/buggy2.png", h:624, w:624},
+                     {src: "/buggy/buggy3.png", h:1340, w:1340}]
         },
         {
-            link: "project3",
-            images: [{src: "/project_splash_1.jpg", h:424, w:238},
-                     {src: "/project_splash_2.jpg", h:539, w:360},
-                     {src: "/project_splash_3.jpg", h:508, w:339}]
+            link: "tanzania",
+            images: [{src: "/tanzania/tanzania3.png", h:1062, w:681},
+                     {src: "/tanzania/tanzania1.png", h:654, w:654},
+                     {src: "/tanzania/tanzania2.png", h:654, w:654}]
         }
     ]
 
@@ -114,12 +114,12 @@ const ProjectText = () => {
             <h1 className={`text-4xl ml-3 md:mt-10 lg:mt-12 transition-all ${(borderInView)? "" : "md:fixed top-10 "} ${isVis? "" : "hidden"} font-bold tracking-tight text-gray-900 sm:text-6xl md:max-w-xs xl:max-w-none md:pr-12 pr-0  sm:max-w-none dark:text-gray-200`}>{projectInfo[scrollY].name}</h1>
             <p class={` mt-4 ml-3 mb-4 text-lg ${(borderInView)? "" : "md:fixed md:top-52 md:mt-0 xl:top-40 lg:top-54 lg:pt-3 xl:pt-2"} ${isVis? "" : "hidden"} xl:max-w-md lg:max-w-sm pr-12 md:max-w-xs sm:max-w-none leading-8 text-gray-600 dark:text-gray-200`}>{projectInfo[scrollY].desc}</p>
             {(projectBullets[scrollY].text1 != "") ? <>
-            <ul className={`xl:mt-2 lg:mt-10 md:mt-6 ml-8 list-disc  ${(borderInView)? "" : "md:fixed md:top-96 xl:top-64 lg:top-80 lg:pt-8 xl:pt-12"}  ${isVis? "" : "hidden"}  xl:max-w-md lg:max-w-sm pr-12 md:max-w-xs sm:max-w-none`}>
+            <ul className={` transition-all xl:mt-2 lg:mt-10 md:mt-6 ml-8 list-disc  ${(borderInView)? "" : "md:fixed md:top-96 xl:top-64 lg:top-80 lg:pt-8 xl:pt-12"}  ${isVis? "" : "hidden"}  xl:max-w-md lg:max-w-sm pr-12 md:max-w-xs sm:max-w-none`}>
                 <li className="text-lg xl:mb-1 text-gray-700 dark:text-gray-200">{projectBullets[scrollY].text1}</li>
                 <li className="text-lg xl:mb-1 text-gray-700 dark:text-gray-200">{projectBullets[scrollY].text2}</li>
                 <li className="text-lg xl:mb-1 text-gray-700 dark:text-gray-200">{projectBullets[scrollY].text3}</li>
             </ul>
-            <button href={projectBullets[scrollY].extLink}  className={` z-50 xl:mt-44 lg:mt-52 md:mt-36 ml-4 pl-4 pr-4 pt-2 pb-2 bg-blue-500 rounded-lg  ${(borderInView)? "" : "md:fixed md:top-96 xl:top-64 lg:top-80 "}  ${isVis? "" : "hidden"} flex text-xl font-bold text-gray-100 `}>
+            <button href={projectBullets[scrollY].extLink}  className={` z-50 xl:mt-44 lg:mt-52 md:mt-36 ml-4 pl-4 pr-4 pt-2 pb-2 outline outline-1 outline-blue-500 rounded-lg  ${(borderInView)? "" : "md:fixed md:top-96 xl:top-64 lg:top-80 "}  ${isVis? "" : "hidden"} flex text-xl font-bold dark:text-blue-500 text-blue-700 drop-shadow-2xl`}>
                 <Link href={projectBullets[scrollY].extLink}> Check it out</Link> <RxExternalLink className="mt-1 ml-2" /></button>
             </>
             : <></>}

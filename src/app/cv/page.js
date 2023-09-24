@@ -26,13 +26,13 @@ export default function RootLayout({ children }) {
             <div className="xl:col-start-3 xl:col-span-8">
             <div className=" ">
             <h1 className="mt-2 font-bold tracking-tight text-gray-900 dark:text-gray-200 text-4xl mb-1">Statement</h1>
-            <div className="line mb-4"></div>
+            <div className="line mb-4 dark:bg-gray-400"></div>
             <p className="mt-2 ">Final year master’s student (MEng) at the University of Leeds. Looking to apply my strong analytical and project management skills to solve complex problems in the Engineering Industry. Experience gained as a Design Engineer at Cummins has developed my ability to work as part of a global team to find data driven solutions that work for both client and business.</p>
             </div>
 
             <div id="uol" className=" ">
             <h1 className="mt-6 font-bold tracking-tight dark:text-gray-200  text-gray-900 text-4xl mb-1">Education</h1>
-            <div className="line mb-0"></div>
+            <div className="line mb-0 dark:bg-gray-400"></div>
             <div className="grid grid-cols-13">
             <div className="col-start-1 col-span-10 ">
             <h2 className="text-base dark:text-gray-200 font-semibold leading-7 text-gray-900 translate-y-2">University of Leeds</h2>
@@ -66,7 +66,7 @@ export default function RootLayout({ children }) {
 
             <div id="cummins" className=" ">
             <h1 className="mt-6 dark:text-gray-200 font-bold tracking-tight text-gray-900 text-4xl mb-1">Industry Experience</h1>
-            <div className="line mb-0"></div>
+            <div className="line mb-0 dark:bg-gray-400"></div>
             <div className="grid grid-cols-13">
             <div className="col-start-1 col-span-10 ">
             <h2 className="text-base font-semibold leading-7 text-gray-900 dark:text-gray-200  translate-y-2">Cummins | Engineering</h2>
@@ -148,7 +148,7 @@ export default function RootLayout({ children }) {
 
             <div className=" " id="bfb">
             <h1 className="mt-6 font-bold tracking-tight dark:text-gray-200  text-gray-900 text-4xl mb-1">Employment History</h1>
-            <div className="line mb-0"></div>
+            <div className="line mb-0 dark:bg-gray-400"></div>
             <div className="grid grid-cols-13">
             <div className="col-start-1 col-span-10 ">
             <h2 className="text-base font-semibold leading-7 text-gray-900 dark:text-gray-200  translate-y-2">British Food Box</h2>
@@ -205,7 +205,7 @@ export default function RootLayout({ children }) {
 
             <div className=" " id="technical">
             <h1 className="mt-2 font-bold tracking-tight dark:text-gray-200  text-gray-900 text-4xl mb-1">Skills</h1>
-            <div className="line mb-0"></div>
+            <div className="line mb-0 dark:bg-gray-400"></div>
             <h2 className="text-base dark:text-indigo-500  font-semibold leading-7 text-gray-900 mb-2 translate-y-2">Technical</h2>
             <ul className="flex flex-wrap">
             <li className="flex">
@@ -237,7 +237,7 @@ export default function RootLayout({ children }) {
 
             <div className=" ">
             <h1 className="mt-6 dark:text-gray-200 font-bold tracking-tight text-gray-900 text-4xl mb-1">Hobbies & Interests</h1>
-            <div className="line mb-0"></div>
+            <div className="line mb-0 dark:bg-gray-400"></div>
             <h2 className="text-base  dark:text-indigo-500 font-semibold leading-7 text-gray-900 mb-2 translate-y-2">Technology</h2>
             <ul>
             <li className="flex">
