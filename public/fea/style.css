@@ -1,0 +1,299 @@
+#grid {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+}
+
+#gridInput {
+    width: 2rem;
+}
+
+.point {
+    position: absolute;
+    height: 35px;
+    width: 35px;
+    background-color: rgb(255, 255, 255, 0);
+    border-radius: 50%;
+    display: inline-block;
+    text-align: center;
+    cursor: default;
+}
+
+.point:hover {
+    background-color: rgb(62, 133, 240, 1);
+}
+
+.bc {
+    position: absolute;
+    height: 35px;
+    width: 35px;
+    background-color: rgb(0, 255, 255, 0);
+    border-radius: 50%;
+    display: inline-block;
+    text-align: center;
+    cursor: default;
+}
+
+.bcx {
+    position: absolute;
+    width: 0; 
+    height: 0; 
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid rgb(0,0,0,1);
+    z-index: 50;
+    left: 0.85rem;
+    top: 7rem;
+    color: rgb(0,0,0,0);
+}
+
+.bcx.noplace:hover {
+    border-bottom: 10px solid red;
+}
+
+.bcxg {
+    position: absolute;
+    width: 0; 
+    height: 0; 
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid rgb(0, 255, 0, 0);
+    z-index: 50;
+    left: 0.85rem;
+    top: 7rem;
+    color: rgb(0,0,0,0);
+}
+
+.bcxg.noplace {
+    position: absolute;
+    width: 0; 
+    height: 0; 
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid rgb(0, 255, 0, 0);
+    z-index: 50;
+    left: 0.85rem;
+    top: 7rem;
+    color: rgb(0,0,0,0);
+}
+
+.bcxg.noplace:hover {
+    position: absolute;
+    width: 0; 
+    height: 0; 
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid rgb(0, 255, 0, 1);
+    z-index: 50;
+    left: 0.85rem;
+    top: 7rem;
+    color: rgb(0,0,0,0);
+}
+
+.bcy {
+    position: absolute;
+    width: 0; 
+    height: 0; 
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 10px solid rgb(0,0,0,1);
+    z-index: 50;
+    left: 0.2rem;
+    top: 5.45rem;
+    color: rgb(0,0,0,0);
+}
+
+.bcy.noplace:hover {
+    border-left: 10px solid red;
+}
+
+.bcyg {
+    position: absolute;
+    width: 0; 
+    height: 0; 
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 10px solid rgb(0,255,0,0);
+    z-index: 50;
+    left: 0.2rem;
+    top: 5.45rem;
+    color: rgb(0,0,0,0);
+}
+
+.bcyg.noplace {
+    position: absolute;
+    width: 0; 
+    height: 0; 
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 10px solid rgb(0,255,0,0);
+    z-index: 50;
+    left: 0.2rem;
+    top: 5.45rem;
+    color: rgb(0,0,0,0);
+}
+
+.bcyg.noplace:hover {
+    position: absolute;
+    width: 0; 
+    height: 0; 
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 10px solid rgb(0,255,0,1);
+    z-index: 50;
+    left: 0.2rem;
+    top: 5.45rem;
+    color: rgb(0,0,0,0);
+}
+
+.node {
+    position: absolute;
+    height: 25px;
+    width: 25px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    text-align: center;
+    cursor: default;
+    z-index: 1;
+}
+
+.node:hover {
+    background-color: rgb(62, 133, 240);
+}
+
+.line {
+    height: 0.005rem;
+    position: absolute;
+    background-color: rgb(151, 148, 148);
+}
+
+.frc {
+    height: 0.15rem;
+    position: absolute;
+    background-color: rgb(238, 223, 20);
+    color: rgb(255, 255, 255, 0);
+}
+
+.place.frc:hover {
+    background-color: rgb(238, 187, 20);
+}
+
+.place.frcar:hover {
+    border: solid rgb(238, 187, 20);
+    border-width: 0 5px 5px 0;
+    display: inline-block;
+    padding: 5px;
+}
+
+.frcar {
+    position: inherit;
+    width: 0; 
+    height: 0; 
+    border: solid rgb(238, 223, 20);
+    border-width: 0 5px 5px 0;
+    display: inline-block;
+    padding: 5px;
+    z-index: 50;
+    color: rgb(255, 255, 255, 0);
+}
+
+
+.element {
+    height: 2px;
+    position: absolute;
+    background-color: black;
+    text-align: center;
+    text-orientation: upright;
+}
+
+.element a {
+    position: absolute;
+   /* border: black 1px solid;
+    padding: 2px;
+    background-color: white;
+    z-index: 6;*/
+}
+
+#kgtable {
+    position: absolute;
+    top: 40rem;
+    border-collapse: collapse;
+    left: 1.1rem;
+}
+
+#kelmtable {
+    position: absolute;
+    top: 8rem;
+    border-collapse: collapse;
+    left: 35rem;
+}
+
+select {
+    position: absolute;
+    left: 39rem;
+}
+
+#selectElm {
+    position: absolute;
+    left: 35rem;
+}
+
+tr {
+    margin: 0;
+    padding: 0;
+}
+
+td {
+    border: 0.06rem solid;
+    width: 52px;
+    height: 52px;
+}
+
+.thkbb {
+    text-emphasis: "B"
+}
+
+.trkbb {
+    text-emphasis: "B";
+    text-emphasis-position: right;
+}
+
+.kbb {
+    font-weight: bold;
+}
+
+.dot {
+    height: 7px;
+    width: 7px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.kgBox {
+    position: absolute;
+    width: 6.6rem;
+    height: 6.6rem;
+    border: solid 4px;
+}
+
+.kgBoxBig {
+    position: absolute;
+    width: 13.4rem;
+    height: 13.4rem;
+    border: solid 4px;
+}
+
+#uiBtn {
+    position: absolute;
+    top: 38rem;
+    left: 1rem;
+}
+
+#kbbBtn {
+    position: absolute;
+    top: 38rem;
+    left: 6rem;
+}
+
+  
