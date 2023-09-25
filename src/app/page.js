@@ -29,7 +29,7 @@ export default function RootLayout({ children }) {
                   
               </div>
 
-              <div className="xl:col-start-2 xl:col-span-8 lg:ml-8 lg:mr-2 sm:-translate-y-0 -translate-y-14 -z-50 relative">
+              <div className="xl:col-start-2 xl:col-span-8  sm:-translate-y-0 -translate-y-14 -z-50 relative">
                 <div className="sm:grid sm:grid-cols-2">
                 <div className="sm:col-start-1 sm:col-span-1">
                 <h1 className="absolute draftText text-8xl pt-24 pl-12 font-bold tracking-tight text-gray-900 dark:text-gray-200">Hi</h1>
@@ -96,11 +96,11 @@ export default function RootLayout({ children }) {
                   <div className="block md:hidden">
                   <div className="col-start-1 col-span-1 p-6 transition-all " >
                       <h1 className="text-4xl ml-3 mt:4 md:fixed font-bold tracking-tight text-gray-900 sm:text-6xl xl:max-w-md lg:max-w-sm pr-12 md:max-w-sm sm:max-w-none">My Projects</h1>
-                      <p class="md:mt-32 mt-4 ml-3 mb-4 text-lg md:fixed xl:max-w-md lg:max-w-sm pr-12 md:max-w-xs sm:max-w-none leading-8 text-gray-600">Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.</p>
+                      <p className="md:mt-32 mt-4 ml-3 mb-4 text-lg md:fixed xl:max-w-md lg:max-w-sm pr-12 md:max-w-xs sm:max-w-none leading-8 text-gray-600">Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.</p>
                       <ul className="flex flex-wrap transition-all md:fixed xl:mt-64 lg:mt-64 md:mt-72 xl:max-w-md lg:max-w-sm pr-12 md:max-w-xs sm:max-w-none">  
-                          <li className={`rounded-full transition-all ml-1 mr-1 mt-3 mb-1 px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20`}><a href="/project1"  class="font-semibold text-indigo-600">Project 1 </a> </li> 
-                          <li className={`rounded-full transition-all ml-1 mr-1 mt-3 mb-1 px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20`}><a href="/project2"  class="font-semibold text-indigo-600">Project 2 </a> </li> 
-                          <li className={`rounded-full transition-all ml-1 mr-1 mt-3 mb-1 px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20`}><a href="/project3"  class="font-semibold text-indigo-600">Project 3 </a> </li> 
+                          <li className={`rounded-full transition-all ml-1 mr-1 mt-3 mb-1 px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20`}><a href="/project1"  className="font-semibold text-indigo-600">Project 1 </a> </li> 
+                          <li className={`rounded-full transition-all ml-1 mr-1 mt-3 mb-1 px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20`}><a href="/project2"  className="font-semibold text-indigo-600">Project 2 </a> </li> 
+                          <li className={`rounded-full transition-all ml-1 mr-1 mt-3 mb-1 px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20`}><a href="/project3"  className="font-semibold text-indigo-600">Project 3 </a> </li> 
                       </ul>
                   </div>
                   <ProjectImages />

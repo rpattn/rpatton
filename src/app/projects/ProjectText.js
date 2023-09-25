@@ -113,7 +113,7 @@ const ProjectText = () => {
 
     //assign a ref and in view hook for each image card in imageInfo
     imagesInfo.forEach(prj => {
-        var {ref, inView } = useInView({threshold: 0.5})
+        var {ref, inView } = useInView({threshold: 0.3})
         prj.prjRef = ref
         prj.isVisible = inView
     });
@@ -127,9 +127,9 @@ const ProjectText = () => {
     return ((ready) ? 
     <div className="md:grid md:grid-cols-2"><div ref={pageBorder} className="h-8"></div> 
         <div className="col-start-1 col-span-1 hidden sm:block projextFlex" >
-            <div className={`xl:pl-8 lg:pl-0 md:pl-4 ${(borderInView)? "" : "md:fixed top-8 "} ${isVis? "" : "hidden"} xl:max-w-md lg:max-w-sm lg:pr-6 md:pr-8 md:max-w-sm`}>
-            <h1 className={` xl:text-6xl md:text-5xl xl:mt-16 lg:mt-16 md:mt-8 font-bold tracking-tight text-gray-900 dark:text-gray-200 ${(scrollY<1)? projectInfo[scrollY].anim : ""}`}>{projectInfo[scrollY].name}</h1>
-            <p class={`${projectInfo[scrollY].anim} mt-4 ml-1 text-lg leading-8 text-gray-600 dark:text-gray-200`}>{projectInfo[scrollY].desc}</p>
+            <div className={`xl:pl-8 lg:pl-0 md:pl-4 ${(borderInView)? "" : "md:fixed top-2 "} ${isVis? "" : "hidden"} xl:max-w-md lg:max-w-sm lg:pr-6 md:pr-8 md:max-w-sm`}>
+            <h1 className={` xl:text-6xl md:text-5xl xl:mt-6 lg:mt-16 md:mt-8 font-bold tracking-tight text-gray-900 dark:text-gray-200 ${(scrollY<1)? projectInfo[scrollY].anim : ""}`}>{projectInfo[scrollY].name}</h1>
+            <p className={`${projectInfo[scrollY].anim} mt-4 ml-1 text-lg leading-8 text-gray-600 dark:text-gray-200`}>{projectInfo[scrollY].desc}</p>
             {(projectBullets[scrollY].text1 != "") ? 
             <><ul className={`${projectInfo[scrollY].anim} transition-all md:mt-4 ml-8 list-disc `}>
                 <li className="text-lg xl:mb-1 text-gray-700 dark:text-gray-200">{projectBullets[scrollY].text1}</li>
@@ -143,7 +143,7 @@ const ProjectText = () => {
             <ul className={`flex transition-all flex-wrap mt-4 ${(scrollY < 1)? "projectText": "hidden xl:flex"} `}>
             {projectInfo.splice(1).map(({ name, link }, index) => (  //remove first spalsh page, then add links
                 <li key={index} className={`${(scrollY==(index+1))? "shadow-xl dark:ring-indigo-600" : ""} rounded-full transition-all ml-1 mr-1 mt-3 mb-1 px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20 dark:ring-gray-500 dark:hover:dark:bg-gray-900`}>
-                <a href={link} class="font-semibold text-blue-600 dark:text-gray-400">{name}  </a>
+                <a href={link} className="font-semibold text-blue-600 dark:text-gray-400">{name}  </a>
                 </li> 
             ))}
             </ul>
@@ -181,7 +181,7 @@ export default ProjectText;
         <div className="md:grid md:grid-cols-2"><div ref={pageBorder} className="h-8"></div> 
         <div className="col-start-1 col-span-1 p-6 transition-all hidden sm:block" >
             <h1 className={`text-4xl ml-3 md:mt-10 lg:mt-12 transition-all ${(borderInView)? "" : "md:fixed top-10 "} ${isVis? "" : "hidden"} font-bold tracking-tight text-gray-900 sm:text-6xl md:max-w-xs xl:max-w-none md:pr-12 pr-0  sm:max-w-none dark:text-gray-200`}>{projectInfo[scrollY].name}</h1>
-            <p class={` mt-4 ml-3 mb-4 text-lg ${(borderInView)? "" : "md:fixed md:top-52 md:mt-0 xl:top-40 lg:top-54 lg:pt-3 xl:pt-2"} ${isVis? "" : "hidden"} xl:max-w-md lg:max-w-sm pr-12 md:max-w-xs sm:max-w-none leading-8 text-gray-600 dark:text-gray-200`}>{projectInfo[scrollY].desc}</p>
+            <p className={` mt-4 ml-3 mb-4 text-lg ${(borderInView)? "" : "md:fixed md:top-52 md:mt-0 xl:top-40 lg:top-54 lg:pt-3 xl:pt-2"} ${isVis? "" : "hidden"} xl:max-w-md lg:max-w-sm pr-12 md:max-w-xs sm:max-w-none leading-8 text-gray-600 dark:text-gray-200`}>{projectInfo[scrollY].desc}</p>
             {(projectBullets[scrollY].text1 != "") ? <>
             <ul className={` transition-all xl:mt-2 lg:mt-10 md:mt-6 ml-8 list-disc  ${(borderInView)? "" : "md:fixed md:top-96 xl:top-64 lg:top-80 lg:pt-8 xl:pt-12"}  ${isVis? "" : "hidden"}  xl:max-w-md lg:max-w-sm pr-12 md:max-w-xs sm:max-w-none`}>
                 <li className="text-lg xl:mb-1 text-gray-700 dark:text-gray-200">{projectBullets[scrollY].text1}</li>
@@ -197,7 +197,7 @@ export default ProjectText;
                                             ${(projectBullets[scrollY].text1 != "")? "xl:mt-28 lg:mt-32 md:mt-24 md:ml-2 md:pt-2" : ""}`}>
             {projectInfo.splice(1).map(({ name, link }, index) => (  //remove first spalsh page, then add links
                 <li key={index} className={`${(scrollY==(index+1))? "shadow-xl dark:ring-gray-300" : ""} rounded-full transition-all ml-1 mr-1 mt-3 mb-1 px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20 dark:ring-gray-500 dark:hover:dark:bg-gray-900`}>
-                <a href={link} class="font-semibold text-indigo-600">{name}  </a>
+                <a href={link} className="font-semibold text-indigo-600">{name}  </a>
                 </li> 
             ))}
             </ul>
@@ -206,7 +206,7 @@ export default ProjectText;
                                             ${(projectBullets[scrollY].text1 != "")? "xl:mt-48 lg:mt-32 md:mt-24 md:ml-2 md:pt-2" : ""}`}>
             {projectInfo.splice(1).map(({ name, link }, index) => (  //remove first spalsh page, then add links
                 <li key={index} className={`${(scrollY==(index+1))? "shadow-xl dark:bg-gray-900" : ""} rounded-full transition-all ml-1 mr-1 mt-3 mb-1 px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20 dark:hover:dark:bg-gray-900 dark:ring-gray-500`}>
-                <a href={link} class="font-semibold text-indigo-600">{name}  </a>
+                <a href={link} className="font-semibold text-indigo-600">{name}  </a>
                 </li> 
             ))}
             </ul>}
@@ -238,11 +238,11 @@ export default ProjectText;
 
 /*
 <h1 className="text-4xl ml-3 md:mt-12 lg:mt-12 md:fixed font-bold tracking-tight text-gray-900 sm:text-6xl xl:max-w-md lg:max-w-sm pr-12 md:max-w-sm sm:max-w-none">{projectInfo[scrollY].name}</h1>
-<p class="md:mt-32 mt-4 ml-3 mb-4 text-lg md:fixed xl:max-w-md lg:max-w-sm pr-12 md:max-w-xs sm:max-w-none leading-8 text-gray-600">{projectInfo[scrollY].desc}</p>
+<p className="md:mt-32 mt-4 ml-3 mb-4 text-lg md:fixed xl:max-w-md lg:max-w-sm pr-12 md:max-w-xs sm:max-w-none leading-8 text-gray-600">{projectInfo[scrollY].desc}</p>
 <ul className="flex flex-wrap md:fixed xl:mt-72 lg:mt-64 md:mt-72 xl:max-w-md lg:max-w-sm pr-12 md:max-w-xs sm:max-w-none">
 {projectInfo.map(({ name, link }, index) => (
     <li key={index} className={`${(scrollY==index)? "shadow-xl" : ""} rounded-full ml-1 mr-1 mt-3 mb-1 px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20`}>
-    <a href={link} class="font-semibold text-indigo-600">{name}  </a>
+    <a href={link} className="font-semibold text-indigo-600">{name}  </a>
     </li>
 ))}
 </ul>*/

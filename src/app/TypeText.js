@@ -21,13 +21,6 @@ const TypeText = ({text}) => {
         }
     }, [count])
 
-    useEffect(()=> {
-        setTimeout(()=> {
-            console.log("backup")
-            setText(targetText)
-        }, 5000)
-    }, [])
-
     return(
         <p>{targetTextTyped} <span className="cursor-ping">I</span></p>
     )
