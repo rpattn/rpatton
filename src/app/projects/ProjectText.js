@@ -126,7 +126,7 @@ const ProjectText = () => {
 
     return ((ready) ? 
     <div className="md:grid md:grid-cols-2"><div ref={pageBorder} className="h-8"></div> 
-        <div className="col-start-1 col-span-1 hidden sm:block projextFlex" >
+        <div className="col-start-1 col-span-1 hidden sm:block " >
             <div className={`xl:pl-8 lg:pl-0 md:pl-4 ${(borderInView)? "" : "md:fixed top-2 "} ${isVis? "" : "hidden"} xl:max-w-md lg:max-w-sm lg:pr-6 md:pr-8 md:max-w-sm`}>
             <h1 className={` xl:text-6xl md:text-5xl xl:mt-6 lg:mt-16 md:mt-8 font-bold tracking-tight text-gray-900 dark:text-gray-200 ${(scrollY<1)? projectInfo[scrollY].anim : ""}`}>{projectInfo[scrollY].name}</h1>
             <p className={`${projectInfo[scrollY].anim} mt-4 ml-1 text-lg leading-8 text-gray-600 dark:text-gray-200`}>{projectInfo[scrollY].desc}</p>

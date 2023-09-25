@@ -64,22 +64,22 @@ const Navbar = () => {
                   Projects <svg className="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg></button>
 
                 <div id="dropdownNavbar" onMouseLeave={dropdownLeave} className={` ${(drop1)? "fixed":"hidden"} bg-white text-base z-10 list-none divide-y divide-gray-100 rounded shadow my-2`}>
-                    <ul className="py-1" aria-labelledby="dropdownLargeButton">
-                    <li>
-                        <a href="#projects" onClick={dropdownLeave} className="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">Overview</a>
+                    <ul className="py-1 dark:bg-gray-800" aria-labelledby="dropdownLargeButton">
+                    <li className="dark:bg-black">
+                        <a href="#projects" onClick={dropdownLeave} className="dark:text-gray-200 dark:bg-gray-800 text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">Overview</a>
                     </li>
                     <li>
-                        <a href="#searchmap"  onClick={dropdownLeave} className="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">Search Map</a>
+                        <a href="#searchmap"  onClick={dropdownLeave} className="dark:text-gray-200 text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">Search Map</a>
                     </li>
                     <li>
-                        <a href="#"  onClick={dropdownLeave} className="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">University Projects</a>
+                        <a href="#"  onClick={dropdownLeave} className="dark:text-gray-200 text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">University Projects</a>
                     </li>
                     <li>
-                        <a href="#feasandbox"  onClick={dropdownLeave} className="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">Engineering Visualisation</a>
+                        <a href="#feasandbox"  onClick={dropdownLeave} className="dark:text-gray-200 text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">Engineering Visualisation</a>
                     </li>
                     </ul>
-                    <div className="py-1">
-                    <a href="#volunteering" className="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">All Projects</a>
+                    <div className="py-1 dark:bg-gray-800">
+                    <a href="#volunteering" className="dark:text-gray-200 text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">All Projects</a>
                     </div>
                 </div>
             </li>
