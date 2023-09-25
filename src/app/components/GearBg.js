@@ -27,12 +27,12 @@ const GearBg = () => {
   const [imageStyle, setImageStyle] = useState({
     width: "50vh",
     height: "50vh",
-    transform: "translate(0px, 0px)",
+    transform: "translate(0px, 0px)"
   })
   const [imageStyle2, setImageStyle2] = useState({
     width: "50vh",
     height: "50vh",
-    transform: "translate(33vh, 29vh)" 
+    transform: "translate(33vh, 29vh)"
   })
 
   var scale = 1;
