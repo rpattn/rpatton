@@ -66,20 +66,20 @@ const Navbar = () => {
                 <div id="dropdownNavbar" onMouseLeave={dropdownLeave} className={` ${(drop1)? "fixed":"hidden"} bg-white text-base z-10 list-none divide-y divide-gray-100 rounded shadow my-2`}>
                     <ul className="py-1 dark:bg-gray-800" aria-labelledby="dropdownLargeButton">
                     <li className="dark:bg-black">
-                        <a href="#projects" onClick={dropdownLeave} className="dark:text-gray-200 dark:bg-gray-800 text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">Overview</a>
+                        <a href="/#projects" onClick={dropdownLeave} className="dark:text-gray-200 dark:bg-gray-800 text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">Overview</a>
                     </li>
                     <li>
-                        <a href="#searchmap"  onClick={dropdownLeave} className="dark:text-gray-200 text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">Search Map</a>
+                        <a href="/projects/tech"  onClick={dropdownLeave} className="dark:text-gray-200 text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">Tech Projects</a>
                     </li>
                     <li>
-                        <a href="#"  onClick={dropdownLeave} className="dark:text-gray-200 text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">University Projects</a>
+                        <a href="/projects/uol"  onClick={dropdownLeave} className="dark:text-gray-200 text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">University Projects</a>
                     </li>
                     <li>
-                        <a href="#feasandbox"  onClick={dropdownLeave} className="dark:text-gray-200 text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">Engineering Visualisation</a>
+                        <a href="/projects/other"  onClick={dropdownLeave} className="dark:text-gray-200 text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">Other Projects</a>
                     </li>
                     </ul>
                     <div className="py-1 dark:bg-gray-800">
-                    <a href="#volunteering" className="dark:text-gray-200 text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">All Projects</a>
+                    <a href="/projects" className="dark:text-gray-200 text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">All Projects</a>
                     </div>
                 </div>
             </li>

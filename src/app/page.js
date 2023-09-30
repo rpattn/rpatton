@@ -89,11 +89,9 @@ export default function RootLayout({ children }) {
             </div>
 
             <div className="min-h-screen sm:grid xl:grid-cols-10 lg:px-32 md:px-6 px-1 xl:px-16 splashCard md:mb-20 mb-4">
-              <div className="xl:col-start-1 xl:col-span-1  hidden lg:block">
-                
-              </div>
+              <div id="projects" className="mt-4"></div>
               
-              <div id="projects" className="xl:col-start-2 xl:col-span-8 ">
+              <div  className="xl:col-start-2 xl:col-span-8 ">
                   <ProjectText  />
 
               </div>

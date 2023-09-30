@@ -1,11 +1,12 @@
 import React from "react";
 import { BsFillTelephoneFill } from "react-icons/bs";
-import { AiOutlineMail, AiOutlineGlobal } from "react-icons/ai";
+import { AiOutlineMail, AiOutlineInfoCircle } from "react-icons/ai";
+import Link from "next/link";
 const TopHeader = () => {
   const items = [
-    { icon: <BsFillTelephoneFill />, description: "07931 418928" },
-    { icon: <AiOutlineMail />, description: "rpatton@outlook.com" },
-    { icon: <AiOutlineGlobal />, description: "portfolio.com" },
+    { icon: <BsFillTelephoneFill />, description: "07931 418928", link:"tel:07931 418928" },
+    { icon: <AiOutlineMail />, description: "rn.patton@outlook.com", link:"mailto: rn.patton@outlook.com" },
+    { icon: <AiOutlineInfoCircle />, description: "See my CV", link:"/cv" },
   ];
   
   return (
@@ -15,10 +16,10 @@ const TopHeader = () => {
           
         </div>
         <ul className="flex flex-wrap gap-2 md:gap-8 justify-center text-center">
-          {items.map(({ icon, description }, index) => (
+          {items.map(({ icon, description,link }, index) => (
             <li key={index} className="flex items-center gap-2">
               <span>{icon}</span>
-              <span>{description}</span>
+              <Link href={link}><span>{description}</span></Link>
             </li>
           ))}
         </ul>

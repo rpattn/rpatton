@@ -41,37 +41,30 @@ const ProjectText = () => {
             anim: "projectText"
         },
         {
-            name: "Search Map",
+            name: "Tech / Coding",
             desc: "Leverages Google's Maps API and cloud services to enable users to search for places by name, type and location. This data can then be filtered, saved to the cloud or exported for personal use.",
-            link: "#searchmap",
+            link: "/projects/tech",
             anim: "projectText2"
         },
         {
-            name: "Daring Dash",
+            name: "Univeristy",
             desc: "Led a team that designed and manufactured an autonomous buggy. Optimised the vehicles suspension response using Matlab to evaluate a kinematic model constructed from 1st Principles.",
-            link: "#daringdash",
+            link: "/projects/uol",
             anim: "projectText"
-        },
-        {
-            name: "FEA Sandbox",
-            desc: "Browser based playground. Construct 2D node element models, apply forces, boundary conditions, and calculate the structure's response. Constructs intermediate matricies to help students visualise the finite element method.",
-            link: "#feasandbox",
-            anim: "projectText2"
         },
         {
             name: "Volunteering",
             desc: "Travelled to Tanzania to participate in several aid projects, including Civil Engineering work redirecting rainwater around a local school, refrbishing desks and working with children",
-            link: "#volunteering",
+            link: "/projects/other",
             anim: "projectText1"
         },
     ]
 
     const projectBullets = [
         {text1: "", text2: "", text3: "", extLink: ""},
-        {text1: "Built using HTML, CSS, JS", text2: "Powered by React, Firebase, Google APIs", text3: "Responsive design", extLink: "https://searchmap.web.app/"},
-        {text1: "Computer aided, analysis led design.", text2: "Project Managed team", text3: "Achieved 86% in this coursework", extLink: "/cv#daringdash"},
-        {text1: "Designed as an Educational tool", text2: "First in a family of Engineering visualisation tools I am working on", text3: "Open source, free to use", extLink: "/fea/index.html"},
-        {text1: "Fund raised over 2 years", text2: "Collaborated with a diverse team", text3: "Harboured a love for travel", extLink: ""},
+        {text1: "Built using HTML, CSS, JS", text2: "Powered by React, Firebase, Google APIs", text3: "Responsive design", extLink: "/projects/tech"},
+        {text1: "Computer aided, analysis led design.", text2: "Project Managed team", text3: "Achieved 86% in this coursework", extLink: "/projects/uol"},
+        {text1: "Fund raised over 2 years", text2: "Collaborated with a diverse team", text3: "Harboured a love for travel", extLink: "/projects/other"},
     ]
 
     const imageStyle = {
@@ -98,12 +91,6 @@ const ProjectText = () => {
             images: [{src: "/buggy/buggy1.png", h:4267, w:2400},
                      {src: "/buggy/buggy2.png", h:624, w:624},
                      {src: "/buggy/buggy3.png", h:1340, w:1340}]
-        },
-        {
-            link: "feasandbox",
-            images: [{src: "/fea/fea1.png", h:1218, w:688},
-                     {src: "/fea/fea2.png", h:560, w:600},
-                     {src: "/fea/fea3.png", h:826, w:826}]
         },
         {
             link: "volunteering",
