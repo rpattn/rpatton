@@ -1,113 +1,108 @@
-import Image from 'next/image'
 
-export default function Home() {
+import Image from "next/image";
+import Header from "./components/navbar/Header";
+import TopHeader from "./components/navbar/TopHeader";
+import ProjectText from "./projects/ProjectText";
+import ProjectImages from "./projects/ProjectImages";
+import GearBg from "./components/GearBg";
+import TypeText from "./TypeText";
+import GearComp3 from "./Gears/Gear3Comp";
+import Pinion1Comp from "./Gears/Pinion1Comp";
+import Link from "next/link";
+import { RxExternalLink } from "react-icons/rx";
+//bg-base-100 shadow-xl
+
+export default function RootLayout({ children }) {
+  const imageStyle = {
+    width: '100%',
+    height: 'auto'
+  }
+  
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.js</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+    <body>
+      <Header />
+      {children}
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+        <main >
+          <GearBg />
 
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+            <div className="sm:grid xl:grid-cols-10 lg:px-32 xl:px-16 splashCard mt-0">
+              <div className="xl:col-start-1 xl:col-span-1  hidden lg:block">
+                  
+              </div>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800 hover:dark:bg-opacity-30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+              <div className="xl:col-start-2 xl:col-span-8  sm:-translate-y-0 -translate-y-14 -z-50 relative">
+                <div className="sm:grid sm:grid-cols-2">
+                <div className="sm:col-start-1 sm:col-span-1">
+                <h1 className="absolute draftText text-8xl pt-24 md:pl-12 pl-4 font-bold tracking-tight text-gray-900 dark:text-gray-200">Hi</h1>
+                <h1 className="absolute draftText2 transition-all text-5xl pt-48 md:pl-12 pl-4 font-bold tracking-tight text-gray-900 w-60 dark:text-gray-300"><TypeText text="I love design, engineering and problem solving" /></h1>
+                <div className="dlsm draftLinexb bg-blue-900  bg-opacity-30 dark:bg-blue-500"></div>
+                <div className="dlsm draftLinext2 bg-blue-900 bg-opacity-30 dark:bg-blue-500"></div>
+                <div className="dlsm draftLinexb2 bg-blue-900  bg-opacity-30 dark:bg-blue-500"></div>
+                <div className="dlsm draftLinext3 bg-blue-900 bg-opacity-30 dark:bg-blue-500"></div>
+                <div className="dlsm draftLinexb3 bg-blue-900  bg-opacity-30 dark:bg-blue-500"></div>
+                <div className="dlsm draftLinext4 bg-blue-900 bg-opacity-30 dark:bg-blue-500"></div>
+                <div className="dlsm draftLinexb4 bg-blue-900  bg-opacity-30 dark:bg-blue-500"></div>
+                <div className="hidden md:block dlsm draftLineyl absolute bg-blue-900 bg-opacity-30 xl:h-3/5 lg:h-3/5 md:h-3/5 sm:h-3/5 h-5/6 dark:bg-blue-500"></div>
+                </div>
+                <div className="sm:col-start-2 sm:col-span-1 hidden sm:block">
+                  <div className="block dark:hidden">
+                    <GearComp3 mode="light" />
+                    <Pinion1Comp mode="light" />
+                    </div>
+                  <div className="dark:block hidden">
+                    <GearComp3 mode="dark" />
+                    <Pinion1Comp mode="dark" />
+                  </div>
+                  <div className="gearLine1 bg-gray-900  bg-opacity-30 dark:bg-gray-100" ></div>
+                  <div className="gearLine2 bg-blue-900  bg-opacity-30 dark:bg-blue-500"></div>
+                  <div className="gearLine3 bg-blue-900 bg-opacity-30 dark:bg-blue-500"></div>
+                  <div className="gearLine4 bg-blue-900  bg-opacity-30 dark:bg-blue-500"></div>
+                  <div className="gearLine5 bg-blue-900 bg-opacity-30 dark:bg-blue-500"></div>
+                  <div className="gearLine2s bg-gray-900  bg-opacity-30 dark:bg-gray-100"></div>
+                  <div className="gearLine3s bg-gray-900  bg-opacity-30 dark:bg-gray-100"></div>
+                  <div className="gearLine2s2 bg-gray-900  bg-opacity-30 dark:bg-gray-100"></div>
+                  <div className="gearLine3s2 bg-gray-900  bg-opacity-30 dark:bg-gray-100"></div>
+                  <div className="gearDim1 italic font-serif"><p className=" text-3xl">x</p></div>
+                </div>
+                <div className="block sm:hidden">
+                  <div className="block dark:hidden">
+                    <Image src="/gear3.svg" alt="img" width={100} height={100} className="gearImgMobile"/>
+                    </div>
+                  <div className="dark:block hidden">
+                    <Image src="/gear3-drk.svg" alt="img" width={100} height={100} className="gearImgMobile"/>
+                  </div>
+                </div>
+                </div>
+                <div className="dark:hidden mt-0 -z-50 relative">
+                <div className="hidden md:block -z-50 relative"><Image alt="img" src="/title-block-ls.svg" width={500} height={500} style={imageStyle}/></div>
+                <div className="block md:hidden sm:translate-y-0 translate-y-11 -z-50 relative"><Image alt="img" src="/title-block-pt.svg" width={500} height={500} style={imageStyle} className="-z-50 relative"/></div>
+                </div>
+                <div className="hidden dark:block mt-0 ">
+                <div className="hidden md:block"><Image alt="img" src="/title-block-ls-drk.svg" width={500} height={500} style={imageStyle}/></div>
+                <div className="block md:hidden sm:translate-y-0 translate-y-11"><Image alt="img" src="/title-block-pt-drk.svg" width={500} height={500} style={imageStyle}/></div>
+                </div>
+              </div>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore the Next.js 13 playground.
-          </p>
-        </a>
+              <div className="xl:col-start-10 xl:col-span-1 hidden lg:block"> 
+              </div>
+            </div>
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+            <div className="min-h-screen sm:grid xl:grid-cols-10 lg:px-32 md:px-6 px-1 xl:px-16 splashCard md:mb-20 mb-4">
+              <div className="xl:col-start-1 xl:col-span-1  hidden lg:block">
+                
+              </div>
+              
+              <div id="projects" className="xl:col-start-2 xl:col-span-8 ">
+                  <ProjectText  />
+
+              </div>
+
+              <div className="xl:col-start-10 xl:col-span-1 hidden lg:block"> 
+              </div>
+            </div>
+        </main>
+      <TopHeader/>
+    </body>
   )
 }

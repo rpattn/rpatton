@@ -2,17 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+html{scroll-behavior:smooth}
+
 :root {
   --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --background-end-rgb: 253, 253, 253;
+  --background-start-rgb: 253, 253, 253;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
+    --foreground-rgb: 245, 245, 245;
     --background-end-rgb: 0, 0, 0;
+    --background-start-rgb: 0, 0, 0;
   }
 }
 
@@ -24,4 +26,557 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+}
+
+body::-webkit-scrollbar{
+  display: none;
+}
+
+body {
+  -ms-overflow-style: none;
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+.draftLinext {
+  height: 2px;
+  width: 7.5rem;
+  margin-left: 2rem;
+  margin-right: 4.5rem;
+  transform: translate(0px,6rem);
+  animation: dline 2s ease-in-out forwards;
+  visibility: hidden;
+}
+
+.draftLinexb {
+  height: 2px;
+  width: 7.5rem;
+  margin-left: 2rem;
+  margin-right: 4.5rem;
+  transform: translate(0px,10.45rem);
+  animation: dline 2s ease-in-out forwards;
+  animation-delay: 300ms;
+  visibility: hidden;
+}
+
+.draftLinext2 {
+  height: 2px;
+  width: 9.5rem;
+  margin-left: 2rem;
+  margin-right: 4.5rem;
+  transform: translate(0px,14.4rem);
+  animation: dline 2s ease-in-out forwards;
+  animation-delay: 600ms;
+  visibility: hidden;
+}
+
+.draftLinexb2 {
+  height: 2px;
+  width: 12.5rem;
+  margin-left: 2rem;
+  margin-right: 4.5rem;
+  transform: translate(0px,17.25rem);
+  animation: dline 2s ease-in-out forwards;
+  animation-delay: 900ms;
+  visibility: hidden;
+}
+
+.draftLinext3 {
+  height: 2px;
+  width: 19rem;
+  margin-left: 2rem;
+  margin-right: 4.5rem;
+  transform: translate(0px,20.15rem);
+  animation: dline 2s ease-in-out forwards;
+  animation-delay: 1200ms;
+  visibility: hidden;
+}
+
+.draftLinexb3 {
+  height: 2px;
+  width: 7.5rem;
+  margin-left: 2rem;
+  margin-right: 4.5rem;
+  transform: translate(0px,23.05rem);
+  animation: dline 2s ease-in-out forwards;
+  animation-delay: 1500ms;
+  visibility: hidden;
+}
+
+.draftLinext4 {
+  height: 2px;
+  width: 14rem;
+  margin-left: 2rem;
+  margin-right: 4.5rem;
+  transform: translate(0px,25.9rem);
+  animation: dline 2s ease-in-out forwards;
+  animation-delay: 1800ms;
+  visibility: hidden;
+}
+
+.draftLinexb4 {
+  height: 2px;
+  width: 12.5rem;
+  margin-left: 2rem;
+  margin-right: 4.5rem;
+  transform: translate(0px,28.8rem);
+  animation: dline 2s ease-in-out forwards;
+  animation-delay: 2100ms;
+  visibility: hidden;
+}
+
+.draftLineyl {
+  width: 2px;
+  margin-left: 3.35rem;
+  transform: translate(0px,4.5rem);
+  animation: dline2 3.4s ease-in-out forwards;
+  animation-delay: 300ms;
+  visibility: hidden;
+}
+
+.draftLineyr {
+  width: 2px;
+  height: 30rem;
+  transform: translate(0px,10.35rem);
+}
+
+.gearLine1 {
+  position: absolute;
+  width: 2px;
+  height: 17vw;
+  top: 22vw;
+  margin-left: 4vw;
+  animation: dline2 2s ease-in-out forwards;
+  animation-delay: 5s;
+  visibility: hidden;
+}
+
+.gearLine4 {
+  position: absolute;
+  width: 2px;
+  height: 3vw;
+  top: 20.5vw;
+  margin-left: 18.7vw;
+  animation: dline2 2s ease-in-out forwards;
+  animation-delay: 7s;
+  visibility: hidden;
+}
+
+.gearLine5 {
+  position: absolute;
+  width: 2px;
+  height: 2.5vw;
+  top: 37.6vw;
+  margin-left: 16.7vw;
+  animation: dline2 2s ease-in-out forwards;
+  animation-delay: 7s;
+  visibility: hidden;
+}
+
+.gearDim1 {
+  position: absolute;
+  width: 2px;
+  height: 2.5vw;
+  top: 28vw;
+  margin-left: 1.8vw;
+  opacity: 0;
+  animation: dimIn 2s ease-in-out forwards;
+  animation-delay: 9s;
+}
+
+@keyframes dimIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.gearLine2 {
+  position: absolute;
+  width: 16.5vw;
+  height: 2px;
+  top: 22vw;
+  margin-left: 4vw;
+  z-index: 200;
+  animation: dline 2s ease-in-out forwards;
+  animation-delay: 5s;
+  visibility: hidden;
+}
+
+.gearLine3 {
+  position: absolute;
+  width: 14.2vw;
+  height: 2px;
+  top: 38.8vw;
+  margin-left: 4vw;
+  animation: dline 2s ease-in-out forwards;
+  animation-delay: 5s;
+  visibility: hidden;
+}
+
+.gearLine2s {
+  position: absolute;
+  width: 1rem;
+  height: 2px;
+  top: 22.5vw;
+  margin-left: 3.9vw;
+  z-index: 200;
+  transform: rotate(45deg);
+  animation: dline 2s ease-in-out forwards;
+  animation-delay: 7s;
+  visibility: hidden;
+}
+
+.gearLine2s2 {
+  position: absolute;
+  width: 1rem;
+  height: 2px;
+  top: 22.5vw;
+  margin-left: 2.8vw;
+  z-index: 200;
+  transform: rotate(135deg);
+  animation: dline 2s ease-in-out forwards;
+  animation-delay: 7s;
+  visibility: hidden;
+}
+
+.gearLine3s {
+  position: absolute;
+  width: 1rem;
+  height: 2px;
+  top: 38.3vw;
+  margin-left: 3.8vw;
+  transform: rotate(-45deg);
+  animation: dline 2s ease-in-out forwards;
+  animation-delay: 7s;
+  visibility: hidden;
+}
+
+.gearLine3s2 {
+  position: absolute;
+  width: 1rem;
+  height: 2px;
+  top: 38.3vw;
+  margin-left: 2.8vw;
+  transform: rotate(-135deg);
+  animation: dline 2s ease-in-out forwards;
+  animation-delay: 7s;
+  visibility: hidden;
+}
+
+@keyframes dline {
+  from {
+      width: 0
+  }
+  to {
+    visibility: visible;
+  }
+}
+
+@keyframes dline2 {
+  from {
+      height: 0
+  }
+  to {
+    visibility: visible;
+  }
+}
+
+
+.draftText {
+  line-height: 0.75 !important;
+}
+
+.draftText2{
+  transform: translate(0.24rem,0px);
+}
+
+@keyframes spinl {
+  from {
+      transform:rotate(0deg);
+  }
+  to {
+      transform:rotate(360deg);
+  }
+}
+
+@keyframes spinr {
+  from {
+      transform:rotate(0deg);
+  }
+  to {
+      transform:rotate(-360deg);
+  }
+}
+
+.gearImgMobile {
+  position: absolute;
+  top: 13vh;
+  margin-left: 60vw;
+  width: 30vw;
+  height: auto;
+  animation-name: spinr;
+  animation-duration: 72220ms;
+  animation-delay: 5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  z-index: 100;
+}
+
+.gearImg1 {
+  position: absolute;
+  top: 11vw;
+  margin-left: 8vw;
+  width: 22vw;
+  height: auto;
+  animation-name: spinr;
+  animation-delay: 5s;
+  animation-duration: 72220ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.gearImg2 {
+  position: absolute;
+  top: 30.4vw;
+  margin-left: 8.1vw;
+  width: 17vw;
+  height: auto;
+  animation-name: spinl;
+  animation-delay: 5s;
+  animation-duration: 50000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.gear3path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: dash 2700ms linear forwards;
+  animation-delay: 500ms;
+}
+
+.gear3path2 {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: dash 2.5s linear forwards;
+  animation-delay: 2500ms;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.aboutText1 {
+  width: 0;
+}
+
+@keyframes ping {
+  75%, 100% {
+      transform: scale(2);
+      opacity: 0;
+  }
+}
+.cursor-ping {
+  animation: ping 1s cubic-bezier(1, 0, 0, 0) infinite;
+}
+
+@media only screen and (min-width: 1030px) {
+.gearImg1 {
+  top: 6vw;
+}
+.gearDim1 {
+  top: 24vw;
+  margin-left: 2.4vw;
+}
+.gearLine1 {
+  top: 17vw;
+  height: 17vw;
+}
+.gearLine4 {
+  top: 15.9vw;
+  height: 2.4vw;
+}
+.gearLine5 {
+  top: 33.2vw;
+  height: 1.7vw;
+}
+.gearLine2 {
+  top: 17vw;
+  width: 16.3vw;
+}
+.gearLine3 {
+  top: 34vw;
+  width: 14vw;
+}
+.gearLine2s {
+  top: 17.5vw;
+  margin-left: 3.9vw;
+}
+.gearLine3s {
+  top: 33.6vw;
+  margin-left: 3.9vw;
+}
+.gearLine2s2 {
+  top: 17.5vw;
+  margin-left: 3.1vw;
+}
+.gearLine3s2 {
+  top: 33.6vw;
+  margin-left: 3.1vw;
+}
+.gearImg2 {
+  top: 25.4vw;
+}
+}
+
+@media only screen and (max-width: 900px) {
+  .gearImg1 {
+    width: 26vw;
+  }
+  .gearDim1 {
+    top: 31vw;
+    margin-left: 1vw;
+  }
+  .gearLine1 {
+    top: 24vw;
+    height: 20vw;
+  }
+  .gearLine4 {
+    top: 22.5vw;
+    margin-left: 20.5vw;
+  }
+  .gearLine5 {
+    top: 42.8vw;
+    margin-left: 18vw;
+  }
+  .gearLine2 {
+    top: 23.8vw;
+    width: 18.5vw;
+  }
+  .gearLine3 {
+    top: 44vw;
+    width: 15.5vw;
+  }
+  .gearLine2s {
+    top: 24.8vw;
+    width: 1rem;
+    margin-left: 3.9vw;
+  }
+  .gearLine3s {
+    top: 43vw;
+    width: 1rem;
+    margin-left: 3.9vw;
+  }
+  .gearLine2s2 {
+    top: 24.8vw;
+    width: 1rem;
+    margin-left: 2.3vw;
+  }
+  .gearLine3s2 {
+    top: 43vw;
+    width: 1rem;
+    margin-left: 2.3vw;
+  }
+  .gearImg2 {
+    width: 20vw;
+    top: 34vw;
+    margin-left: 8.2vw;
+  }
+}
+
+.logoParent {
+  display: flex !important;
+  width: auto;
+}
+
+.navBarParent {
+  padding: 0;
+  margin: 0;
+}
+
+.navButton {
+  display: contents;
+}
+
+.navButtonIn {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.navDropItem {
+  z-index: 0 !important;
+}
+
+.navDropChange {
+  z-index: 100;
+  width: 100%;
+  padding-top: 1rem;
+}
+
+
+.line {
+  width: 100%;
+  background-color: black;
+  height: 2px;
+}
+
+
+.content {
+  display: flex;
+}
+
+.bulletIcon {
+  min-width: 15px;
+  min-height: 15px;
+  max-width: 15px;
+  max-height: 15px;
+}
+
+.backgroundMy {
+  clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)
+}
+
+.projectText {
+  animation: textFadeIn 0.3s linear forwards;
+  opacity: 0;
+}
+
+.projectText2 {
+  animation: textFadeIn2 0.3s linear forwards;
+  opacity: 0;
+}
+
+@keyframes textFadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes textFadeIn2 {
+  to {
+    opacity: 1;
+  }
+}
+
+.projectButton {
+  animation-delay: 2s;
+  animation-timing-function: cubic-bezier(0.3,0.8,1,1);
+}
+
+.gearBg {
+  opacity: 0;
+}
+
+
+@media only screen and (max-width: 767px) {
+  .dlsm {
+    margin-left: 15px !important;
+  }
 }
