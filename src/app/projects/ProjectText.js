@@ -13,6 +13,24 @@ const ProjectText = () => {
 
     const [scrollY, setScrollY] = useState(0); //used to track current project in view
     const [isVis, setVis] = useState(true);    //used to track if a project or splash page is in view 
+    const [layoutMode, setLayoutMode] = useState("full");
+
+    useEffect(()=> {
+        if (window.innerWidth > 750) {
+            setLayoutMode("full")
+        } else {
+            setLayoutMode("list")
+        }
+        window.addEventListener("resize", windowResize)
+    }, [])
+
+    function windowResize() {
+        if (window.innerWidth > 750) {
+            setLayoutMode("full")
+        } else {
+            setLayoutMode("list")
+        }
+    }
 
     //project info to display on left
     const projectInfo = [
@@ -125,7 +143,8 @@ const ProjectText = () => {
     })
 
     return ((ready) ? 
-    <div className="md:grid md:grid-cols-2"><div ref={pageBorder} className="h-8"></div> 
+    <div className="md:grid md:grid-cols-2"> {(layoutMode=="full") ? <>
+        <div ref={pageBorder} className="h-8"></div> 
         <div className="col-start-1 col-span-1 hidden sm:block " >
             <div className={`xl:pl-8 lg:pl-0 md:pl-4 ${(borderInView)? "" : "md:fixed top-2 "} ${isVis? "" : "hidden"} xl:max-w-md lg:max-w-sm lg:pr-6 md:pr-8 md:max-w-sm`}>
             <h1 className={` xl:text-6xl md:text-5xl xl:mt-6 lg:mt-16 md:mt-8 font-bold tracking-tight text-gray-900 dark:text-gray-200 ${(scrollY<1)? projectInfo[scrollY].anim : ""}`}>{projectInfo[scrollY].name}</h1>
@@ -141,7 +160,7 @@ const ProjectText = () => {
             </>
             : <></>}
             <ul className={`flex transition-all flex-wrap mt-4 ${(scrollY < 1)? "projectText": "hidden xl:flex"} `}>
-            {projectInfo.splice(1).map(({ name, link }, index) => (  //remove first spalsh page, then add links
+            {[...projectInfo].splice(1).map(({ name, link }, index) => (  //remove first spalsh page, then add links
                 <li key={index} className={`${(scrollY==(index+1))? "shadow-xl dark:ring-indigo-600" : ""} rounded-full transition-all ml-1 mr-1 mt-3 mb-1 px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20 dark:ring-gray-500 dark:hover:dark:bg-gray-900`}>
                 <a href={link} className="font-semibold text-blue-600 dark:text-gray-400">{name}  </a>
                 </li> 
@@ -170,6 +189,45 @@ const ProjectText = () => {
 
             <div className="md:h-28 lg:h-16"></div>
         </div>
+
+
+
+        </> :
+        <div className="block md:hidden">
+            {projectInfo.map(({name,desc},index)=> (<div key={index}>
+            <div id={imagesInfo[index].link}  className="col-start-1 col-span-1 sm:p-6 p-1 mt-8" >
+                <div>
+                <h1 className="ml-3 text-5xl font-bold tracking-tight text-gray-900 dark:text-gray-200">{name}</h1>
+                <p className="mt-4 ml-3 text-lg leading-8 text-gray-600 dark:text-gray-200">{desc}</p>
+                {(projectBullets[index].text1 != "")? <>
+                <ul className="pt-4 transition-all md:mt-4 ml-8 list-disc ">
+                    <li className="text-lg xl:mb-1 text-gray-700 dark:text-gray-200">{projectBullets[index].text1}</li>
+                    <li className="text-lg xl:mb-1 text-gray-700 dark:text-gray-200">{projectBullets[index].text2}</li>
+                    <li className="text-lg xl:mb-1 text-gray-700 dark:text-gray-200">{projectBullets[index].text3}</li>
+                </ul>
+                <button href={projectBullets[index].extLink}  className="mt-6 z-50 ml-4 pl-4 pr-4 pt-2 pb-2 outline outline-1 outline-blue-500 rounded-lg flex text-xl font-bold dark:text-gray-300 dark:outline-indigo-600 text-blue-700 drop-shadow-2xl">
+                    <Link href={projectBullets[index].extLink}> Check it out</Link> <RxExternalLink className="projectButton animate-pulse mt-1 ml-2" /></button>
+                </>:
+                <ul className="flex flex-wrap transition-all md:fixed xl:mt-64 lg:mt-64 md:mt-72 xl:max-w-md lg:max-w-sm pr-12 md:max-w-xs sm:max-w-none ml-2">  
+                    {[...projectInfo].splice(1).map(({ name, link }, index) => (  //remove first spalsh page, then add links
+                        <li key={index} className={`${(scrollY==(index+1))? "shadow-xl dark:ring-indigo-600" : ""} rounded-full transition-all ml-1 mr-1 mt-3 mb-1 px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20 dark:ring-gray-500 dark:hover:dark:bg-gray-900`}>
+                        <a href={link} className="font-semibold text-blue-600 dark:text-gray-400">{name}  </a>
+                        </li> 
+                    ))}</ul>
+                }
+                </div>
+            </div>
+            <div  className={`p-4`}>
+                <Image unoptimized={true} src={imagesInfo[index].images[0].src} style={imageStyle} width={imagesInfo[index].images[0].w} height={imagesInfo[index].images[0].h} alt="todo"/>
+            <div className="grid grid-cols-2">
+                <div className="col-start-1 col-span-1">
+                    <Image src={imagesInfo[index].images[1].src} style={imageStyle} width={imagesInfo[index].images[1].w} height={imagesInfo[index].images[1].h} alt="todo"/></div>
+                <div className="col-start-2 col-span-1">
+                    <Image src={imagesInfo[index].images[2].src} style={imageStyle} width={imagesInfo[index].images[2].w} height={imagesInfo[index].images[2].h} alt="todo"/></div>
+                </div>
+            </div>
+            </div>))}
+        </div>}
     </div>
     :<></>)
 }
