@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
 
             <div className="xl:col-start-3 xl:col-span-8">
             <div className=" ">
-            <h1 className="mt-2 font-bold tracking-tight text-gray-900 dark:text-gray-200 text-4xl mb-1">Statement </h1>
+            <h1 className="mt-2 font-bold tracking-tight text-gray-900 dark:text-gray-200 text-4xl mb-1">Statement</h1>
             <div className="line mb-4 dark:bg-gray-400"></div>
             <p className="mt-2 ">Final year master’s student (MEng) at the University of Leeds. Looking to apply my strong analytical and project management skills to solve complex problems in the Engineering Industry. Experience gained as a Design Engineer at Cummins has developed my ability to work as part of a global team to find data driven solutions that work for both client and business.</p>
             </div>
