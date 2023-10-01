@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
             <div className="min-h-screen sm:grid xl:grid-cols-10 lg:px-32 xl:px-16 splashCard mb-20">
               
               <div className="xl:col-start-2 xl:col-span-8 ">
-                  <AllProjects title="All Projects" type="all" desc="View all projects:"/>
+                  <AllProjects title="All Projects" type="all" desc="Description here" desc2="View all projects:"/>
 
               </div>
 

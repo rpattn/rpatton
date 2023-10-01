@@ -14,7 +14,9 @@ export default function RootLayout({ children }) {
             <div className="min-h-screen sm:grid xl:grid-cols-10 lg:px-32 xl:px-16 splashCard mb-20">
               
               <div className="xl:col-start-2 xl:col-span-8 ">
-                  <AllProjects title="University Projects" type="uol" desc="Uni projects description"/>
+                  <AllProjects title="University" type="uol" 
+                  desc="Studying at the University of Leeds has given me a solid foundation of engineering knowledge and the opportunity to apply my studies to solve real-world problems."
+                  desc2="I have also been able to use my computer programming skills to extend my projects beyond their initial brief, to improve accuracy of models, increase efficiency and display data in creative ways."/>
 
               </div>
 
