@@ -16,7 +16,12 @@ export default function RootLayout({ children }) {
               <div className="xl:col-start-2 xl:col-span-8 ">
                   <AllProjects title="University" type="uol" 
                   desc="Studying at the University of Leeds has given me a solid foundation of engineering knowledge and the opportunity to apply my studies to solve real-world problems."
-                  desc2="I have also been able to use my computer programming skills to extend my projects beyond their initial brief, to improve accuracy of models, increase efficiency and display data in creative ways."/>
+                  desc2="I have also been able to use my computer programming skills to extend my projects beyond their initial brief, to improve accuracy of models, increase efficiency and display data in creative ways."
+                  splashImages={
+                    [{src: "/buggy/buggy1.png", h:4267, w:4267},
+                     {src: "/uol/wing3.png", h:862, w:862},
+                     {src: "/uol/bridge2.png", h:654, w:654}]}
+                     />
 
               </div>
 
