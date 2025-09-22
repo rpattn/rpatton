@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
   }
   
   return (
-    <body>
+    <>
       <Header />
       {children}
 
@@ -101,6 +101,6 @@ export default function RootLayout({ children }) {
             </div>
         </main>
       <TopHeader/>
-    </body>
+    </>
   )
 }
