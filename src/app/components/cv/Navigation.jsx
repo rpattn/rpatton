@@ -1,94 +1,96 @@
 "use client"
 import Link from "next/link";
-import React, { useRef } from "react";
-import { useEffect, useState } from "react";
+import React from "react";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 
-const Navigation = () => {
+const ACTIVE_BORDER = "border-lime-500 dark:border-blue-600";
+const INACTIVE_BORDER = "border-gray-300";
+const PROJECT_INACTIVE_BORDER = "border-blue-300";
 
-    const [scrollY, setScrollY] = useState(0);
-    const main = useRef();
+const NAV_GROUPS = [
+    {
+        title: "Education",
+        items: [
+            { id: "uol", label: "University of Leeds", href: "#uol" },
+            { id: "alevels", label: "A-Levels", href: "#alevels" },
+        ],
+    },
+    {
+        title: "Industry Experience",
+        items: [{ id: "cummins", label: "Cummins", href: "#cummins" }],
+    },
+    {
+        title: "Leadership Activities",
+        items: [
+            { id: "projectman", label: "Project Management | Cummins", href: "#projectman" },
+            { id: "daringdash", label: "Daring Dash Competition", href: "#daringdash" },
+            { id: "volunteering", label: "Volunteering", href: "#volunteering" },
+        ],
+    },
+    {
+        title: "Employment History",
+        items: [
+            { id: "bfb", label: "British Food Box", href: "#bfb" },
+            { id: "edge", label: "The Edge", href: "#edge" },
+        ],
+    },
+    {
+        title: "Skills",
+        items: [
+            { id: "technical", label: "Technical", href: "#technical" },
+            { id: "projectman2", label: "Project Management", href: "#projectman2" },
+        ],
+    },
+];
 
-    useEffect(() => {
-        const handleScroll = () => {
-        setScrollY(window.scrollY);
-        };
+const PROJECT_LINKS = [
+    { href: "/projects#searchmap", label: "Search Map" },
+    { href: "/projects#viseng", label: "VisEng" },
+];
 
-        // just trigger this so that the initial state 
-        // is updated as soon as the component is mounted
-        // related: https://stackoverflow.com/a/63408216
-        handleScroll();
-
-        window.addEventListener("scroll", handleScroll);
-        return () => {
-        window.removeEventListener("scroll", handleScroll);
-        };
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+const Navigation = ({ activeSection, isPinned }) => {
+    const containerClass = `mt-4 hidden xl:block${isPinned ? " lg:fixed" : ""}`;
+    const transformStyle = isPinned ? { transform: "translate(0px,-60px)" } : {};
     return (
-        <ul ref={main} style={(scrollY>50)? {transform: "translate(0px,-60px)"} : {}}   className={`mt-4 hidden xl:block ${(scrollY>50)? " lg:fixed" : ""}`}>
-
-            <li className="mt-2 mb-1"><strong>Education</strong></li>
+        <ul className={containerClass} style={transformStyle}>
+            {NAV_GROUPS.map((group) => (
+                <React.Fragment key={group.title}>
+                    <li className="mt-2 mb-1">
+                        <strong>{group.title}</strong>
+                    </li>
+                    <ul className="ml-4 mb-2">
+                        {group.items.map((item) => {
+                            const borderClass = activeSection === item.id ? ACTIVE_BORDER : INACTIVE_BORDER;
+                            return (
+                                <div key={item.id} className={`border-2 w-0 mt-0 ${borderClass}`}>
+                                    <li className="ml-3 w-48">
+                                        <Link href={item.href}>{item.label}</Link>
+                                    </li>
+                                </div>
+                            );
+                        })}
+                    </ul>
+                </React.Fragment>
+            ))}
+            <li className="mt-2">
+                <strong>Hobbies & Interests</strong>
+            </li>
+            <li className="mt-6">
+                <strong>Projects</strong>
+            </li>
             <ul className="ml-4 mb-2">
-                <div className={`border-2 w-0 mt-0 ${(scrollY<380) 
-                    ? "border-lime-500 dark:border-blue-600" : "border-gray-300"}`}>
-                    <li className="ml-3 w-48"> <Link href="#uol">University of Leeds</Link></li></div>
-                <div className={`border-2 w-0 mt-0 ${(scrollY<480 & scrollY>380) 
-                    ? "border-lime-500 dark:border-blue-600" : "border-gray-300"}`}>
-                    <li className="ml-3 w-48"> <Link href="#alevels">A-Levels</Link></li></div>
-            </ul>
-            <li className="mt-2 mb-1"><strong>Industry Experience</strong></li>
-            <ul className="ml-4 mb-2">
-                <div className={`border-2 w-0 mt-0 ${(scrollY<550 & scrollY>480) 
-                    ? "border-lime-500 dark:border-blue-600" : "border-gray-300"}`}>
-                    <li className="ml-3 w-48"> <Link href="#cummins">Cummins</Link></li></div>
-                <div className={`border-2 w-0 mt-0 ${(scrollY<640 & scrollY>550) 
-                    ? "border-lime-500 dark:border-blue-600" : "border-gray-300"}`}>
-                    <li className="ml-3 w-48"> <Link href="#rolls-royce">Rolls-Royce</Link></li></div>
-            </ul>
-            <li className="mt-2"><strong>Leadership Activities</strong></li>
-            <ul className="ml-4 mb-2">
-                <div className={`border-2 w-0 mt-0 ${(scrollY<780 & scrollY>640) 
-                    ? "border-lime-500 dark:border-blue-600" : "border-gray-300"}`}>
-                    <li className="ml-3 w-48"> <Link href="#projectman">Project Management | Cummins</Link></li></div>
-                <div className={`border-2 w-0 mt-0 ${(scrollY<950 & scrollY>780) 
-                    ? "border-lime-500 dark:border-blue-600" : "border-gray-300"}`}>
-                    <li className="ml-3 w-48"> <Link href="#daringdash">Daring Dash Competition</Link></li></div>
-                <div className={`border-2 w-0 mt-0 ${(scrollY<1110 & scrollY>950) 
-                    ? "border-lime-500 dark:border-blue-600" : "border-gray-300"}`}>
-                    <li className="ml-3 w-48"> <Link href="#volunteering">Volunteering</Link></li></div>
-            </ul>
-            <li className="mt-2"><strong>Employment History</strong></li>
-            <ul className="ml-4 mb-2">
-                <div className={`border-2 w-0 mt-0 ${(scrollY<1280 & scrollY>1110) 
-                    ? "border-lime-500 dark:border-blue-600" : "border-gray-300"}`}>
-                    <li className="ml-3 w-48"> <Link href="#bfb">British Food Box</Link></li></div>
-                <div className={`border-2 w-0 mt-0 ${(scrollY<1500 & scrollY>1280) 
-                    ? "border-lime-500 dark:border-blue-600" : "border-gray-300"}`}>
-                    <li className="ml-3 w-48"> <Link href="#edge">The Edge</Link></li></div>
-            </ul>
-            <li className="mt-2"><strong>Skills</strong></li>
-            <ul className="ml-2 flex mb-2">
-                <div className={`border-2 h-12 w-0 m-1 mt-0 ${
-                (scrollY>1500) ? "border-lime-500 dark:border-blue-600" : "border-gray-300"}`}></div>
-                <div>
-                <li className="ml-2"> <Link href="#technical">Technical</Link></li>
-                <li className="ml-2"> <Link href="#projectman2">Project Management</Link></li>
-                </div>
-            </ul>
-            <li className="mt-2"><strong>Hobbies & Interests</strong></li>
-            <li className="mt-6"><strong>Projects</strong></li>
-            <ul className="ml-4 mb-2">
-                <div className={`border-2 w-0 mt-0 ${(scrollY>2000) 
-                    ? "border-lime-500 dark:border-blue-600" : "border-blue-300"}`}>
-                    <li className="ml-3 w-48"> <Link href="/projects#searchmap" className="flex">Search Map <AiOutlineInfoCircle className=" fill-blue-900 m-1 w-4 h-4" /></Link></li></div>
-                <div className={`border-2 w-0 mt-0 ${(scrollY>2500) 
-                    ? "border-lime-500 dark:border-blue-600" : "border-blue-300"}`}>
-                    <li className="ml-3 w-48"> <Link href="/projects#viseng" className="flex">VisEng <AiOutlineInfoCircle className=" fill-blue-900 m-1 w-4 h-4" /></Link></li></div>
+                {PROJECT_LINKS.map(({ href, label }) => (
+                    <div key={label} className={`border-2 w-0 mt-0 ${PROJECT_INACTIVE_BORDER}`}>
+                        <li className="ml-3 w-48">
+                            <Link href={href} className="flex">
+                                {label} <AiOutlineInfoCircle className=" fill-blue-900 m-1 w-4 h-4" />
+                            </Link>
+                        </li>
+                    </div>
+                ))}
             </ul>
         </ul>
-    )
-}
+    );
+};
 
 export default Navigation;

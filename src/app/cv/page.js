@@ -1,6 +1,8 @@
-//import Image from 'next/image'
+"use client";
 
-import { AiFillCheckCircle, AiFillPlusCircle } from "react-icons/ai";
+import { useEffect, useState } from "react";
+import { AiFillCheckCircle } from "react-icons/ai";
+import { useInView } from "react-intersection-observer";
 import Header from "../components/navbar/Header";
 import AlevelsDropDown from "../components/cv/AlevelsDropDown";
 import TopHeader from "../components/navbar/TopHeader";
@@ -12,25 +14,81 @@ import Navigation from "../components/cv/Navigation";
 export default function RootLayout({ children }) {
   const skillsList = ["CAD", "Technical Drawing", "Engineering Standards", " GD&T", " Failure Investigation", " Verification & Validation", " Cost Analysis"]
   const skillsList2 = ["Problem solving", "Critical thinking", " Collaboration", " Communication", "Risk Management"]
+  const { ref: topSentinelRef, inView: topInView } = useInView({ threshold: 1 });
+  const { ref: statementRef, inView: statementInView } = useInView({ threshold: 0.2 });
+  const { ref: uolRef, inView: uolInView } = useInView({ threshold: 0.2 });
+  const { ref: alevelsRef, inView: alevelsInView } = useInView({ threshold: 0.2 });
+  const { ref: cumminsRef, inView: cumminsInView } = useInView({ threshold: 0.2 });
+  const { ref: projectmanRef, inView: projectmanInView } = useInView({ threshold: 0.2 });
+  const { ref: daringdashRef, inView: daringdashInView } = useInView({ threshold: 0.2 });
+  const { ref: volunteeringRef, inView: volunteeringInView } = useInView({ threshold: 0.2 });
+  const { ref: bfbRef, inView: bfbInView } = useInView({ threshold: 0.2 });
+  const { ref: edgeRef, inView: edgeInView } = useInView({ threshold: 0.2 });
+  const { ref: technicalRef, inView: technicalInView } = useInView({ threshold: 0.2 });
+  const { ref: projectman2Ref, inView: projectman2InView } = useInView({ threshold: 0.2 });
+
+  const [activeSection, setActiveSection] = useState("statement");
+
+  useEffect(() => {
+    const states = [
+      { id: "statement", inView: statementInView },
+      { id: "uol", inView: uolInView },
+      { id: "alevels", inView: alevelsInView },
+      { id: "cummins", inView: cumminsInView },
+      { id: "projectman", inView: projectmanInView },
+      { id: "daringdash", inView: daringdashInView },
+      { id: "volunteering", inView: volunteeringInView },
+      { id: "bfb", inView: bfbInView },
+      { id: "edge", inView: edgeInView },
+      { id: "technical", inView: technicalInView },
+      { id: "projectman2", inView: projectman2InView },
+    ];
+
+    const nextState = states.find((state) => state.inView);
+
+    if (nextState && nextState.id !== activeSection) {
+      setActiveSection(nextState.id);
+    } else if (!nextState && topInView && activeSection !== "statement") {
+      setActiveSection("statement");
+    }
+  }, [
+    activeSection,
+    statementInView,
+    uolInView,
+    alevelsInView,
+    cumminsInView,
+    projectmanInView,
+    daringdashInView,
+    volunteeringInView,
+    bfbInView,
+    edgeInView,
+    technicalInView,
+    projectman2InView,
+    topInView,
+  ]);
+
+  const isPinned = !topInView;
+
   return (
     <body>
       <Header />
       {children}
 
         <main className="min-h-screen grid xl:grid-cols-10 md:px-32 px-6 xl:px-16 splashCard mb-20">
+          <div ref={topSentinelRef} className="col-span-full h-0"></div>
           <div className="xl:col-start-1 xl:col-span-2  hidden lg:block"> 
-            <Navigation/>
+            <Navigation activeSection={activeSection} isPinned={isPinned}/>
           </div>
           <div className="xl:col-start-3 xl:col-span-7">
 
             <div className="xl:col-start-3 xl:col-span-8">
-            <div className=" ">
+            <section ref={statementRef} className=" ">
             <h1 className="mt-2 font-bold tracking-tight text-gray-900 dark:text-gray-200 text-4xl mb-1">Statement</h1>
             <div className="line mb-4 dark:bg-gray-400"></div>
             <p className="mt-2 ">Final year master’s student (MEng) at the University of Leeds. Looking to apply my strong analytical and project management skills to solve complex problems in the Engineering Industry. Experience gained as a Design Engineer at Cummins has developed my ability to work as part of a global team to find data driven solutions that work for both client and business.</p>
-            </div>
+            </section>
 
-            <div id="uol" className=" ">
+            <section id="uol" ref={uolRef} className=" ">
             <h1 className="mt-6 font-bold tracking-tight dark:text-gray-200  text-gray-900 text-4xl mb-1">Education</h1>
             <div className="line mb-0 dark:bg-gray-400"></div>
             <div className="grid grid-cols-13">
@@ -59,12 +117,14 @@ export default function RootLayout({ children }) {
             </li>
             </ul>
 
+            </section>
+
+            <section id="alevels" ref={alevelsRef}>
             <AlevelsDropDown />
+            </section>
 
-            </div>
 
-
-            <div id="cummins" className=" ">
+            <section id="cummins" ref={cumminsRef} className=" ">
             <h1 className="mt-6 dark:text-gray-200 font-bold tracking-tight text-gray-900 text-4xl mb-1">Industry Experience</h1>
             <div className="line mb-0 dark:bg-gray-400"></div>
             <div className="grid grid-cols-13">
@@ -92,10 +152,10 @@ export default function RootLayout({ children }) {
             <p className="ml-2"><strong>Dissertation: </strong>Something else can go here with action verbs and stuff bust must be long enough to start a new line</p>
             </li>
             </ul>
-            </div>
+            </section>
 
 
-            <div className=" " id="projectman">
+            <section className=" " id="projectman" ref={projectmanRef}>
             <h1 className="mt-6 font-bold tracking-tight text-gray-900 dark:text-gray-200  text-4xl mb-1">Leadership Activities</h1>
             <div className="line mb-2"></div>
 
@@ -111,7 +171,8 @@ export default function RootLayout({ children }) {
             </li>
             </ul>
 
-            <h2 id="daringdash" className="text-base font-semibold leading-7 text-gray-900  dark:text-indigo-500  mt-2">Daring Dash Competition | UoL</h2>   
+            <section id="daringdash" ref={daringdashRef}>
+            <h2 className="text-base font-semibold leading-7 text-gray-900  dark:text-indigo-500  mt-2">Daring Dash Competition | UoL</h2>   
             <ul>
             <li className="flex">
             <AiFillCheckCircle className="m-1 bulletIcon" />
@@ -126,8 +187,10 @@ export default function RootLayout({ children }) {
             <p className="ml-2">Leveraged Mat-Lab and Simulink to optimise the vehicles suspension response. <strong>Achieved 86% in this coursework.</strong></p>
             </li>
             </ul>
+            </section>
 
-            <h2 id="volunteering" className="text-base font-semibold leading-7 text-gray-900 dark:text-indigo-500  mt-2">Volunteering in Tanzania</h2>   
+            <section id="volunteering" ref={volunteeringRef}>
+            <h2 className="text-base font-semibold leading-7 text-gray-900 dark:text-indigo-500  mt-2">Volunteering in Tanzania</h2>   
             <ul>
             <li className="flex">
             <AiFillCheckCircle className="m-1 bulletIcon" />
@@ -142,11 +205,12 @@ export default function RootLayout({ children }) {
             <p className="ml-2">Opportunity to experience a different culture and harboured my love for travel.</p>
             </li>
             </ul>
+            </section>
 
-            </div>
+            </section>
 
 
-            <div className=" " id="bfb">
+            <section className=" " id="bfb" ref={bfbRef}>
             <h1 className="mt-6 font-bold tracking-tight dark:text-gray-200  text-gray-900 text-4xl mb-1">Employment History</h1>
             <div className="line mb-0 dark:bg-gray-400"></div>
             <div className="grid grid-cols-13">
@@ -171,7 +235,7 @@ export default function RootLayout({ children }) {
             </li>
             </ul>
 
-            <div className="grid grid-cols-13 " id="edge">
+            <section className="grid grid-cols-13 " id="edge" ref={edgeRef}>
             <div className="col-start-1 col-span-10 ">
             <h2 className="text-base font-semibold leading-7 text-gray-900 dark:text-gray-200 translate-y-2">The Edge | Leisure Centre</h2>
             <p className="text-base font-semibold leading-7 text-indigo-600 italic text-xs">Lifeguard</p>
@@ -181,7 +245,7 @@ export default function RootLayout({ children }) {
             <p className="text-base text-right font-semibold leading-7 text-gray-900 dark:text-gray-200 translate-y-2">Leeds, UK</p>
             <p className="text-base text-right font-semibold leading-7 text-indigo-600 italic text-xs">09/2019 – 07/2022</p>
             </div>
-            </div>
+            </section>
             <ul>
             <li className="flex">
             <AiFillCheckCircle className="m-1 bulletIcon" />
@@ -196,14 +260,13 @@ export default function RootLayout({ children }) {
             <p className="ml-2">Balanced University studies while working 10-15 hrs a week – developed organizational and time management skills.</p>
             </li>
             </ul>
-
-            </div>
+            </section>
 
             </div>
 
             <div className="xl:col-start-8 xl:col-span-3 "> 
 
-            <div className=" " id="technical">
+            <section className=" " id="technical" ref={technicalRef}>
             <h1 className="mt-2 font-bold tracking-tight dark:text-gray-200  text-gray-900 text-4xl mb-1">Skills</h1>
             <div className="line mb-0 dark:bg-gray-400"></div>
             <h2 className="text-base dark:text-indigo-500  font-semibold leading-7 text-gray-900 mb-2 translate-y-2">Technical</h2>
@@ -220,7 +283,8 @@ export default function RootLayout({ children }) {
             ))}
             </ul>
 
-            <h2 className="text-base dark:text-indigo-500 font-semibold leading-7 text-gray-900 mb-2 translate-y-2" id="projectman2">Project Management</h2>
+            <div id="projectman2" ref={projectman2Ref}>
+            <h2 className="text-base dark:text-indigo-500 font-semibold leading-7 text-gray-900 mb-2 translate-y-2">Project Management</h2>
             <ul className="flex flex-wrap">
             <li className="flex">
             <AiFillCheckCircle className="m-1 bulletIcon" />
@@ -234,6 +298,7 @@ export default function RootLayout({ children }) {
             ))}
             </ul>
             </div>
+            </section>
 
             <div className=" ">
             <h1 className="mt-6 dark:text-gray-200 font-bold tracking-tight text-gray-900 text-4xl mb-1">Hobbies & Interests</h1>
