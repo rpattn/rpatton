@@ -36,7 +36,7 @@ const ProjectText = () => {
     const projectInfo = [
         {
             name: "My Projects",
-            desc: "Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.",
+            desc: "I design tools that make complex engineering simpler and more accessible. From interactive VR documentation and digital twin platforms to teaching apps and research prototypes, my projects aim to cut down manual work, speed up insight, and help teams collaborate more effectively.",
             link: "none",
             anim: "projectText"
         },
