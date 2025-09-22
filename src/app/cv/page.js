@@ -1,47 +1,160 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import Link from "next/link";
 import { AiFillCheckCircle } from "react-icons/ai";
 import { useInView } from "react-intersection-observer";
 import Header from "../components/navbar/Header";
-import AlevelsDropDown from "../components/cv/AlevelsDropDown";
 import TopHeader from "../components/navbar/TopHeader";
-import Image from "next/image";
 import Navigation from "../components/cv/Navigation";
 
-//bg-base-100 shadow-xl
+const bulletIconClass = "m-1 bulletIcon";
 
 export default function RootLayout({ children }) {
-  const skillsList = ["CAD", "Technical Drawing", "Engineering Standards", " GD&T", " Failure Investigation", " Verification & Validation", " Cost Analysis"]
-  const skillsList2 = ["Problem solving", "Critical thinking", " Collaboration", " Communication", "Risk Management"]
   const { ref: topSentinelRef, inView: topInView } = useInView({ threshold: 1 });
   const { ref: statementRef, inView: statementInView } = useInView({ threshold: 0.2 });
-  const { ref: uolRef, inView: uolInView } = useInView({ threshold: 0.2 });
-  const { ref: alevelsRef, inView: alevelsInView } = useInView({ threshold: 0.2 });
-  const { ref: cumminsRef, inView: cumminsInView } = useInView({ threshold: 0.2 });
-  const { ref: projectmanRef, inView: projectmanInView } = useInView({ threshold: 0.2 });
-  const { ref: daringdashRef, inView: daringdashInView } = useInView({ threshold: 0.2 });
-  const { ref: volunteeringRef, inView: volunteeringInView } = useInView({ threshold: 0.2 });
-  const { ref: bfbRef, inView: bfbInView } = useInView({ threshold: 0.2 });
-  const { ref: edgeRef, inView: edgeInView } = useInView({ threshold: 0.2 });
-  const { ref: technicalRef, inView: technicalInView } = useInView({ threshold: 0.2 });
-  const { ref: projectman2Ref, inView: projectman2InView } = useInView({ threshold: 0.2 });
+  const { ref: skillsRef, inView: skillsInView } = useInView({ threshold: 0.2 });
+  const { ref: experienceRef, inView: experienceInView } = useInView({ threshold: 0.2 });
+  const { ref: projectsRef, inView: projectsInView } = useInView({ threshold: 0.2 });
+  const { ref: educationRef, inView: educationInView } = useInView({ threshold: 0.2 });
+  const { ref: interestsRef, inView: interestsInView } = useInView({ threshold: 0.2 });
+
+  const coreSkills = useMemo(
+    () => [
+      {
+        title: "Programming & DevOps",
+        description:
+          "JavaScript, Python, Go, C# (.NET & Unity 3D), Docker, Kubernetes, CI/CD, Git, REST APIs.",
+      },
+      {
+        title: "Applications & Cloud",
+        description:
+          "CAD (Solidworks, Creo), Digital Twins, VR, Machine Learning, Microsoft Azure, Google Cloud.",
+      },
+      {
+        title: "Project Management",
+        description:
+          "Problem-solving, Critical thinking, Agile/SCRUM, Failure Investigation, Risk Management.",
+      },
+    ],
+    []
+  );
+
+  const experience = useMemo(
+    () => [
+      {
+        company: "Ramboll",
+        role: "Graduate Consultant",
+        location: "London, UK",
+        period: "September 2024 - Present",
+        bullets: [
+          "Developed a VR-ready full-stack web and desktop application that embeds existing CAD models into interactive documentation, including automated pipelines to convert CAD to OBJ/GLB, extract metadata, and transform Word to HTML/CSS, eliminating manual conversion.",
+          "Enhanced a production wind asset management platform with Azure SSO and SMTP integration, managing Dockerised deployments, CI/CD pipelines, and Google Cloud Kubernetes infrastructure to ensure availability and security.",
+          "Extended an internal lifecycle simulation tool written in Python by adding new functionality, a REST API, and a web interface to increase usability for non-technical colleagues while contributing to Agile SCRUM sprints.",
+          "Delivered interdisciplinary engineering and advisory scopes across offshore wind projects, collaborating as part of a global team.",
+        ],
+      },
+      {
+        company: "Cummins",
+        role: "Design Engineering Placement",
+        location: "Darlington, UK",
+        period: "June 2022 - June 2024",
+        bullets: [
+          "Developed engine components from concept to production, ensuring designs complied with new European and American regulations.",
+          "Applied generative CAD (Creo) workflows in collaboration with CFD and FEA specialists to optimise complex geometries for performance and manufacturability.",
+          "Led research and feasibility analysis for new European-market technology, developing concepts and cost evaluations.",
+          "Managed a global, interdisciplinary team to implement a 7-Step solution to a product issue, chairing meetings to share results, review progress, and successfully mitigate risk.",
+        ],
+      },
+    ],
+    []
+  );
+
+  const projectGroups = useMemo(
+    () => [
+      {
+        heading: null,
+        items: [
+          {
+            name: "Machine Learning",
+            description:
+              "Extended Masters year group project by training a machine learning model to predict erosion and corrosion.",
+          },
+          {
+            name: "Operational Analysis",
+            description:
+              "Built a full-stack Python/TypeScript/Docker application enabling non-technical users to run wind plant system design simulations, with automated post-processing for metrics and Gantt charts plus CI/CD deployment.",
+          },
+          {
+            name: "NextCMMS",
+            description:
+              "Developing an enterprise-grade CMMS in Go, PostgreSQL, and Next.js with a flexible physical/EAV schema, role-based authentication (OAuth, 2FA), and planned 3D model ingest and IoT metering.",
+          },
+        ],
+      },
+    ],
+    []
+  );
+
+  const education = useMemo(
+    () => [
+      {
+        title: "Mechanical Engineering (Industrial) MEng, First Class Honours",
+        detail:
+          "University of Leeds, 2019 � 2024. Achieved first-class honours with a 77% average while continuing placement work part time in the final year; represented the university in rugby.",
+      },
+      {
+        title: "Dissertation",
+        detail:
+          "Consulted with medical startup Eventum Orthopaedics to validate prototype medical hardware (grade 78.5%).",
+      },
+      {
+        title: "Research Publication",
+        detail:
+          "Co-authored paper on erosion-corrosion of additively manufactured materials presented at EuroCorr2025.",
+      },
+      {
+        title: "A-Levels",
+        detail: "Ashby School | Physics A*, Chemistry A*, Mathematics A, Further Mathematics A (AS-Level).",
+      },
+    ],
+    []
+  );
+
+  const interestGroups = useMemo(
+    () => [
+      {
+        title: "Tech",
+        items: [
+          "Self-taught programmer since early teens, building games and robotics projects with a Raspberry Pi and following emerging AI for engineering workflows.",
+        ],
+      },
+      {
+        title: "Sport",
+        items: [
+          "Enjoy rugby and competitive swimming; avid Formula 1 fan following technical developments.",
+        ],
+      },
+      {
+        title: "Other",
+        items: [
+          "Keen musician | Grade 8 cornet, played in orchestras; currently learning piano.",
+        ],
+      },
+    ],
+    []
+  );
 
   const [activeSection, setActiveSection] = useState("statement");
 
   useEffect(() => {
     const states = [
       { id: "statement", inView: statementInView },
-      { id: "uol", inView: uolInView },
-      { id: "alevels", inView: alevelsInView },
-      { id: "cummins", inView: cumminsInView },
-      { id: "projectman", inView: projectmanInView },
-      { id: "daringdash", inView: daringdashInView },
-      { id: "volunteering", inView: volunteeringInView },
-      { id: "bfb", inView: bfbInView },
-      { id: "edge", inView: edgeInView },
-      { id: "technical", inView: technicalInView },
-      { id: "projectman2", inView: projectman2InView },
+      { id: "skills", inView: skillsInView },
+      { id: "experience", inView: experienceInView },
+      { id: "projects", inView: projectsInView },
+      { id: "education", inView: educationInView },
+      { id: "interests", inView: interestsInView },
     ];
 
     const nextState = states.find((state) => state.inView);
@@ -54,334 +167,176 @@ export default function RootLayout({ children }) {
   }, [
     activeSection,
     statementInView,
-    uolInView,
-    alevelsInView,
-    cumminsInView,
-    projectmanInView,
-    daringdashInView,
-    volunteeringInView,
-    bfbInView,
-    edgeInView,
-    technicalInView,
-    projectman2InView,
+    skillsInView,
+    experienceInView,
+    projectsInView,
+    educationInView,
+    interestsInView,
     topInView,
   ]);
 
   const isPinned = !topInView;
 
   return (
-    <body>
+    <>
       <Header />
       {children}
 
-        <main className="min-h-screen grid xl:grid-cols-10 md:px-32 px-6 xl:px-16 splashCard mb-20">
-          <div ref={topSentinelRef} className="col-span-full h-0"></div>
-          <div className="xl:col-start-1 xl:col-span-2  hidden lg:block"> 
-            <Navigation activeSection={activeSection} isPinned={isPinned}/>
-          </div>
-          <div className="xl:col-start-3 xl:col-span-7">
+      <main className="min-h-screen grid xl:grid-cols-10 md:px-32 px-6 xl:px-16 splashCard mb-20">
+        <div ref={topSentinelRef} className="col-span-full h-0" />
+        <div className="xl:col-start-1 xl:col-span-2 hidden lg:block">
+          <Navigation activeSection={activeSection} isPinned={isPinned} />
+        </div>
 
-            <div className="xl:col-start-3 xl:col-span-8">
-            <section ref={statementRef} className=" ">
-            <h1 className="mt-2 font-bold tracking-tight text-gray-900 dark:text-gray-200 text-4xl mb-1">Statement</h1>
-            <div className="line mb-4 dark:bg-gray-400"></div>
-            <p className="mt-2 ">Final year master’s student (MEng) at the University of Leeds. Looking to apply my strong analytical and project management skills to solve complex problems in the Engineering Industry. Experience gained as a Design Engineer at Cummins has developed my ability to work as part of a global team to find data driven solutions that work for both client and business.</p>
+        <div className="xl:col-start-3 xl:col-span-7">
+          <div className="xl:col-start-3 xl:col-span-8">
+            <section id="statement" ref={statementRef} className="">
+              <p className="text-lg font-semibold text-gray-900 dark:text-gray-100">MEng EngTech IMechE</p>
+              <p className="text-sm text-gray-600 dark:text-gray-300">
+                <a className="text-indigo-600" href="mailto:rn.patton@outlook.com">rn.patton@outlook.com</a>
+                {" | "}
+                <a className="text-indigo-600" href="tel:+447931418928">07931 418928</a>
+                {" | "}
+                <Link className="text-indigo-600" href="https://linkedin.com/in/r-patton" target="_blank" rel="noopener noreferrer">
+                  linkedin.com/in/r-patton
+                </Link>
+                {" | London, UK"}
+              </p>
+              <p className="mt-4 text-lg leading-8 text-gray-600 dark:text-gray-200">
+                Mechanical Engineer and Consultant with experience developing digital tools for engineering projects in the built environment, supported by industrial engineering and research into applied materials and machine learning. I apply technical knowledge and software development skills to build APIs and automation pipelines that enhance engineering design workflows and project delivery.
+              </p>
             </section>
 
-            <section id="uol" ref={uolRef} className=" ">
-            <h1 className="mt-6 font-bold tracking-tight dark:text-gray-200  text-gray-900 text-4xl mb-1">Education</h1>
-            <div className="line mb-0 dark:bg-gray-400"></div>
-            <div className="grid grid-cols-13">
-            <div className="col-start-1 col-span-10 ">
-            <h2 className="text-base dark:text-gray-200 font-semibold leading-7 text-gray-900 translate-y-2">University of Leeds</h2>
-            <p className="text-base font-semibold leading-7 text-indigo-600 italic text-xs">MEng (Ind.) | Predicted 1st</p>
-            </div>
-
-            <div className="col-start-11 col-span-2 ">
-            <p className="text-base text-right font-semibold leading-7 text-gray-900 dark:text-gray-200 translate-y-2">Leeds, UK</p>
-            <p className="text-base text-right font-semibold leading-7 text-indigo-600 italic text-xs">09/2019 – Present</p>
-            </div>
-            </div>
-            <ul>
-            <li className="flex">
-            <AiFillCheckCircle className="m-1 bulletIcon" />
-            <p className="ml-2">Exceptional academic performance (average 77%) accomplished whilst adapting to new teaching and team-working methods due to the COVID-19 pandemic</p>
-            </li>
-            <li className="flex">
-            <AiFillCheckCircle className="m-1 bulletIcon" />
-            <p className="ml-2">Something else can go here with action verbs and stuff bust must be long enough to start a new line</p>
-            </li>
-            <li className="flex">
-            <AiFillCheckCircle className="m-1 bulletIcon" />
-            <p className="ml-2"><strong>Dissertation: </strong>Something else can go here with action verbs and stuff bust must be long enough to start a new line</p>
-            </li>
-            </ul>
-
-            </section>
-
-            <section id="alevels" ref={alevelsRef}>
-            <AlevelsDropDown />
-            </section>
-
-
-            <section id="cummins" ref={cumminsRef} className=" ">
-            <h1 className="mt-6 dark:text-gray-200 font-bold tracking-tight text-gray-900 text-4xl mb-1">Industry Experience</h1>
-            <div className="line mb-0 dark:bg-gray-400"></div>
-            <div className="grid grid-cols-13">
-            <div className="col-start-1 col-span-10 ">
-            <h2 className="text-base font-semibold leading-7 text-gray-900 dark:text-gray-200  translate-y-2">Cummins | Engineering</h2>
-            <p className="text-base font-semibold leading-7 text-indigo-600 italic text-xs">Design Engineering Placement</p>
-            </div>
-
-            <div className="col-start-11 col-span-2 ">
-            <p className="text-base text-right font-semibold leading-7 text-gray-900 dark:text-gray-200  translate-y-2">Darlington, UK</p>
-            <p className="text-base text-right font-semibold leading-7 text-indigo-600 italic text-xs">07/2022 – Present</p>
-            </div>
-            </div>
-            <ul>
-            <li className="flex">
-            <AiFillCheckCircle className="m-1 bulletIcon" />
-            <p className="ml-2">Exceptional academic performance (average 77%) in individual coursework and team projects, accomplished whilst adapting to new teaching and team-working methods due to the COVID-19 pandemic</p>
-            </li>
-            <li className="flex">
-            <AiFillCheckCircle className="m-1 bulletIcon" />
-            <p className="ml-2">Something else can go here with action verbs and stuff bust must be long enough to start a new line</p>
-            </li>
-            <li className="flex">
-            <AiFillCheckCircle className="m-1 bulletIcon" />
-            <p className="ml-2"><strong>Dissertation: </strong>Something else can go here with action verbs and stuff bust must be long enough to start a new line</p>
-            </li>
-            </ul>
-            </section>
-
-
-            <section className=" " id="projectman" ref={projectmanRef}>
-            <h1 className="mt-6 font-bold tracking-tight text-gray-900 dark:text-gray-200  text-4xl mb-1">Leadership Activities</h1>
-            <div className="line mb-2"></div>
-
-            <h2 className="text-base font-semibold leading-7 text-gray-900  dark:text-indigo-500">Project Management | Cummins</h2>   
-            <ul>
-            <li className="flex">
-            <AiFillCheckCircle className="m-1 bulletIcon" />
-            <p className="ml-2">Managed the project by defining strategy and workload, then scheduling and leading regular team meetings to discuss progress and roadblocks.</p>
-            </li>
-            <li className="flex">
-            <AiFillCheckCircle className="m-1 bulletIcon" />
-            <p className="ml-2">Leveraged Mat-Lab and Simulink to optimise the vehicles suspension response. <strong>Achieved 86% in this coursework.</strong></p>
-            </li>
-            </ul>
-
-            <section id="daringdash" ref={daringdashRef}>
-            <h2 className="text-base font-semibold leading-7 text-gray-900  dark:text-indigo-500  mt-2">Daring Dash Competition | UoL</h2>   
-            <ul>
-            <li className="flex">
-            <AiFillCheckCircle className="m-1 bulletIcon" />
-            <p className="ml-2">Led a team that designed and manufactured an autonomous buggy.</p>
-            </li>
-            <li className="flex">
-            <AiFillCheckCircle className="m-1 bulletIcon" />
-            <p className="ml-2">Managed the project by defining strategy and workload, then scheduling and leading regular team meetings to discuss progress and roadblocks.</p>
-            </li>
-            <li className="flex">
-            <AiFillCheckCircle className="m-1 bulletIcon" />
-            <p className="ml-2">Leveraged Mat-Lab and Simulink to optimise the vehicles suspension response. <strong>Achieved 86% in this coursework.</strong></p>
-            </li>
-            </ul>
-            </section>
-
-            <section id="volunteering" ref={volunteeringRef}>
-            <h2 className="text-base font-semibold leading-7 text-gray-900 dark:text-indigo-500  mt-2">Volunteering in Tanzania</h2>   
-            <ul>
-            <li className="flex">
-            <AiFillCheckCircle className="m-1 bulletIcon" />
-            <p className="ml-2">Organised several fund-raising activities over a 2 year period to fund a volunteering project</p>
-            </li>
-            <li className="flex">
-            <AiFillCheckCircle className="m-1 bulletIcon" />
-            <p className="ml-2">Travelled to Tanzania to participate in several aid projects, including Civil Engineering work redirecting rainwater around a local school</p>
-            </li>
-            <li className="flex">
-            <AiFillCheckCircle className="m-1 bulletIcon" />
-            <p className="ml-2">Opportunity to experience a different culture and harboured my love for travel.</p>
-            </li>
-            </ul>
-            </section>
-
-            </section>
-
-
-            <section className=" " id="bfb" ref={bfbRef}>
-            <h1 className="mt-6 font-bold tracking-tight dark:text-gray-200  text-gray-900 text-4xl mb-1">Employment History</h1>
-            <div className="line mb-0 dark:bg-gray-400"></div>
-            <div className="grid grid-cols-13">
-            <div className="col-start-1 col-span-10 ">
-            <h2 className="text-base font-semibold leading-7 text-gray-900 dark:text-gray-200  translate-y-2">British Food Box</h2>
-            <p className="text-base font-semibold leading-7 text-indigo-600 italic text-xs">Store Manager, Data Engineering</p>
-            </div>
-
-            <div className="col-start-11 col-span-2 ">
-            <p className="text-base text-right font-semibold leading-7 text-gray-900 dark:text-gray-200  translate-y-2">Derby, UK</p>
-            <p className="text-base text-right font-semibold leading-7 text-indigo-600 italic text-xs">04/2020 – 08/2020</p>
-            </div>
-            </div>
-            <ul>
-            <li className="flex">
-            <AiFillCheckCircle className="m-1 bulletIcon" />
-            <p className="ml-2">Managed a farm-shop over lockdown that served the local area and supported 10-20 vulnerable members of the community per day by implementing a new food delivery service. Supervised day-to-day running, customer engagement and cashing-up</p>
-            </li>
-            <li className="flex">
-            <AiFillCheckCircle className="m-1 bulletIcon" />
-            <p className="ml-2"><strong>Highlight: </strong>Automated the online targeting of new customers for the main wholesale business by employing self-taught computer programming and IT skills. Gathered information on 3000+ local small businesses, saving 120Hrs of company time</p>
-            </li>
-            </ul>
-
-            <section className="grid grid-cols-13 " id="edge" ref={edgeRef}>
-            <div className="col-start-1 col-span-10 ">
-            <h2 className="text-base font-semibold leading-7 text-gray-900 dark:text-gray-200 translate-y-2">The Edge | Leisure Centre</h2>
-            <p className="text-base font-semibold leading-7 text-indigo-600 italic text-xs">Lifeguard</p>
-            </div>
-
-            <div className="col-start-11 col-span-2 ">
-            <p className="text-base text-right font-semibold leading-7 text-gray-900 dark:text-gray-200 translate-y-2">Leeds, UK</p>
-            <p className="text-base text-right font-semibold leading-7 text-indigo-600 italic text-xs">09/2019 – 07/2022</p>
-            </div>
-            </section>
-            <ul>
-            <li className="flex">
-            <AiFillCheckCircle className="m-1 bulletIcon" />
-            <p className="ml-2">Ensured customer safety by preventing and responding to accidents.</p>
-            </li>
-            <li className="flex">
-            <AiFillCheckCircle className="m-1 bulletIcon" />
-            <p className="ml-2">Maintained professional qualifications through training and assessment</p>
-            </li>
-            <li className="flex">
-            <AiFillCheckCircle className="m-1 bulletIcon" />
-            <p className="ml-2">Balanced University studies while working 10-15 hrs a week – developed organizational and time management skills.</p>
-            </li>
-            </ul>
-            </section>
-
-            </div>
-
-            <div className="xl:col-start-8 xl:col-span-3 "> 
-
-            <section className=" " id="technical" ref={technicalRef}>
-            <h1 className="mt-2 font-bold tracking-tight dark:text-gray-200  text-gray-900 text-4xl mb-1">Skills</h1>
-            <div className="line mb-0 dark:bg-gray-400"></div>
-            <h2 className="text-base dark:text-indigo-500  font-semibold leading-7 text-gray-900 mb-2 translate-y-2">Technical</h2>
-            <ul className="flex flex-wrap">
-            <li className="flex">
-            <AiFillCheckCircle className="m-1 bulletIcon" />
-            <p className="ml-0 mr-1 ">Design</p>
-            </li>
-            {skillsList.map((name, index) => (
-            <li key={index} className="flex">
-                <AiFillCheckCircle className="m-1 bulletIcon" />
-                <p className="ml-0 mr-1">{name}</p>
-            </li>
-            ))}
-            </ul>
-
-            <div id="projectman2" ref={projectman2Ref}>
-            <h2 className="text-base dark:text-indigo-500 font-semibold leading-7 text-gray-900 mb-2 translate-y-2">Project Management</h2>
-            <ul className="flex flex-wrap">
-            <li className="flex">
-            <AiFillCheckCircle className="m-1 bulletIcon" />
-            <p className="ml-0 mr-1">Leadership</p>
-            </li>
-            {skillsList2.map((name, index) => (
-            <li key={index} className="flex">
-                <AiFillCheckCircle className="m-1 bulletIcon" />
-                <p className="ml-0 mr-1">{name}</p>
-            </li>
-            ))}
-            </ul>
-            </div>
-            </section>
-
-            <div className=" ">
-            <h1 className="mt-6 dark:text-gray-200 font-bold tracking-tight text-gray-900 text-4xl mb-1">Hobbies & Interests</h1>
-            <div className="line mb-0 dark:bg-gray-400"></div>
-            <h2 className="text-base  dark:text-indigo-500 font-semibold leading-7 text-gray-900 mb-2 translate-y-2">Technology</h2>
-            <ul>
-            <li className="flex">
-            <AiFillCheckCircle className="m-1 bulletIcon" />
-            <p className="ml-2">Self-taught computer programmer with a passion for software and hardware integration.</p>
-            </li>
-            <li className="flex">
-            <AiFillCheckCircle className="m-1 bulletIcon" />
-            <p className="ml-2">Created websites and games using: Python, Java, C#, JavaScript, HTML, CSS.</p>
-            </li>
-            </ul>
-
-            <h2 className="text-base dark:text-indigo-500 font-semibold leading-7 text-gray-900 mb-2 translate-y-2">Sport</h2>
-            <ul>
-            <li className="flex">
-            <AiFillCheckCircle className="m-1 bulletIcon" />
-            <p className="ml-2">Enjoy playing rugby and swimming competitively.</p>
-            </li>
-            <li className="flex">
-            <AiFillCheckCircle className="m-1 bulletIcon" />
-            <p className="ml-2">Avid F1 fan – enjoy watching races and following technical development.</p>
-            </li>
-            </ul>
-
-            <h2 className="text-base dark:text-indigo-500 font-semibold leading-7 text-gray-900 mb-2 translate-y-2">Music</h2>
-            <ul>
-            <li className="flex">
-            <AiFillCheckCircle className="m-1 bulletIcon" />
-            <p className="ml-2">Grade 8 Cornet, played as part of an orchestra for 10+ Years</p>
-            </li>
-            <li className="flex">
-            <AiFillCheckCircle className="m-1 bulletIcon" />
-            <p className="ml-2">Currently learning piano, would like to learn guitar in the future.</p>
-            </li>
-            </ul>
-            </div>
-            </div>
-
-          </div>
-
-          <div className="row-start-8 row-span-1 hidden lg:block xl:ml-4">
-            <div className="xl:flex xl:flex-col lg:grid lg:grid-cols-7 lg:dark:grid-cols-6">
-              <div className="lg:col-span-1 lg:col-start-1">
-                <div className="m-8 mb-0"><Image alt="img" src="/web.png" width={50} height={50}></Image></div>
-                <div className="m-8 mb-0"><Image alt="img" src="/fire.png" width={50} height={50}></Image></div>
+            <section id="skills" ref={skillsRef} className="mt-10">
+              <h1 className="font-bold tracking-tight text-gray-900 dark:text-gray-200 text-4xl mb-1">Skills</h1>
+              <div className="line mb-4 dark:bg-gray-400" />
+              <div className="grid gap-4">
+                {coreSkills.map(({ title, description }) => (
+                  <div key={title}>
+                    <h2 className="text-base font-semibold leading-7 text-gray-900 dark:text-gray-200">
+                      {title}
+                    </h2>
+                    <p className="text-gray-600 dark:text-gray-300">{description}</p>
+                  </div>
+                ))}
               </div>
-              <div className="lg:col-span-1 lg:col-start-2 dark:hidden">
-                <div className="m-8 mb-0 lg:pt-6 dark:hidden"><Image alt="img" src="/next.svg" width={50} height={50}></Image></div>
-                <div className="m-8 mb-0 lg:pt-4 dark:hidden"><Image alt="img" src="/linux.png" width={50} height={50}></Image></div>
-              </div>
-              <div className="lg:col-span-1 lg:col-start-3 lg:dark:col-start-2">
-                <div className="m-8 mb-0"><Image alt="img" src="/sql.png" width={50} height={50}></Image></div>
-                <div className="m-8 mb-0"><Image alt="img" src="/cpp.png" width={50} height={50}></Image></div>
-              </div>
-              <div className="lg:col-span-1 lg:col-start-4 lg:dark:col-start-3">
-                <div className="m-8 mb-0"><Image alt="img" src="/cshrp.png" width={50} height={50}></Image></div>
-                <div className="m-8 mb-0"><Image alt="img" src="/py.png" width={50} height={50}></Image></div>
-              </div>
-              <div className="lg:col-span-1 lg:col-start-5 lg:dark:col-start-4">
-                <div className="m-8 mb-0"><Image alt="img" src="/office.png" width={50} height={50}></Image></div>
-                <div className="m-8 mb-0 lg:pt-2"><Image alt="img" src="/mat.png" width={50} height={50}></Image></div>
-              </div>
-              <div className="lg:col-span-1 lg:col-start-6 lg:dark:col-start-5">
-              <div className="m-8 mb-0 lg:pt-1"><Image alt="img" src="/sw.png" width={50} height={50}></Image></div>
-              <div className="m-8 mb-0"><Image alt="img" src="/java.png" width={50} height={50}></Image></div>
-              </div>
-              <div className="lg:col-span-1 lg:col-start-7 lg:dark:col-start-6">
-                <div className="m-8 mb-0 ml-9 pt-1"><Image alt="img" src="/creo.svg" width={44} height={44}></Image></div>
-                <div className="m-8 mb-0 ml-9 pt-1"><Image alt="img" src="/lbv.svg" width={44} height={44}></Image></div>
+            </section>
+
+            <section id="experience" ref={experienceRef} className="mt-10">
+              <h1 className="font-bold tracking-tight text-gray-900 dark:text-gray-200 text-4xl mb-1">
+                Experience
+              </h1>
+              <div className="line mb-4 dark:bg-gray-400" />
+              {experience.map(({ company, role, location, period, bullets }) => (
+                <article key={`${company}-${role}`} className="mt-6">
+                  <div className="grid grid-cols-13">
+                    <div className="col-start-1 col-span-10">
+                      <h2 className="text-base font-semibold leading-7 text-gray-900 dark:text-gray-200">
+                        {company} | {role}
+                      </h2>
+                    </div>
+                    <div className="col-start-11 col-span-3 text-right">
+                      <p className="text-base font-semibold leading-7 text-gray-900 dark:text-gray-200">
+                        {location}
+                      </p>
+                      <p className="text-xs font-semibold leading-7 text-indigo-600 dark:text-indigo-400">
+                        {period}
+                      </p>
+                    </div>
+                  </div>
+                  <ul className="mt-2">
+                    {bullets.map((item, index) => (
+                      <li key={index} className="flex">
+                        <AiFillCheckCircle className={bulletIconClass} />
+                        <p className="ml-2 text-gray-700 dark:text-gray-200">{item}</p>
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
+            </section>
+
+            <section id="projects" ref={projectsRef} className="mt-10">
+              <h1 className="font-bold tracking-tight text-gray-900 dark:text-gray-200 text-4xl mb-1">
+                Projects
+              </h1>
+              <div className="line mb-4 dark:bg-gray-400" />
+              {projectGroups.map(({ heading, items }, groupIndex) => (
+                <div key={heading ?? groupIndex} className="mt-6">
+                  {heading ? (
+                    <h2 className="text-base font-semibold leading-7 text-gray-900 dark:text-gray-200">{heading}</h2>
+                  ) : null}
+                  <ul className="mt-2">
+                    {items.map(({ name, href, description }) => (
+                      <li key={name} className="flex">
+                        <AiFillCheckCircle className={bulletIconClass} />
+                        <p className="ml-2 text-gray-700 dark:text-gray-200">
+                          {href ? (
+                            <Link
+                              href={href}
+                              className="font-semibold text-indigo-600"
+                              target={href?.startsWith("http") ? "_blank" : undefined}
+                              rel={href?.startsWith("http") ? "noopener noreferrer" : undefined}
+                            >
+                              {name}
+                            </Link>
+                          ) : (
+                            <span className="font-semibold text-gray-900 dark:text-gray-100">{name}</span>
+                          )}
+                          {": "}{description}
+                        </p>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-              <div className="lg:col-span-1 lg:col-start-8 lg:dark:col-start-7">
-                <div className="m-8 mb-0 ml-9 pt-2"><Image alt="img" src="/ad.png" width={44} height={44}></Image></div>
-                <div className="m-8 mb-0 ml-9 pt-2 lg:dark:hidden"><Image alt="img" src="/asys.png" width={44} height={44}></Image></div>
-                </div>
-            </div>
-          </div>
-        </main>
+              ))}
+            </section>
 
-        <TopHeader/>
-    </body>
-  )
+            <section id="education" ref={educationRef} className="mt-10">
+              <h1 className="font-bold tracking-tight text-gray-900 dark:text-gray-200 text-4xl mb-1">
+                Education
+              </h1>
+              <div className="line mb-4 dark:bg-gray-400" />
+              <ul>
+                {education.map(({ title, detail }) => (
+                  <li key={title} className="flex">
+                    <AiFillCheckCircle className={bulletIconClass} />
+                    <p className="ml-2 text-gray-700 dark:text-gray-200">
+                      <span className="font-semibold text-gray-900 dark:text-gray-100">{title}</span>
+                      {": "}{detail}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            </section>
+
+
+            <section id="interests" ref={interestsRef} className="mt-10">
+              <h1 className="font-bold tracking-tight text-gray-900 dark:text-gray-200 text-4xl mb-1">
+                Hobbies & Interests
+              </h1>
+              <div className="line mb-4 dark:bg-gray-400" />
+              {interestGroups.map(({ title, items }) => (
+                <div key={title} className="mt-4">
+                  <h2 className="text-base font-semibold leading-7 text-gray-900 dark:text-gray-200">
+                    {title}
+                  </h2>
+                  <ul>
+                    {items.map((item, index) => (
+                      <li key={index} className="flex">
+                        <AiFillCheckCircle className={bulletIconClass} />
+                        <p className="ml-2 text-gray-700 dark:text-gray-200">{item}</p>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </section>
+          </div>
+        </div>
+      </main>
+
+      <TopHeader />
+    </>
+  );
 }

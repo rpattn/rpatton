@@ -9,48 +9,40 @@ const PROJECT_INACTIVE_BORDER = "border-blue-300";
 
 const NAV_GROUPS = [
     {
+        title: "Overview",
+        items: [
+            { id: "statement", label: "Statement", href: "#statement" },
+            { id: "skills", label: "Skills", href: "#skills" },
+        ],
+    },
+    {
+        title: "Experience",
+        items: [{ id: "experience", label: "Experience", href: "#experience" }],
+    },
+    {
+        title: "Projects",
+        items: [{ id: "projects", label: "Projects", href: "#projects" }],
+    },
+    {
         title: "Education",
-        items: [
-            { id: "uol", label: "University of Leeds", href: "#uol" },
-            { id: "alevels", label: "A-Levels", href: "#alevels" },
-        ],
+        items: [{ id: "education", label: "Education", href: "#education" }],
     },
     {
-        title: "Industry Experience",
-        items: [{ id: "cummins", label: "Cummins", href: "#cummins" }],
-    },
-    {
-        title: "Leadership Activities",
-        items: [
-            { id: "projectman", label: "Project Management | Cummins", href: "#projectman" },
-            { id: "daringdash", label: "Daring Dash Competition", href: "#daringdash" },
-            { id: "volunteering", label: "Volunteering", href: "#volunteering" },
-        ],
-    },
-    {
-        title: "Employment History",
-        items: [
-            { id: "bfb", label: "British Food Box", href: "#bfb" },
-            { id: "edge", label: "The Edge", href: "#edge" },
-        ],
-    },
-    {
-        title: "Skills",
-        items: [
-            { id: "technical", label: "Technical", href: "#technical" },
-            { id: "projectman2", label: "Project Management", href: "#projectman2" },
-        ],
+        title: "Hobbies & Interests",
+        items: [{ id: "interests", label: "Hobbies & Interests", href: "#interests" }],
     },
 ];
 
-const PROJECT_LINKS = [
-    { href: "/projects#searchmap", label: "Search Map" },
-    { href: "/projects#viseng", label: "VisEng" },
+const PORTFOLIO_LINKS = [
+    { href: "https://next-cmms.vercel.app/", label: "NextCMMS" },
+    { href: "https://ddm-iota.vercel.app/", label: "Digital_Design_Manager" },
+    { href: "https://searchmap.web.app/", label: "Search Map" },
 ];
 
 const Navigation = ({ activeSection, isPinned }) => {
     const containerClass = `mt-4 hidden xl:block${isPinned ? " lg:fixed" : ""}`;
     const transformStyle = isPinned ? { transform: "translate(0px,-60px)" } : {};
+
     return (
         <ul className={containerClass} style={transformStyle}>
             {NAV_GROUPS.map((group) => (
@@ -72,17 +64,14 @@ const Navigation = ({ activeSection, isPinned }) => {
                     </ul>
                 </React.Fragment>
             ))}
-            <li className="mt-2">
-                <strong>Hobbies & Interests</strong>
-            </li>
             <li className="mt-6">
-                <strong>Projects</strong>
+                <strong>Featured Links</strong>
             </li>
             <ul className="ml-4 mb-2">
-                {PROJECT_LINKS.map(({ href, label }) => (
+                {PORTFOLIO_LINKS.map(({ href, label }) => (
                     <div key={label} className={`border-2 w-0 mt-0 ${PROJECT_INACTIVE_BORDER}`}>
                         <li className="ml-3 w-48">
-                            <Link href={href} className="flex">
+                            <Link href={href} className="flex" target="_blank" rel="noopener noreferrer">
                                 {label} <AiOutlineInfoCircle className=" fill-blue-900 m-1 w-4 h-4" />
                             </Link>
                         </li>
