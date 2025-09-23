@@ -1,583 +1,408 @@
-"use client"
-import Link from "next/link";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+"use client";
+
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
-import { useInView } from "react-intersection-observer";
+import Link from "next/link";
 import { RxExternalLink } from "react-icons/rx";
-import ProjectImageCard from "./ProjectImageCard";
+import { useInView } from "react-intersection-observer";
 
-const imageStyle = {
-    width: "100%",
-    height: "auto",
+import projectsData from "./projects.json";
+
+const typeLabels = {
+  tech: "Technical Project",
+  research: "Research Project",
+  uol: "University Project",
+  splash: "",
 };
 
-const AllProjects = ({ title, type, desc, desc2, splashImages }) => {
-    const [scrollY, setScrollY] = useState(0);
-    const [isVis, setVis] = useState(true);
-    const [layoutMode, setLayoutMode] = useState("full");
-    const [ready, setReady] = useState(false);
+const observerThresholds = [0, 0.25, 0.5, 0.75, 1];
+const observerRootMargin = "-35% 0px -35% 0px";
 
-    const handleWindowResize = useCallback(() => {
-        setLayoutMode(window.innerWidth > 750 ? "full" : "list");
-    }, []);
+const detailsCardClass =
+  "rounded-xl border border-slate-200 bg-white/80 p-6 text-slate-900 shadow-sm backdrop-blur transition-colors dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-100 sm:p-8";
 
-    useEffect(() => {
-        handleWindowResize();
-        window.addEventListener("resize", handleWindowResize);
-        return () => window.removeEventListener("resize", handleWindowResize);
-    }, [handleWindowResize]);
+const getTypeLabel = (type) => {
+  if (!type) {
+    return "Project";
+  }
+  return typeLabels[type] ?? type.charAt(0).toUpperCase() + type.slice(1);
+};
 
-    const { ref: pageBorderRef, inView: borderInView } = useInView({ threshold: 1 });
+const getBulletItems = (bullets) => {
+  if (!bullets) {
+    return [];
+  }
+  return [bullets.text1, bullets.text2, bullets.text3].filter(Boolean);
+};
 
-    const baseProjectInfo = useMemo(
-        () => [
-            {
-                name: title,
-                desc,
-                desc2,
-                link: "none",
-                anim: "projectText",
-                typeOf: "splash",
-            },
-            {
-                name: "Machine Learning",
-                desc: "Extended a Masters group project by training a machine learning model to predict erosion and corrosion in additively manufactured materials.",
-                desc2: "Co-authored a peer-reviewed paper presented at EuroCorr2025. Demonstrated the potential of data-driven methods in materials engineering.",
-                link: "#ml",
-                anim: "projectText2",
-                typeOf: "research"
-            },
-            {
-                name: "Operational Analysis",
-                desc: "Built a full-stack web application enabling non-technical users to run wind plant design simulations using WOMBAT and ORBIT models from the National Wind Technology Centre.",
-                desc2: "Post-processed results to generate metrics and Gantt charts that supported wind farm optimisation and cost estimation. Included a Dockerised CI/CD pipeline for deployment.",
-                link: "#opanalysis",
-                anim: "projectText2",
-                typeOf: "tech"
-            },
-            {
-                name: "NextCMMS",
-                desc: "Developing an enterprise-grade Centralised Maintenance Management System with Go, PostgreSQL, and NextJS.",
-                desc2: "Features include a flexible hybrid schema (physical + EAV), role-based authentication (OAuth/2FA), planned 3D model ingestion, Git-style revision history, and IoT metering integration.",
-                link: "#nextcmms",
-                anim: "projectText",
-                typeOf: "tech"
-            },
-            {
-                name: "Search Map",
-                desc: "Leverages Google's Maps API and cloud services to enable users to search for places by name, type and location. This data can then be filtered, saved to the cloud or exported for personal use.",
-                desc2: "I created this tool to automate the online targeting of potential wholesale customers for a business I supported during the COVID Lockdown. I was able to save over 100+ Hrs of time compared to manually searching Google Maps.",
-                link: "#dissertation",
-                anim: "projectText2",
-                typeOf: "tech",
-            },
-            {
-                name: "Dissertation",
-                desc: "Consulted with medical firm Eventum Orthopaedics to investigate and validate the performance of a novel medical hardware. Included research into the field, applicable standards, design of experiments and verification and validation work. ",
-                link: "#turbine",
-                anim: "projectText",
-                typeOf: "uol",
-            },
-            {
-                name: "Turbine Project",
-                desc: "Constructed models from first principles to optimised the power generated by a water powered turbine. Given a head pressure curve, I found the optimal nozzle geometry, bucket design and gearbox to maximise the system efficiency.",
-                desc2: "I used MATLAB to solve the system of equations that described the optimal nozzle and speed ratios, and then used SIMULINK to simulate the transient response of the system. This project sparked my interest in renewable energy solutions",
-                link: "#turbine",
-                anim: "projectText",
-                typeOf: "uol",
-            },
-            {
-                name: "FEA Sandbox",
-                desc: "Browser based playground. Construct 2D node element models, apply forces, boundary conditions, and calculate the structure's response. Constructs intermediate matrices to help students visualise the finite element method.",
-                desc2: "Developed this project after studying the FE method at university. I wanted to create a graphical user interface to help illustrate how the various matrices required to solve FE problems are created, and to link this to the structure described.",
-                link: "#feasandbox",
-                anim: "projectText2",
-                typeOf: "tech",
-            },
-            {
-                name: "Daring Dash",
-                desc: "Led a team that designed and manufactured an autonomous buggy. Optimised the vehicles suspension response using Matlab to evaluate a kinematic model constructed from 1st Principles.",
-                desc2: "Chaired regular meetings to share progress and assign next steps. Our buggy was one of the top performing teams. This project has prompted my further interest and research into suspension and control systems.",
-                link: "#daringdash",
-                anim: "projectText",
-                typeOf: "uol",
-            },
-            {
-                name: "Volunteering",
-                desc: "Traveled to Tanzania to participate in several aid projects, including Civil Engineering work redirecting rainwater around a local school, refurbishing desks and working with children",
-                link: "#volunteering",
-                anim: "projectText2",
-                typeOf: "other",
-            },
-            {
-                name: "Truss Bridge",
-                desc: "Developed a MATLAB program with GUI to analyse the stresses of a truss bridge. The user can enter compression and tension failure loads for each member type, apply loads and generate a graphic illustrating stresses",
-                desc2: "This project was based on a first year coursework that I extended to include a graphical user interface and generate a diagram with stress, colour coded to aid interpretation.",
-                link: "#trussbridge",
-                anim: "projectText",
-                typeOf: "uol",
-            },
-            {
-                name: "McLaren F1",
-                desc: "Individual research project into the McLaren F1 sports car. Generated estimations of the car's key characteristics from data available online to predict top speed, acceleration times, cornering performance and braking distance.",
-                desc2: "Increased the accuracy of predictions by increasing the model complexity. I developed a gear-change system in SIMULINK to simulate the impact of gear changes on the transient response - received extra credit for this unique approach.",
-                link: "#mcf1",
-                anim: "projectText2",
-                typeOf: "uol",
-            },
-            {
-                name: "Stabiliser Analysis",
-                desc: "Finite element study of a Robinson R22 helicopter horizontal stabiliser, evaluating the design response under specific flight conditions. Constructed several models of increasing complexity, conducting sensitivity and structural analysis.",
-                desc2: "Revised the simulation to model the stabiliser as a composite construction. Used my Python programming skills to optimise the wings response by automatically varying layer ply direction, then running and selecting the best performing configuration.",
-                link: "#wing",
-                anim: "projectText",
-                typeOf: "uol",
-            },
-            {
-                name: "Games",
-                desc: "I first started learning to code at age 12 when I got my first Raspberry PI. Over the next few years, I would develop some simple games, either using the Unity engine, or sometimes creating my own architecture in Java.",
-                desc2: "Creating these projects developed my problem solving skills and creativity. Often I would emulate games I enjoyed playing, extending them by adding features and functionality. I have translated these skills to my studies and career, extending projects, or finding new creative solutions.",
-                link: "#games",
-                anim: "projectText2",
-                typeOf: "tech",
-            },
-            {
-                name: "Apps",
-                desc: "Part of my journey learning to code included producing some basic apps that are available on the Google Play Store. To create these I used tools such as Unity, and Android Studio, powered by C# and Java. ",
-                desc2: "",
-                link: "#games",
-                anim: "projectText2",
-                typeOf: "tech",
-            },
-            {
-                name: "Raspberry Pi",
-                desc: "I first started learning to code at age 12 when I got my first Raspberry PI. Over the next few years, I would develop some simple games, either using the Unity engine, or sometimes creating my own architecture in Java.",
-                desc2: "Creating these projects developed my problem solving skills and creativity. Often I would emulate games I enjoyed playing, extending them by adding features and functionality. I have translated these skills to my studies and career, extending projects, or finding new creative solutions.",
-                link: "#pi",
-                anim: "projectText1",
-                typeOf: "tech",
-            },
-        ],
-        [title, desc, desc2]
+const getExternalLink = (bullets) => {
+  const ext = bullets?.extLink?.trim();
+  return ext && ext.length > 0 ? ext : null;
+};
+
+const selectActiveProject = (
+  projects,
+  entryMap,
+  viewportHeight,
+  currentActiveId
+) => {
+  if (!projects.length) {
+    return null;
+  }
+
+  const hasViewport = typeof viewportHeight === "number" && viewportHeight > 0;
+  const viewportCenter = hasViewport ? viewportHeight / 2 : 0;
+
+  let bestId = null;
+  let bestDistance = Number.POSITIVE_INFINITY;
+  let bestCoverage = -1;
+  let bestUpdatedAt = -1;
+
+  for (const project of projects) {
+    const metrics = entryMap[project.id];
+
+    if (!metrics) {
+      continue;
+    }
+
+    const {
+      top,
+      height,
+      visibleHeight = 0,
+      intersectionRatio = 0,
+      isIntersecting,
+      updatedAt = 0,
+    } = metrics;
+
+    if (!Number.isFinite(top) || !Number.isFinite(height) || height <= 0) {
+      continue;
+    }
+
+    const hasVisibility = isIntersecting || visibleHeight > 0;
+
+    if (!hasVisibility) {
+      continue;
+    }
+
+    const sectionCenter = top + height / 2;
+    const distance = hasViewport
+      ? Math.abs(sectionCenter - viewportCenter)
+      : Math.abs(sectionCenter);
+
+    const coverage = Math.max(
+      Math.min(visibleHeight / height, 1),
+      intersectionRatio
     );
 
-    const baseProjectBullets = useMemo(
-        () => [
-            { text1: "", text2: "", text3: "", extLink: "" },
-            {text1: "Applied ML to materials engineering", text2: "Peer-reviewed research output", text3: "Presented at EuroCorr2025", extLink: "/team_proj_ml.pdf"},
-            {text1: "Full-stack web app", text2: "Supported wind farm optimisation studies", text3: "CI/CD deployment with Docker", extLink: "https://rpattn.github.io/WOMBAT_ext/"},
-            {text1: "Enterprise-grade system", text2: "Secure role-based access (OAuth/2FA)", text3: "Planned IoT and 3D integration", extLink: "https://next-cmms.vercel.app/"},
-            { text1: "Built using HTML, CSS, JS", text2: "Powered by React, Firebase, Google APIs", text3: "Responsive design", extLink: "https://searchmap.web.app/" },
-            { text1: "Successful collaboration", text2: "Applied problem solving and data analysis skills to synthesize conclusions", text3: "Sparked an interest in the Medical Engineering field", extLink: "https://eventumortho.com/" },
-            { text1: "Analysis driven solution", text2: "Extended project brief to include transient response", text3: "Project recieved a 1st", extLink: "" },
-            { text1: "Designed as an Educational tool", text2: "First in a family of Engineering visualisation tools I am working on", text3: "Open source, free to use", extLink: "/fea/index.html" },
-            { text1: "Computer aided, analysis led design.", text2: "Project managed team.", text3: "Achieved 86% in this coursework.", extLink: "/cv#daringdash" },
-            { text1: "Fund raised over 2 years", text2: "Collaborated with a diverse team", text3: "Harboured a love for travel", extLink: "" },
-            { text1: "Complex MATLAB project", text2: "Creative data visualisation", text3: "Project extended beyond brief", extLink: "" },
-            { text1: "Estimation of system performance", text2: "Techniques have real world application", text3: "Earned 71% for this report", extLink: "" },
-            { text1: "Detailed FEA study", text2: "Increased efficiency using Python", text3: "Credited for utilising a creative problem solving method", extLink: "" },
-            { text1: "C#, C++, Java, Python, Android", text2: "Developed problem solving skills", text3: "Springboard to apply computational methods to solve engineering problems", extLink: "" },
-            { text1: "Mobile development experience", text2: "Integration of C and Java", text3: "Cross-platform application", extLink: "" },
-            { text1: "C#, C++, Java, Python, Android", text2: "Developed problem solving skills", text3: "Springboard to apply computational methods to solve engineering problems", extLink: "" },
-        ],
-        []
+    const isCloser = distance < bestDistance - 4;
+    const isComparable = Math.abs(distance - bestDistance) <= 4;
+    const hasBetterCoverage = coverage > bestCoverage + 0.05;
+    const isNewer = updatedAt > bestUpdatedAt + 4;
+
+    if (
+      isCloser ||
+      (isComparable && (hasBetterCoverage || (Math.abs(coverage - bestCoverage) <= 0.05 && isNewer)))
+    ) {
+      bestId = project.id;
+      bestDistance = distance;
+      bestCoverage = coverage;
+      bestUpdatedAt = updatedAt;
+    }
+  }
+
+  if (bestId) {
+    return bestId;
+  }
+
+  if (currentActiveId) {
+    return currentActiveId;
+  }
+
+  return projects[0]?.id ?? null;
+};
+
+const ProjectDetails = ({ project, className = "" }) => {
+  if (!project) {
+    return null;
+  }
+
+  const bulletItems = getBulletItems(project.bullets);
+  const externalLink = getExternalLink(project.bullets);
+  const typeLabel = getTypeLabel(project.type);
+
+  return (
+    <div className={`${detailsCardClass} ${className}`.trim()}>
+      {typeLabel ? (
+        <p className="text-xs font-semibold uppercase tracking-[0.25em] text-indigo-600 dark:text-indigo-400">
+          {typeLabel}
+        </p>
+      ) : null}
+
+      <h2 className="mt-4 text-2xl font-semibold leading-tight text-slate-900 dark:text-slate-100">
+        {project.name}
+      </h2>
+
+      {project.desc ? (
+        <p className="mt-4 text-base leading-relaxed text-slate-600 dark:text-slate-300">
+          {project.desc}
+        </p>
+      ) : null}
+
+      {project.desc2 ? (
+        <p className="mt-3 text-sm leading-relaxed text-slate-500 dark:text-slate-300">
+          {project.desc2}
+        </p>
+      ) : null}
+
+      {bulletItems.length > 0 ? (
+        <ul className="mt-6 space-y-2 text-sm text-slate-600 dark:text-slate-300">
+          {bulletItems.map((item, index) => (
+            <li key={index} className="flex gap-3">
+              <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-indigo-500 dark:bg-indigo-400" />
+              <span className="flex-1 leading-relaxed">{item}</span>
+            </li>
+          ))}
+        </ul>
+      ) : null}
+
+      {externalLink ? (
+        <Link
+          href={externalLink}
+          target={externalLink.startsWith("http") ? "_blank" : undefined}
+          rel={externalLink.startsWith("http") ? "noopener noreferrer" : undefined}
+          className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-indigo-600 transition-colors hover:text-indigo-500 dark:text-indigo-300 dark:hover:text-indigo-200"
+        >
+          View project
+          <RxExternalLink className="h-4 w-4" />
+        </Link>
+      ) : null}
+    </div>
+  );
+};
+
+const ProjectImageSection = ({ project, onVisible, isActive, isFirst }) => {
+  const { ref, entry } = useInView({
+    threshold: observerThresholds,
+    rootMargin: observerRootMargin,
+    triggerOnce: false,
+  });
+
+  useEffect(() => {
+    if (!entry) {
+      return;
+    }
+
+    const metrics = {
+      top: entry.boundingClientRect?.top ?? 0,
+      height: entry.boundingClientRect?.height ?? 0,
+      visibleHeight: Math.max(entry.intersectionRect?.height ?? 0, 0),
+      intersectionRatio: entry.intersectionRatio ?? 0,
+      isIntersecting: entry.isIntersecting,
+      updatedAt:
+        typeof performance !== "undefined" ? performance.now() : Date.now(),
+    };
+
+    onVisible(project.id, metrics);
+  }, [entry, onVisible, project.id]);
+
+  const images = project.images ?? [];
+  const [primaryImage, ...remainingImages] = images;
+  const secondaryGridImages = remainingImages.slice(0, 2);
+  const trailingHeroImages = remainingImages.slice(2);
+
+  const baseFigureClass =
+    "relative overflow-hidden rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-900 transform transition-transform duration-300 ease-out";
+  const figureStateClass = isActive
+    ? "scale-[1.02] shadow-lg shadow-indigo-500/15"
+    : "scale-[0.97] opacity-90";
+
+  const getAspectStyle = (image, hasFixedAspect) => {
+    if (hasFixedAspect) {
+      return undefined;
+    }
+
+    if (image?.w && image?.h) {
+      return { aspectRatio: `${image.w} / ${image.h}` };
+    }
+
+    return { aspectRatio: "16 / 10" };
+  };
+
+  const renderFigure = (image, displayIndex, { aspectClass = "", priority = false } = {}) => {
+    if (!image) {
+      return null;
+    }
+
+    const figureClassName = `${baseFigureClass} ${figureStateClass} ${aspectClass}`.trim();
+
+    return (
+      <figure
+        key={`${project.id}-${displayIndex}`}
+        className={figureClassName}
+        style={getAspectStyle(image, Boolean(aspectClass))}
+      >
+        <Image
+          src={image.src}
+          alt={`${project.name} preview ${displayIndex}`}
+          fill
+          sizes="(max-width: 1024px) 100vw, 60vw"
+          className="h-full w-full object-cover"
+          priority={priority}
+        />
+      </figure>
     );
+  };
 
-    const baseImagesInfo = useMemo(
-        () => [
-            {
-                link: "splash",
-                images: splashImages ?? [],
-            },
-            {
-                link: "ml",
-                images: [
-                    { src: "/images/publication.png", h: 1456, w: 892 },
-                    { src: "/images/ml1.png", h: 878, w: 797 },
-                    { src: "/images/ml2.png", h: 878, w: 797 },
-                ],
-            },
-            {
-                link: "opanalysis",
-                images: [
-                    { src: "/images/wombat1.png", h: 1456, w: 892 },
-                    { src: "/images/wombat2.png", h: 862, w: 862 },
-                    { src: "/images/wombat3.png", h: 629, w: 529 },
-                ],
-            },
-            {
-                link: "nextcmms",
-                images: [
-                    { src: "/images/ncmms1.png", h: 1456, w: 892 },
-                    { src: "/images/ncmms2.png", h: 862, w: 862 },
-                    { src: "/images/ncmms3.png", h: 529, w: 529 },
-                ],
-            },
-            {
-                link: "searchmap",
-                images: [
-                    { src: "/searchmap1.png", h: 1456, w: 892 },
-                    { src: "/searchmap2.png", h: 862, w: 862 },
-                    { src: "/searchmap3.png", h: 529, w: 529 },
-                ],
-            },
-            {
-                link: "dissertation",
-                images: [
-                    { src: "/uol/dis1.png", h: 454, w: 908 },
-                    { src: "/uol/dis2.png", h: 553, w: 553 },
-                    { src: "/uol/dis3.png", h: 424, w: 424 },
-                ],
-            },
-            {
-                link: "turbine",
-                images: [
-                    { src: "/uol/turbine1.png", h: 454, w: 908 },
-                    { src: "/uol/turbine2.png", h: 553, w: 553 },
-                    { src: "/uol/turbine3.png", h: 424, w: 424 },
-                    { src: "/uol/turbine4.png", h: 231, w: 738 },
-                ],
-            },
-            {
-                link: "feasandbox",
-                images: [
-                    { src: "/fea/fea1.png", h: 1218, w: 688 },
-                    { src: "/fea/fea2.png", h: 560, w: 600 },
-                    { src: "/fea/fea3.png", h: 826, w: 826 },
-                ],
-            },
-            {
-                link: "daringdash",
-                images: [
-                    { src: "/buggy/buggy1.png", h: 251, w: 521 },
-                    { src: "/buggy/buggy2.png", h: 370, w: 370 },
-                    { src: "/buggy/buggy3.png", h: 1340, w: 1340 },
-                    { src: "/buggy/buggy4.png", h: 260, w: 723 },
-                ],
-            },
-            {
-                link: "volunteering",
-                images: [
-                    { src: "/tanzania/tanzania3.png", h: 1062, w: 681 },
-                    { src: "/tanzania/tanzania1.png", h: 654, w: 654 },
-                    { src: "/tanzania/tanzania2.png", h: 654, w: 654 },
-                ],
-            },
-            {
-                link: "trussbridge",
-                images: [
-                    { src: "/uol/bridge1.png", h: 1164, w: 769 },
-                    { src: "/uol/bridge2.png", h: 748, w: 748 },
-                    { src: "/uol/bridge3.png", h: 672, w: 672 },
-                ],
-            },
-            {
-                link: "mcf1",
-                images: [
-                    { src: "/uol/mcf4.jpg", h: 399, w: 965 },
-                    { src: "/uol/mcf2.png", h: 548, w: 548 },
-                    { src: "/uol/mcf3.png", h: 404, w: 404 },
-                    { src: "/uol/mcf1.png", h: 351, w: 901 },
-                ],
-            },
-            {
-                link: "wing",
-                images: [
-                    { src: "/uol/wing4.png", h: 390, w: 602 },
-                    { src: "/uol/wing2.png", h: 448, w: 448 },
-                    { src: "/uol/wing3.png", h: 675, w: 675 },
-                    { src: "/uol/wing1.png", h: 240, w: 678 },
-                ],
-            },
-            {
-                link: "games",
-                images: [
-                    { src: "/tech/games1.png", h: 390, w: 602 },
-                    { src: "/tech/games2.png", h: 448, w: 448 },
-                    { src: "/tech/games3.png", h: 675, w: 675 },
-                    { src: "/tech/games5.png", h: 240, w: 678 },
-                ],
-            },
-            {
-                link: "apps",
-                images: [
-                    { src: "/tech/apps1.png", h: 390, w: 602 },
-                    { src: "/tech/apps2.png", h: 448, w: 448 },
-                    { src: "/tech/apps3.png", h: 675, w: 675 },
-                ],
-            },
-            {
-                link: "pi",
-                images: [
-                    { src: "/tech/pi1.jpg", h: 390, w: 602 },
-                    { src: "/tech/pi2.png", h: 448, w: 448 },
-                    { src: "/tech/pi3.png", h: 675, w: 675 },
-                    { src: "/tech/pi4.png", h: 240, w: 678 },
-                ],
-            },
-        ],
-        [splashImages]
-    );
+  return (
+    <section ref={ref} id={`project-${project.id}`} className="scroll-mt-24">
+      <div className="mb-6 lg:hidden">
+        <ProjectDetails project={project} />
+      </div>
 
-    const { projectInfo, projectBullets, imagesInfo } = useMemo(() => {
-        const allowedTypes = type === "all" ? null : new Set(["splash", type]);
-        let indices = [];
-
-        baseProjectInfo.forEach((project, index) => {
-            if (!allowedTypes || allowedTypes.has(project.typeOf)) {
-                indices.push(index);
-            }
-        });
-
-        if (allowedTypes && indices.length === 2) {
-            indices = indices.slice(1);
-        }
-
-        const info = indices.map((index) =>
-            type === "all" ? { ...baseProjectInfo[index], desc2: "" } : baseProjectInfo[index]
-        );
-        const bullets = indices.map((index) => baseProjectBullets[index] ?? { text1: "", text2: "", text3: "", extLink: "" });
-        const images = indices.map((index) => baseImagesInfo[index] ?? { link: "", images: [] });
-        return { projectInfo: info, projectBullets: bullets, imagesInfo: images };
-    }, [type, baseProjectInfo, baseProjectBullets, baseImagesInfo]);
-
-    const [visibility, setVisibility] = useState(() => new Array(imagesInfo.length).fill(false));
-
-    useEffect(() => {
-        setVisibility(new Array(imagesInfo.length).fill(false));
-        setScrollY(0);
-    }, [imagesInfo.length]);
-
-    useEffect(() => {
-        if (!visibility.length) {
-            setVis(false);
-            setScrollY(0);
-            return;
-        }
-
-        const firstVisible = visibility.findIndex(Boolean);
-
-        if (firstVisible === -1) {
-            setVis(false);
-            setScrollY(0);
-        } else {
-            setVis(true);
-            setScrollY((prev) => (prev === firstVisible ? prev : firstVisible));
-        }
-    }, [visibility]);
-
-    const handleVisibilityChange = useCallback((index, inView) => {
-        setVisibility((prev) => {
-            if (index < 0 || index >= prev.length || prev[index] === inView) {
-                return prev;
-            }
-            const next = [...prev];
-            next[index] = inView;
-            return next;
-        });
-    }, []);
-
-    useEffect(() => {
-        setReady(true);
-    }, []);
-
-    const showExtraImage = type !== "all";
-    const activeIndex = projectInfo.length ? Math.min(scrollY, projectInfo.length - 1) : 0;
-    const activeProject = projectInfo[activeIndex];
-    const activeBullets = projectBullets[activeIndex];
-
-    return ready ? (
-        <div className="md:grid md:grid-cols-2">
-            {layoutMode === "full" ? (
-                <>
-                    <div ref={pageBorderRef} className="h-8"></div>
-                    <div className="col-start-1 col-span-1 hidden sm:block ">
-                        <div
-                            className={`xl:pl-8 lg:pl-0 md:pl-4 ${borderInView ? "" : "md:fixed top-10 "
-                                } ${isVis ? "" : "hidden"} xl:max-w-md lg:max-w-sm lg:pr-6 md:pr-8 md:max-w-sm`}
-                        >
-                            <h1
-                                className={` xl:text-4xl md:text-4xl   font-bold tracking-tight text-gray-900 dark:text-gray-200 ${activeIndex < 1 ? activeProject?.anim ?? "" : ""
-                                    }`}
-                            >
-                                {activeProject?.name}
-                            </h1>
-                            <p
-                                className={`${activeProject?.anim ?? ""} mt-2 ml-1 text-md leading-8 text-gray-600 dark:text-gray-200`}
-                            >
-                                {activeProject?.desc}
-                            </p>
-                            <p
-                                className={`${activeProject?.anim ?? ""} mt-2 ml-1 text-md leading-8 text-gray-600 dark:text-gray-200`}
-                            >
-                                {activeProject?.desc2}
-                            </p>
-                            {activeBullets?.text1 ? (
-                                <>
-                                    <ul className={`${activeProject?.anim ?? ""} transition-all md:mt-4 ml-8 list-disc `}>
-                                        <li className="text-md xl:mb-1 text-gray-700 dark:text-gray-200">{activeBullets.text1}</li>
-                                        <li className="text-md xl:mb-1 text-gray-700 dark:text-gray-200">{activeBullets.text2}</li>
-                                        <li className="text-md xl:mb-1 text-gray-700 dark:text-gray-200">{activeBullets.text3}</li>
-                                    </ul>
-                                    {activeBullets.extLink !== "" &&
-                                    <button
-                                        href={activeBullets.extLink || "error"}
-                                        className={` mt-6 z-50 ml-2 pl-4 pr-4 pt-2 pb-2 outline outline-1 outline-blue-500 rounded-lg flex text-xl font-bold dark:text-gray-300 dark:outline-indigo-600 text-blue-700 drop-shadow-2xl`}
-                                    >
-                                        <Link href={activeBullets.extLink}> Check it out</Link>
-                                        <RxExternalLink className="projectButton animate-pulse mt-1 ml-2" />
-                                    </button>}
-                                </>
-                            ) : null}
-                            <ul className={`flex transition-all flex-wrap mt-4 `}>
-                                {[...projectInfo].splice(1).map(({ name, link }, index) => (
-                                    <li
-                                        key={`${name}-${index}`}
-                                        className={`${scrollY === index + 1 ? "shadow-xl dark:ring-indigo-600" : ""
-                                            } rounded-full transition-all ml-1 mr-1 mt-3 mb-1 px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20 dark:ring-gray-500 dark:hover:dark:bg-gray-900`}
-                                    >
-                                        <a href={link} className="font-semibold text-blue-600 dark:text-gray-400">
-                                            {name}
-                                        </a>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div className="md:col-start-2 md:col-span-1 md:block hidden">
-                        {imagesInfo.map((imageSet, index) => (
-                            <ProjectImageCard
-                                key={imageSet.link ?? index}
-                                images={imageSet.images}
-                                link={imageSet.link}
-                                index={index}
-                                previousVisible={visibility[index - 1] ?? false}
-                                onVisibilityChange={handleVisibilityChange}
-                                showExtraImage={showExtraImage}
-                            />
-                        ))}
-
-                        <div className="md:h-28 lg:h-72"></div>
-                    </div>
-                </>
-            ) : (
-                <div className="block md:hidden">
-                    {projectInfo.map((project, index) => {
-                        const imageSet = imagesInfo[index] ?? { link: "", images: [] };
-                        const images = imageSet.images ?? [];
-                        const primaryImage = images[0];
-                        const secondaryImages = images.slice(1, Math.min(images.length, 3));
-                        const gridColumns = secondaryImages.length > 1 ? "grid-cols-2" : "grid-cols-1";
-                        const extraImage = showExtraImage && images.length > 3 ? images[3] : null;
-
-                        return (
-                            <div key={`${project.name}-${index}`}>
-                                <div id={imageSet.link} className="col-start-1 col-span-1 sm:p-6 p-1 mt-8">
-                                    <div>
-                                        <h1 className="ml-3 text-5xl font-bold tracking-tight text-gray-900 dark:text-gray-200">
-                                            {project.name}
-                                        </h1>
-                                        <p className="mt-4 ml-3 text-lg leading-8 text-gray-600 dark:text-gray-200">
-                                            {project.desc}
-                                        </p>
-                                        <p className="mt-4 ml-3 text-lg leading-8 text-gray-600 dark:text-gray-200">
-                                            {project.desc2}
-                                        </p>
-                                        {projectBullets[index]?.text1 ? (
-                                            <>
-                                                <ul className="pt-4 transition-all md:mt-4 ml-8 list-disc ">
-                                                    <li className="text-lg xl:mb-1 text-gray-700 dark:text-gray-200">
-                                                        {projectBullets[index].text1}
-                                                    </li>
-                                                    <li className="text-lg xl:mb-1 text-gray-700 dark:text-gray-200">
-                                                        {projectBullets[index].text2}
-                                                    </li>
-                                                    <li className="text-lg xl:mb-1 text-gray-700 dark:text-gray-200">
-                                                        {projectBullets[index].text3}
-                                                    </li>
-                                                </ul>
-                                                {projectBullets[index].extLink !== "" &&
-                                                <button
-                                                    href={projectBullets[index].extLink}
-                                                    className="mt-6 z-50 ml-4 pl-4 pr-4 pt-2 pb-2 outline outline-1 outline-blue-500 rounded-lg flex text-xl font-bold dark:text-gray-300 dark:outline-indigo-600 text-blue-700 drop-shadow-2xl"
-                                                >
-                                                    <Link href={projectBullets[index].extLink}> Check it out</Link>
-                                                    <RxExternalLink className="projectButton animate-pulse mt-1 ml-2" />
-                                                </button>}
-                                            </>
-                                        ) : (
-                                            <ul className="flex flex-wrap transition-all md:fixed xl:mt-64 lg:mt-64 md:mt-72 xl:max-w-md lg:max-w-sm pr-12 md:max-w-xs sm:max-w-none ml-2">
-                                                {[...projectInfo].splice(1).map(({ name, link }, linkIdx) => (
-                                                    <li
-                                                        key={`${name}-${linkIdx}`}
-                                                        className={`${
-                                                            scrollY === linkIdx + 1
-                                                                ? "shadow-xl dark:ring-indigo-600"
-                                                                : ""
-                                                        } rounded-full transition-all ml-1 mr-1 mt-3 mb-1 px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20 dark:ring-gray-500 dark:hover:dark:bg-gray-900`}
-                                                    >
-                                                        <a href={link} className="font-semibold text-blue-600 dark:text-gray-400">
-                                                            {name}
-                                                        </a>
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        )}
-                                    </div>
-                                </div>
-                                <div className="p-4">
-                                    {primaryImage ? (
-                                        <>
-                                            <Image
-                                                unoptimized
-                                                src={primaryImage.src}
-                                                style={imageStyle}
-                                                width={primaryImage.w}
-                                                height={primaryImage.h}
-                                                alt="todo"
-                                                className="sm:hidden"
-                                            />
-                                            {secondaryImages.length ? (
-                                                <div className={`grid ${gridColumns}`}>
-                                                    {secondaryImages.map((image, imgIdx) => (
-                                                        <div
-                                                            key={`${imageSet.link ?? index}-secondary-${imgIdx}`}
-                                                            className="col-span-1"
-                                                        >
-                                                            <Image
-                                                                src={image.src}
-                                                                style={imageStyle}
-                                                                width={image.w}
-                                                                height={image.h}
-                                                                alt="todo"
-                                                            />
-                                                        </div>
-                                                    ))}
-                                                </div>
-                                            ) : null}
-                                            {extraImage ? (
-                                                <Image
-                                                    unoptimized
-                                                    src={extraImage.src}
-                                                    style={imageStyle}
-                                                    width={extraImage.w}
-                                                    height={extraImage.h}
-                                                    alt="todo"
-                                                />
-                                            ) : null}
-                                        </>
-                                    ) : null}
-                                </div>
-                            </div>
-                        );
-                    })}
-                </div>
+      <div className="space-y-6">
+        {renderFigure(primaryImage, 1, { priority: isFirst, aspectClass: "aspect-[16/9]" })}
+        {secondaryGridImages.length > 0 ? (
+          <div
+            className={`grid gap-4 ${
+              secondaryGridImages.length === 1 ? "grid-cols-1" : "grid-cols-2"
+            }`}
+          >
+            {secondaryGridImages.map((image, index) =>
+              renderFigure(image, index + 2, { aspectClass: "aspect-[4/3]" })
             )}
-        </div>
-    ) : (
-        <></>
-    );
+          </div>
+        ) : null}
+        {trailingHeroImages.map((image, index) =>
+          renderFigure(
+            image,
+            secondaryGridImages.length + index + 2,
+            { aspectClass: "aspect-[16/9]" }
+          )
+        )}
+      </div>
+    </section>
+  );
 };
 
-export default AllProjects;
+const ProjectsGallery = () => {
+  const introProject = useMemo(
+    () => projectsData.projects.find((project) => project.type === "splash"),
+    []
+  );
+
+  const projects = useMemo(
+    () =>
+      projectsData.projects.filter(
+        (project) => project.images && project.images.length > 0
+      ),
+    []
+  );
+
+  const [activeProjectId, setActiveProjectId] = useState(projects[0]?.id ?? null);
+  const activeProjectIdRef = useRef(activeProjectId);
+
+  useEffect(() => {
+    activeProjectIdRef.current = activeProjectId;
+  }, [activeProjectId]);
+
+  const viewportHeightRef = useRef(
+    typeof window !== "undefined" ? window.innerHeight : 0
+  );
+
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    const updateViewportHeight = () => {
+      viewportHeightRef.current = window.innerHeight;
+    };
+
+    updateViewportHeight();
+    window.addEventListener("resize", updateViewportHeight);
+
+    return () => {
+      window.removeEventListener("resize", updateViewportHeight);
+    };
+  }, []);
+
+  const entryStateRef = useRef({});
+
+  const handleProjectVisible = useCallback(
+    (projectId, metrics) => {
+      if (!metrics) {
+        return;
+      }
+
+      entryStateRef.current = {
+        ...entryStateRef.current,
+        [projectId]: metrics,
+      };
+
+      const nextActiveId = selectActiveProject(
+        projects,
+        entryStateRef.current,
+        viewportHeightRef.current,
+        activeProjectIdRef.current
+      );
+
+      if (nextActiveId && nextActiveId !== activeProjectIdRef.current) {
+        activeProjectIdRef.current = nextActiveId;
+        setActiveProjectId(nextActiveId);
+      }
+    },
+    [projects]
+  );
+
+  const activeProject = useMemo(
+    () => projects.find((project) => project.id === activeProjectId) ?? projects[0] ?? null,
+    [projects, activeProjectId]
+  );
+
+  return (
+    <div className="mx-auto w-full max-w-6xl px-4 pb-24 pt-12 sm:px-8 lg:px-12">
+      <header className="mb-12 space-y-4 text-center lg:text-left">
+        <p className="text-xs font-semibold uppercase tracking-[0.35em] text-indigo-600 dark:text-indigo-400">
+          Projects
+        </p>
+        <h1 className="text-3xl font-bold text-slate-900 dark:text-slate-100 sm:text-4xl">
+          Work & Experiments
+        </h1>
+        {introProject?.desc ? (
+          <p className="text-base text-slate-600 dark:text-slate-300">
+            {introProject.desc}
+          </p>
+        ) : (
+          <p className="text-base text-slate-600 dark:text-slate-300">
+            Scroll through the gallery to explore research, professional, and passion projects.
+          </p>
+        )}
+        {introProject?.desc2 ? (
+          <p className="text-sm text-slate-500 dark:text-slate-400">
+            {introProject.desc2}
+          </p>
+        ) : null}
+      </header>
+
+      <div className="grid gap-12 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)] lg:gap-16">
+        <div className="flex flex-col gap-16">
+          {projects.map((project, index) => (
+            <ProjectImageSection
+              key={project.id}
+              project={project}
+              onVisible={handleProjectVisible}
+              isActive={project.id === activeProject?.id}
+              isFirst={index === 0}
+            />
+          ))}
+        </div>
+
+        <div className="hidden lg:block">
+          <ProjectDetails project={activeProject} className="sticky top-24" />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ProjectsGallery;

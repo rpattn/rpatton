@@ -1,0 +1,310 @@
+{
+  "projects": [
+    {
+      "id": "splash",
+      "name": "",
+      "desc": "",
+      "desc2": "",
+      "type": "splash",
+      "anim": "projectText",
+      "bullets": {
+        "text1": "",
+        "text2": "",
+        "text3": "",
+        "extLink": ""
+      },
+      "images": []
+    },
+    {
+      "id": "ml",
+      "name": "Machine Learning",
+      "desc": "Extended a Masters group project by training a machine learning model to predict erosion and corrosion in additively manufactured materials.",
+      "desc2": "Co-authored a peer-reviewed paper presented at EuroCorr2025. Demonstrated the potential of data-driven methods in materials engineering.",
+      "type": "research",
+      "anim": "projectText2",
+      "bullets": {
+        "text1": "Applied ML to materials engineering",
+        "text2": "Peer-reviewed research output",
+        "text3": "Presented at EuroCorr2025",
+        "extLink": "/team_proj_ml.pdf"
+      },
+      "images": [
+        { "src": "/images/publication.png", "h": 1456, "w": 892 },
+        { "src": "/images/ml1.png", "h": 878, "w": 797 },
+        { "src": "/images/ml2.png", "h": 878, "w": 797 }
+      ]
+    },
+    {
+      "id": "opanalysis",
+      "name": "Operational Analysis",
+      "desc": "Built a full-stack web application enabling non-technical users to run wind plant design simulations using WOMBAT and ORBIT models from the National Wind Technology Centre.",
+      "desc2": "Post-processed results to generate metrics and Gantt charts that supported wind farm optimisation and cost estimation. Included a Dockerised CI/CD pipeline for deployment.",
+      "type": "tech",
+      "anim": "projectText2",
+      "bullets": {
+        "text1": "Full-stack web app",
+        "text2": "Supported wind farm optimisation studies",
+        "text3": "CI/CD deployment with Docker",
+        "extLink": "https://rpattn.github.io/WOMBAT_ext/"
+      },
+      "images": [
+        { "src": "/images/wombat1.png", "h": 1456, "w": 892 },
+        { "src": "/images/wombat2.png", "h": 862, "w": 862 },
+        { "src": "/images/wombat3.png", "h": 629, "w": 529 }
+      ]
+    },
+    {
+      "id": "nextcmms",
+      "name": "NextCMMS",
+      "desc": "Developing an enterprise-grade Centralised Maintenance Management System with Go, PostgreSQL, and NextJS.",
+      "desc2": "Features include a flexible hybrid schema (physical + EAV), role-based authentication (OAuth/2FA), planned 3D model ingestion, Git-style revision history, and IoT metering integration.",
+      "type": "tech",
+      "anim": "projectText",
+      "bullets": {
+        "text1": "Enterprise-grade system",
+        "text2": "Secure role-based access (OAuth/2FA)",
+        "text3": "Planned IoT and 3D integration",
+        "extLink": "https://next-cmms.vercel.app/"
+      },
+      "images": [
+        { "src": "/images/ncmms1.png", "h": 1456, "w": 892 },
+        { "src": "/images/ncmms2.png", "h": 862, "w": 862 },
+        { "src": "/images/ncmms3.png", "h": 529, "w": 529 }
+      ]
+    },
+    {
+      "id": "searchmap",
+      "name": "Search Map",
+      "desc": "Leverages Google's Maps API and cloud services to enable users to search for places by name, type and location. This data can then be filtered, saved to the cloud or exported for personal use.",
+      "desc2": "I created this tool to automate the online targeting of potential wholesale customers for a business I supported during the COVID Lockdown. I was able to save over 100+ Hrs of time compared to manually searching Google Maps.",
+      "type": "tech",
+      "anim": "projectText2",
+      "bullets": {
+        "text1": "Built using HTML, CSS, JS",
+        "text2": "Powered by React, Firebase, Google APIs",
+        "text3": "Responsive design",
+        "extLink": "https://searchmap.web.app/"
+      },
+      "images": [
+        { "src": "/searchmap1.png", "h": 1456, "w": 892 },
+        { "src": "/searchmap2.png", "h": 862, "w": 862 },
+        { "src": "/searchmap3.png", "h": 529, "w": 529 }
+      ]
+    },
+    {
+      "id": "dissertation",
+      "name": "Dissertation",
+      "desc": "Consulted with medical firm Eventum Orthopaedics to investigate and validate the performance of a novel medical hardware. Included research into the field, applicable standards, design of experiments and verification and validation work.",
+      "desc2": "",
+      "type": "uol",
+      "anim": "projectText",
+      "bullets": {
+        "text1": "Successful collaboration",
+        "text2": "Applied problem solving and data analysis skills to synthesize conclusions",
+        "text3": "Sparked an interest in the Medical Engineering field",
+        "extLink": "https://eventumortho.com/"
+      },
+      "images": [
+        { "src": "/uol/dis1.png", "h": 454, "w": 908 },
+        { "src": "/uol/dis2.png", "h": 553, "w": 553 },
+        { "src": "/uol/dis3.png", "h": 424, "w": 424 }
+      ]
+    },
+    {
+      "id": "turbine",
+      "name": "Turbine Project",
+      "desc": "Constructed models from first principles to optimised the power generated by a water powered turbine. Given a head pressure curve, I found the optimal nozzle geometry, bucket design and gearbox to maximise the system efficiency.",
+      "desc2": "I used MATLAB to solve the system of equations that described the optimal nozzle and speed ratios, and then used SIMULINK to simulate the transient response of the system. This project sparked my interest in renewable energy solutions",
+      "type": "uol",
+      "anim": "projectText",
+      "bullets": {
+        "text1": "Analysis driven solution",
+        "text2": "Extended project brief to include transient response",
+        "text3": "Project recieved a 1st",
+        "extLink": ""
+      },
+      "images": [
+        { "src": "/uol/turbine1.png", "h": 454, "w": 908 },
+        { "src": "/uol/turbine2.png", "h": 553, "w": 553 },
+        { "src": "/uol/turbine3.png", "h": 424, "w": 424 },
+        { "src": "/uol/turbine4.png", "h": 231, "w": 738 }
+      ]
+    },
+    {
+      "id": "feasandbox",
+      "name": "FEA Sandbox",
+      "desc": "Browser based playground. Construct 2D node element models, apply forces, boundary conditions, and calculate the structure's response. Constructs intermediate matrices to help students visualise the finite element method.",
+      "desc2": "Developed this project after studying the FE method at university. I wanted to create a graphical user interface to help illustrate how the various matrices required to solve FE problems are created, and to link this to the structure described.",
+      "type": "tech",
+      "anim": "projectText2",
+      "bullets": {
+        "text1": "Designed as an Educational tool",
+        "text2": "First in a family of Engineering visualisation tools I am working on",
+        "text3": "Open source, free to use",
+        "extLink": "/fea/index.html"
+      },
+      "images": [
+        { "src": "/fea/fea1.png", "h": 1218, "w": 688 },
+        { "src": "/fea/fea2.png", "h": 560, "w": 600 },
+        { "src": "/fea/fea3.png", "h": 826, "w": 826 }
+      ]
+    },
+    {
+      "id": "daringdash",
+      "name": "Daring Dash",
+      "desc": "Led a team that designed and manufactured an autonomous buggy. Optimised the vehicles suspension response using Matlab to evaluate a kinematic model constructed from 1st Principles.",
+      "desc2": "Chaired regular meetings to share progress and assign next steps. Our buggy was one of the top performing teams. This project has prompted my further interest and research into suspension and control systems.",
+      "type": "uol",
+      "anim": "projectText",
+      "bullets": {
+        "text1": "Computer aided, analysis led design.",
+        "text2": "Project managed team.",
+        "text3": "Achieved 86% in this coursework.",
+        "extLink": "/cv#daringdash"
+      },
+      "images": [
+        { "src": "/buggy/buggy1.png", "h": 251, "w": 521 },
+        { "src": "/buggy/buggy2.png", "h": 370, "w": 370 },
+        { "src": "/buggy/buggy3.png", "h": 1340, "w": 1340 },
+        { "src": "/buggy/buggy4.png", "h": 260, "w": 723 }
+      ]
+    },
+    {
+      "id": "volunteering",
+      "name": "Volunteering",
+      "desc": "Traveled to Tanzania to participate in several aid projects, including Civil Engineering work redirecting rainwater around a local school, refurbishing desks and working with children",
+      "desc2": "",
+      "type": "other",
+      "anim": "projectText2",
+      "bullets": {
+        "text1": "Fund raised over 2 years",
+        "text2": "Collaborated with a diverse team",
+        "text3": "Harboured a love for travel",
+        "extLink": ""
+      },
+      "images": [
+        { "src": "/tanzania/tanzania3.png", "h": 1062, "w": 681 },
+        { "src": "/tanzania/tanzania1.png", "h": 654, "w": 654 },
+        { "src": "/tanzania/tanzania2.png", "h": 654, "w": 654 }
+      ]
+    },
+    {
+      "id": "trussbridge",
+      "name": "Truss Bridge",
+      "desc": "Developed a MATLAB program with GUI to analyse the stresses of a truss bridge. The user can enter compression and tension failure loads for each member type, apply loads and generate a graphic illustrating stresses",
+      "desc2": "This project was based on a first year coursework that I extended to include a graphical user interface and generate a diagram with stress, colour coded to aid interpretation.",
+      "type": "uol",
+      "anim": "projectText",
+      "bullets": {
+        "text1": "Complex MATLAB project",
+        "text2": "Creative data visualisation",
+        "text3": "Project extended beyond brief",
+        "extLink": ""
+      },
+      "images": [
+        { "src": "/uol/bridge1.png", "h": 1164, "w": 769 },
+        { "src": "/uol/bridge2.png", "h": 748, "w": 748 },
+        { "src": "/uol/bridge3.png", "h": 672, "w": 672 }
+      ]
+    },
+    {
+      "id": "mcf1",
+      "name": "McLaren F1",
+      "desc": "Individual research project into the McLaren F1 sports car. Generated estimations of the car's key characteristics from data available online to predict top speed, acceleration times, cornering performance and braking distance.",
+      "desc2": "Increased the accuracy of predictions by increasing the model complexity. I developed a gear-change system in SIMULINK to simulate the impact of gear changes on the transient response - received extra credit for this unique approach.",
+      "type": "uol",
+      "anim": "projectText2",
+      "bullets": {
+        "text1": "Estimation of system performance",
+        "text2": "Techniques have real world application",
+        "text3": "Earned 71% for this report",
+        "extLink": ""
+      },
+      "images": [
+        { "src": "/uol/mcf4.jpg", "h": 399, "w": 965 },
+        { "src": "/uol/mcf2.png", "h": 548, "w": 548 },
+        { "src": "/uol/mcf3.png", "h": 404, "w": 404 },
+        { "src": "/uol/mcf1.png", "h": 351, "w": 901 }
+      ]
+    },
+    {
+      "id": "wing",
+      "name": "Stabiliser Analysis",
+      "desc": "Finite element study of a Robinson R22 helicopter horizontal stabiliser, evaluating the design response under specific flight conditions. Constructed several models of increasing complexity, conducting sensitivity and structural analysis.",
+      "desc2": "Revised the simulation to model the stabiliser as a composite construction. Used my Python programming skills to optimise the wings response by automatically varying layer ply direction, then running and selecting the best performing configuration.",
+      "type": "uol",
+      "anim": "projectText",
+      "bullets": {
+        "text1": "Detailed FEA study",
+        "text2": "Increased efficiency using Python",
+        "text3": "Credited for utilising a creative problem solving method",
+        "extLink": ""
+      },
+      "images": [
+        { "src": "/uol/wing4.png", "h": 390, "w": 602 },
+        { "src": "/uol/wing2.png", "h": 448, "w": 448 },
+        { "src": "/uol/wing3.png", "h": 675, "w": 675 },
+        { "src": "/uol/wing1.png", "h": 240, "w": 678 }
+      ]
+    },
+    {
+      "id": "games",
+      "name": "Games",
+      "desc": "I first started learning to code at age 12 when I got my first Raspberry PI. Over the next few years, I would develop some simple games, either using the Unity engine, or sometimes creating my own architecture in Java.",
+      "desc2": "Creating these projects developed my problem solving skills and creativity. Often I would emulate games I enjoyed playing, extending them by adding features and functionality. I have translated these skills to my studies and career, extending projects, or finding new creative solutions.",
+      "type": "tech",
+      "anim": "projectText2",
+      "bullets": {
+        "text1": "C#, C++, Java, Python, Android",
+        "text2": "Developed problem solving skills",
+        "text3": "Springboard to apply computational methods to solve engineering problems",
+        "extLink": ""
+      },
+      "images": [
+        { "src": "/tech/games1.png", "h": 390, "w": 602 },
+        { "src": "/tech/games2.png", "h": 448, "w": 448 },
+        { "src": "/tech/games3.png", "h": 675, "w": 675 },
+        { "src": "/tech/games5.png", "h": 240, "w": 678 }
+      ]
+    },
+    {
+      "id": "apps",
+      "name": "Apps",
+      "desc": "Part of my journey learning to code included producing some basic apps that are available on the Google Play Store. To create these I used tools such as Unity, and Android Studio, powered by C# and Java.",
+      "desc2": "",
+      "type": "tech",
+      "anim": "projectText2",
+      "bullets": {
+        "text1": "Mobile development experience",
+        "text2": "Integration of C and Java",
+        "text3": "Cross-platform application",
+        "extLink": ""
+      },
+      "images": [
+        { "src": "/tech/apps1.png", "h": 390, "w": 602 },
+        { "src": "/tech/apps2.png", "h": 448, "w": 448 },
+        { "src": "/tech/apps3.png", "h": 675, "w": 675 }
+      ]
+    },
+    {
+      "id": "pi",
+      "name": "Raspberry Pi",
+      "desc": "I first started learning to code at age 12 when I got my first Raspberry PI. Over the next few years, I would develop some simple games, either using the Unity engine, or sometimes creating my own architecture in Java.",
+      "desc2": "Creating these projects developed my problem solving skills and creativity. Often I would emulate games I enjoyed playing, extending them by adding features and functionality. I have translated these skills to my studies and career, extending projects, or finding new creative solutions.",
+      "type": "tech",
+      "anim": "projectText1",
+      "bullets": {
+        "text1": "C#, C++, Java, Python, Android",
+        "text2": "Developed problem solving skills",
+        "text3": "Springboard to apply computational methods to solve engineering problems",
+        "extLink": ""
+      },
+      "images": [
+        { "src": "/tech/pi1.jpg", "h": 390, "w": 602 },
+        { "src": "/tech/pi2.png", "h": 448, "w": 448 },
+        { "src": "/tech/pi3.png", "h": 675, "w": 675 },
+        { "src": "/tech/pi4.png", "h": 240, "w": 678 }
+      ]
+    }
+  ]
+}
