@@ -28,7 +28,7 @@ const linkButtonPrimaryClass =
   "inline-flex items-center gap-2 rounded-full bg-indigo-600 px-4 py-2 text-sm font-semibold text-white transition duration-200 hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 dark:bg-indigo-500 dark:hover:bg-indigo-400";
 
 const DEFAULT_SUMMARY =
-  "Scroll through the gallery to explore research, professional, and passion projects.";
+  "Scroll through the gallery to explore my academic and personal projects.";
 
 const DEFAULT_DETAILS =
   "Each gallery entry includes architecture notes, supporting resources, and a curated set of visuals.";
@@ -578,7 +578,7 @@ const ProjectsGallery = ({
     ? pageTitle
     : normalizedCategory
     ? `${formatCategoryTitle(normalizedCategory)} Projects`
-    : "Work & Experiments";
+    : "All Projects";
 
   const summary = pageSummary
     ? pageSummary
@@ -590,7 +590,7 @@ const ProjectsGallery = ({
     ? pageDetails
     : normalizedCategory
     ? DEFAULT_DETAILS
-    : introProject?.details ?? DEFAULT_DETAILS;
+    : introProject?.details ?? null;
 
   return (
     <div className="mx-auto w-full max-w-6xl px-4 pb-24 pt-12 sm:px-8 lg:px-12">

@@ -7,39 +7,17 @@
       "details_var": "desc2",
       "category": "splash",
       "animation": "projectText",
-      "links": { "live": null, "repos": [], "docs": null, "assets": [] },
-      "images": []
-    },
-    {
-      "slug": "ml",
-      "title": "Machine Learning",
-      "summary": "Extended a Masters group project by training ML models to predict erosion and corrosion in additively manufactured metals.",
-      "details": "Co-authored a peer-reviewed paper presented at EuroCorr 2025, demonstrating how data-driven methods complement materials engineering.",
-      "category": "uol",
-      "animation": "projectText2",
       "links": {
         "live": null,
         "repos": [],
         "docs": null,
-        "assets": [
-          { "type": "pdf", "label": "Individual project write-up", "href": "/team_proj_ml.pdf" },
-          { "type": "pdf", "label": "EuroCorr2025 Paper", "href": "/AMPP2025 paper_v4.pdf" }
-        ]
+        "assets": []
       },
-      "bullets": [
-        "Applied ML to materials engineering",
-        "Peer-reviewed research output",
-        "Presented at EuroCorr 2025"
-      ],
-      "images": [
-        { "src": "/images/publication.png", "w": 892, "h": 1456 },
-        { "src": "/images/ml1.png", "w": 797, "h": 878 },
-        { "src": "/images/ml2.png", "w": 797, "h": 878 }
-      ]
+      "images": []
     },
     {
       "slug": "opanalysis",
-      "title": "Operational Analysis",
+      "title": "WindOps Analysis",
       "summary": "Full-stack web app that lets non-technical users run wind-plant design simulations using NREL’s WOMBAT and ORBIT models.",
       "details": "Post-processed outputs into KPIs and Gantt charts for optimisation and cost estimation. Shipped with a Dockerised CI/CD pipeline.",
       "category": "tech",
@@ -47,7 +25,10 @@
       "links": {
         "live": "https://rpattn.github.io/WOMBAT_ext/",
         "repos": [
-          { "name": "WOMBAT_ext (UI + server)", "url": "https://github.com/rpattn/WOMBAT_ext" }
+          {
+            "name": "WOMBAT_ext (UI + server)",
+            "url": "https://github.com/rpattn/WOMBAT_ext"
+          }
         ],
         "docs": "https://rpattn.github.io/WOMBAT_ext/",
         "assets": []
@@ -58,9 +39,21 @@
         "CI/CD deployment with Docker"
       ],
       "images": [
-        { "src": "/images/wombat1.png", "w": 892, "h": 1456 },
-        { "src": "/images/wombat2.png", "w": 862, "h": 862 },
-        { "src": "/images/wombat3.png", "w": 529, "h": 629 }
+        {
+          "src": "/images/wombat1.png",
+          "w": 892,
+          "h": 1456
+        },
+        {
+          "src": "/images/wombat2.png",
+          "w": 862,
+          "h": 862
+        },
+        {
+          "src": "/images/wombat3.png",
+          "w": 529,
+          "h": 629
+        }
       ]
     },
     {
@@ -73,8 +66,14 @@
       "links": {
         "live": "https://next-cmms.vercel.app/",
         "repos": [
-          { "name": "nextCMMS (frontend)", "url": "https://github.com/rpattn/nextCMMS" },
-          { "name": "go_cmms (backend)", "url": "https://github.com/rpattn/go_cmms_v2" }
+          {
+            "name": "nextCMMS (frontend)",
+            "url": "https://github.com/rpattn/nextCMMS"
+          },
+          {
+            "name": "go_cmms (backend)",
+            "url": "https://github.com/rpattn/go_cmms_v2"
+          }
         ],
         "docs": null,
         "assets": []
@@ -85,9 +84,101 @@
         "Planned IoT and 3D integration"
       ],
       "images": [
-        { "src": "/images/ncmms1.png", "w": 892, "h": 1456 },
-        { "src": "/images/ncmms2.png", "w": 862, "h": 862 },
-        { "src": "/images/ncmms3.png", "w": 529, "h": 529 }
+        {
+          "src": "/images/ncmms1.png",
+          "w": 892,
+          "h": 1456
+        },
+        {
+          "src": "/images/ncmms2.png",
+          "w": 862,
+          "h": 862
+        },
+        {
+          "src": "/images/ncmms3.png",
+          "w": 529,
+          "h": 529
+        }
+      ]
+    },
+    {
+      "slug": "ddm",
+      "title": "Digital Design Manager",
+      "summary": "Next.js + Three.js demo for interactive O&M manuals with SSO, desktop dev via Electron, and secure per-user data access.",
+      "details": "VR-ready full-stack web and desktop experience that embeds CAD models into interactive documentation.",
+      "category": "tech",
+      "animation": "projectText",
+      "links": {
+        "live": "https://ddm-iota.vercel.app/",
+        "repos": [
+          {
+            "name": "DDM Github",
+            "url": "https://github.com/rpattn/ddm"
+          },
+          {
+            "name": "SW Helpers",
+            "url": "https://github.com/rpattn/sw_helpers"
+          },
+          {
+            "name": "Word Doc Ingest",
+            "url": "https://github.com/rpattn/ddm_ingest"
+          }
+        ],
+        "docs": "https://github.com/rpattn/ddm#readme",
+        "assets": []
+      },
+      "bullets": [
+        "Next.js frontend with Three.js 3D + Desktop version",
+        "Azure Entra ID (SSO) auth",
+        "Automated parametric CAD → 3D pipeline",
+        "Metadata extraction & doc integration"
+      ],
+      "images": [{"src": "/images/ddm_demo.png"}]
+    },
+        {
+      "slug": "ml",
+      "title": "Machine Learning",
+      "summary": "Extended a Masters group project by training ML models to predict erosion and corrosion in additively manufactured metals.",
+      "details": "Co-authored a paper presented at EuroCorr 2025, demonstrating how data-driven methods complement materials engineering.",
+      "category": "uol",
+      "animation": "projectText2",
+      "links": {
+        "live": null,
+        "repos": [],
+        "docs": null,
+        "assets": [
+          {
+            "type": "pdf",
+            "label": "Individual project write-up",
+            "href": "/team_proj_ml.pdf"
+          },
+          {
+            "type": "pdf",
+            "label": "EuroCorr2025 Paper",
+            "href": "/AMPP2025 paper_v4.pdf"
+          }
+        ]
+      },
+      "bullets": [
+        "Applied ML to materials engineering",
+        "Presented at EuroCorr 2025"
+      ],
+      "images": [
+        {
+          "src": "/images/publication.png",
+          "w": 892,
+          "h": 1456
+        },
+        {
+          "src": "/images/ml1.png",
+          "w": 797,
+          "h": 878
+        },
+        {
+          "src": "/images/ml2.png",
+          "w": 797,
+          "h": 878
+        }
       ]
     },
     {
@@ -109,9 +200,21 @@
         "Responsive design"
       ],
       "images": [
-        { "src": "/searchmap1.png", "w": 892, "h": 1456 },
-        { "src": "/searchmap2.png", "w": 862, "h": 862 },
-        { "src": "/searchmap3.png", "w": 529, "h": 529 }
+        {
+          "src": "/searchmap1.png",
+          "w": 892,
+          "h": 1456
+        },
+        {
+          "src": "/searchmap2.png",
+          "w": 862,
+          "h": 862
+        },
+        {
+          "src": "/searchmap3.png",
+          "w": 529,
+          "h": 529
+        }
       ]
     },
     {
@@ -133,9 +236,21 @@
         "Sparked an interest in medical engineering"
       ],
       "images": [
-        { "src": "/uol/dis1.png", "w": 908, "h": 454 },
-        { "src": "/uol/dis2.png", "w": 553, "h": 553 },
-        { "src": "/uol/dis3.png", "w": 424, "h": 424 }
+        {
+          "src": "/uol/dis1.png",
+          "w": 908,
+          "h": 454
+        },
+        {
+          "src": "/uol/dis2.png",
+          "w": 553,
+          "h": 553
+        },
+        {
+          "src": "/uol/dis3.png",
+          "w": 424,
+          "h": 424
+        }
       ]
     },
     {
@@ -145,17 +260,38 @@
       "details": "Derived optimal nozzle geometry, bucket design, and gearbox ratios. Solved with MATLAB and simulated transient response in Simulink.",
       "category": "uol",
       "animation": "projectText",
-      "links": { "live": null, "repos": [], "docs": null, "assets": [] },
+      "links": {
+        "live": null,
+        "repos": [],
+        "docs": null,
+        "assets": []
+      },
       "bullets": [
         "Analysis-driven solution",
         "Extended brief to transient response",
         "Awarded a First"
       ],
       "images": [
-        { "src": "/uol/turbine1.png", "w": 908, "h": 454 },
-        { "src": "/uol/turbine2.png", "w": 553, "h": 553 },
-        { "src": "/uol/turbine3.png", "w": 424, "h": 424 },
-        { "src": "/uol/turbine4.png", "w": 738, "h": 231 }
+        {
+          "src": "/uol/turbine1.png",
+          "w": 908,
+          "h": 454
+        },
+        {
+          "src": "/uol/turbine2.png",
+          "w": 553,
+          "h": 553
+        },
+        {
+          "src": "/uol/turbine3.png",
+          "w": 424,
+          "h": 424
+        },
+        {
+          "src": "/uol/turbine4.png",
+          "w": 738,
+          "h": 231
+        }
       ]
     },
     {
@@ -177,9 +313,21 @@
         "Open source, free to use"
       ],
       "images": [
-        { "src": "/fea/fea1.png", "w": 688, "h": 1218 },
-        { "src": "/fea/fea2.png", "w": 600, "h": 560 },
-        { "src": "/fea/fea3.png", "w": 826, "h": 826 }
+        {
+          "src": "/fea/fea1.png",
+          "w": 688,
+          "h": 1218
+        },
+        {
+          "src": "/fea/fea2.png",
+          "w": 600,
+          "h": 560
+        },
+        {
+          "src": "/fea/fea3.png",
+          "w": 826,
+          "h": 826
+        }
       ]
     },
     {
@@ -189,17 +337,38 @@
       "details": "Chaired stand-ups and delegated tasks; one of the top-performing teams.",
       "category": "uol",
       "animation": "projectText",
-      "links": { "live": "/cv#daringdash", "repos": [], "docs": null, "assets": [] },
+      "links": {
+        "live": "/cv#daringdash",
+        "repos": [],
+        "docs": null,
+        "assets": []
+      },
       "bullets": [
         "Computer-aided, analysis-led design",
         "Team project management",
         "Scored 86% for the coursework"
       ],
       "images": [
-        { "src": "/buggy/buggy1.png", "w": 521, "h": 251 },
-        { "src": "/buggy/buggy2.png", "w": 370, "h": 370 },
-        { "src": "/buggy/buggy3.png", "w": 1340, "h": 1340 },
-        { "src": "/buggy/buggy4.png", "w": 723, "h": 260 }
+        {
+          "src": "/buggy/buggy1.png",
+          "w": 521,
+          "h": 251
+        },
+        {
+          "src": "/buggy/buggy2.png",
+          "w": 370,
+          "h": 370
+        },
+        {
+          "src": "/buggy/buggy3.png",
+          "w": 1340,
+          "h": 1340
+        },
+        {
+          "src": "/buggy/buggy4.png",
+          "w": 723,
+          "h": 260
+        }
       ]
     },
     {
@@ -209,16 +378,33 @@
       "details": "Redirected rainwater, refurbished desks, and worked with children; multi-year fundraising and teamwork.",
       "category": "other",
       "animation": "projectText2",
-      "links": { "live": null, "repos": [], "docs": null, "assets": [] },
+      "links": {
+        "live": null,
+        "repos": [],
+        "docs": null,
+        "assets": []
+      },
       "bullets": [
         "Fundraised over two years",
         "Collaborated with a diverse team",
         "Sparked a love for travel"
       ],
       "images": [
-        { "src": "/tanzania/tanzania3.png", "w": 681, "h": 1062 },
-        { "src": "/tanzania/tanzania1.png", "w": 654, "h": 654 },
-        { "src": "/tanzania/tanzania2.png", "w": 654, "h": 654 }
+        {
+          "src": "/tanzania/tanzania3.png",
+          "w": 681,
+          "h": 1062
+        },
+        {
+          "src": "/tanzania/tanzania1.png",
+          "w": 654,
+          "h": 654
+        },
+        {
+          "src": "/tanzania/tanzania2.png",
+          "w": 654,
+          "h": 654
+        }
       ]
     },
     {
@@ -228,16 +414,33 @@
       "details": "Extended a first-year brief with a graphical interface and clear, interpretable output.",
       "category": "uol",
       "animation": "projectText",
-      "links": { "live": null, "repos": [], "docs": null, "assets": [] },
+      "links": {
+        "live": null,
+        "repos": [],
+        "docs": null,
+        "assets": []
+      },
       "bullets": [
         "Complex MATLAB project",
         "Creative data visualisation",
         "Extended beyond the brief"
       ],
       "images": [
-        { "src": "/uol/bridge1.png", "w": 769, "h": 1164 },
-        { "src": "/uol/bridge2.png", "w": 748, "h": 748 },
-        { "src": "/uol/bridge3.png", "w": 672, "h": 672 }
+        {
+          "src": "/uol/bridge1.png",
+          "w": 769,
+          "h": 1164
+        },
+        {
+          "src": "/uol/bridge2.png",
+          "w": 748,
+          "h": 748
+        },
+        {
+          "src": "/uol/bridge3.png",
+          "w": 672,
+          "h": 672
+        }
       ]
     },
     {
@@ -247,17 +450,38 @@
       "details": "Improved accuracy with a Simulink gear-change model to capture transient effects; earned extra credit.",
       "category": "uol",
       "animation": "projectText2",
-      "links": { "live": null, "repos": [], "docs": null, "assets": [] },
+      "links": {
+        "live": null,
+        "repos": [],
+        "docs": null,
+        "assets": []
+      },
       "bullets": [
         "Estimated system performance",
         "Methods applicable to real-world modelling",
         "Scored 71% for the report"
       ],
       "images": [
-        { "src": "/uol/mcf4.jpg", "w": 965, "h": 399 },
-        { "src": "/uol/mcf2.png", "w": 548, "h": 548 },
-        { "src": "/uol/mcf3.png", "w": 404, "h": 404 },
-        { "src": "/uol/mcf1.png", "w": 901, "h": 351 }
+        {
+          "src": "/uol/mcf4.jpg",
+          "w": 965,
+          "h": 399
+        },
+        {
+          "src": "/uol/mcf2.png",
+          "w": 548,
+          "h": 548
+        },
+        {
+          "src": "/uol/mcf3.png",
+          "w": 404,
+          "h": 404
+        },
+        {
+          "src": "/uol/mcf1.png",
+          "w": 901,
+          "h": 351
+        }
       ]
     },
     {
@@ -267,17 +491,38 @@
       "details": "Modelled composite construction and used Python to optimise ply orientations automatically for best response.",
       "category": "uol",
       "animation": "projectText",
-      "links": { "live": null, "repos": [], "docs": null, "assets": [] },
+      "links": {
+        "live": null,
+        "repos": [],
+        "docs": null,
+        "assets": []
+      },
       "bullets": [
         "Detailed FEA study",
         "Python-driven optimisation",
         "Credited for creative problem-solving"
       ],
       "images": [
-        { "src": "/uol/wing4.png", "w": 602, "h": 390 },
-        { "src": "/uol/wing2.png", "w": 448, "h": 448 },
-        { "src": "/uol/wing3.png", "w": 675, "h": 675 },
-        { "src": "/uol/wing1.png", "w": 678, "h": 240 }
+        {
+          "src": "/uol/wing4.png",
+          "w": 602,
+          "h": 390
+        },
+        {
+          "src": "/uol/wing2.png",
+          "w": 448,
+          "h": 448
+        },
+        {
+          "src": "/uol/wing3.png",
+          "w": 675,
+          "h": 675
+        },
+        {
+          "src": "/uol/wing1.png",
+          "w": 678,
+          "h": 240
+        }
       ]
     },
     {
@@ -287,17 +532,38 @@
       "details": "Re-created games I loved, then extended them with new features—great training in problem-solving and systems thinking.",
       "category": "tech",
       "animation": "projectText2",
-      "links": { "live": null, "repos": [], "docs": null, "assets": [] },
+      "links": {
+        "live": null,
+        "repos": [],
+        "docs": null,
+        "assets": []
+      },
       "bullets": [
         "C#, C++, Java, Python, Android",
         "Developed problem-solving skills",
         "Springboard for computational engineering"
       ],
       "images": [
-        { "src": "/tech/games1.png", "w": 602, "h": 390 },
-        { "src": "/tech/games2.png", "w": 448, "h": 448 },
-        { "src": "/tech/games3.png", "w": 675, "h": 675 },
-        { "src": "/tech/games5.png", "w": 678, "h": 240 }
+        {
+          "src": "/tech/games1.png",
+          "w": 602,
+          "h": 390
+        },
+        {
+          "src": "/tech/games2.png",
+          "w": 448,
+          "h": 448
+        },
+        {
+          "src": "/tech/games3.png",
+          "w": 675,
+          "h": 675
+        },
+        {
+          "src": "/tech/games5.png",
+          "w": 678,
+          "h": 240
+        }
       ]
     },
     {
@@ -307,16 +573,33 @@
       "details": "Mixed C# and Java; gained experience with mobile UI, packaging, and store releases.",
       "category": "tech",
       "animation": "projectText2",
-      "links": { "live": null, "repos": [], "docs": null, "assets": [] },
+      "links": {
+        "live": null,
+        "repos": [],
+        "docs": null,
+        "assets": []
+      },
       "bullets": [
         "Mobile development experience",
         "C and Java integration",
         "Cross-platform distribution"
       ],
       "images": [
-        { "src": "/tech/apps1.png", "w": 602, "h": 390 },
-        { "src": "/tech/apps2.png", "w": 448, "h": 448 },
-        { "src": "/tech/apps3.png", "w": 675, "h": 675 }
+        {
+          "src": "/tech/apps1.png",
+          "w": 602,
+          "h": 390
+        },
+        {
+          "src": "/tech/apps2.png",
+          "w": 448,
+          "h": 448
+        },
+        {
+          "src": "/tech/apps3.png",
+          "w": 675,
+          "h": 675
+        }
       ]
     },
     {
@@ -326,17 +609,38 @@
       "details": "Hands-on tinkering that nurtured curiosity and practical skills I carry into larger engineering work.",
       "category": "tech",
       "animation": "projectText1",
-      "links": { "live": null, "repos": [], "docs": null, "assets": [] },
+      "links": {
+        "live": null,
+        "repos": [],
+        "docs": null,
+        "assets": []
+      },
       "bullets": [
         "C#, C++, Java, Python, Android",
         "Grew practical problem-solving skills",
         "Foundation for applying computation to engineering"
       ],
       "images": [
-        { "src": "/tech/pi1.jpg", "w": 602, "h": 390 },
-        { "src": "/tech/pi2.png", "w": 448, "h": 448 },
-        { "src": "/tech/pi3.png", "w": 675, "h": 675 },
-        { "src": "/tech/pi4.png", "w": 678, "h": 240 }
+        {
+          "src": "/tech/pi1.jpg",
+          "w": 602,
+          "h": 390
+        },
+        {
+          "src": "/tech/pi2.png",
+          "w": 448,
+          "h": 448
+        },
+        {
+          "src": "/tech/pi3.png",
+          "w": 675,
+          "h": 675
+        },
+        {
+          "src": "/tech/pi4.png",
+          "w": 678,
+          "h": 240
+        }
       ]
     }
   ]

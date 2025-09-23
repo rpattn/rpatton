@@ -1,0 +1,120 @@
+{
+  "statement": {
+    "credential": "MEng EngTech IMechE",
+    "contact": [
+      {
+        "label": "rn.patton@outlook.com",
+        "href": "mailto:rn.patton@outlook.com"
+      },
+      {
+        "label": "07931 418928",
+        "href": "tel:+447931418928"
+      },
+      {
+        "label": "linkedin.com/in/r-patton",
+        "href": "https://linkedin.com/in/r-patton"
+      },
+      {
+        "label": "London, UK"
+      }
+    ],
+    "bio": "Mechanical Engineer and Consultant with experience developing digital tools for engineering projects in the built environment, supported by industrial engineering and research into applied materials and machine learning. I apply technical knowledge and software development skills to build APIs and automation pipelines that enhance engineering design workflows and project delivery."
+  },
+  "coreSkills": [
+    {
+      "title": "Programming & DevOps",
+      "description": "JavaScript, Python, Go, C# (.NET & Unity 3D), Docker, Kubernetes, CI/CD, Git, REST APIs."
+    },
+    {
+      "title": "Applications & Cloud",
+      "description": "CAD (Solidworks, Creo), Digital Twins, VR, Machine Learning, Microsoft Azure, Google Cloud."
+    },
+    {
+      "title": "Project Management",
+      "description": "Problem-solving, Critical thinking, Agile/SCRUM, Failure Investigation, Risk Management."
+    }
+  ],
+  "experience": [
+    {
+      "company": "Ramboll",
+      "role": "Graduate Consultant",
+      "location": "London, UK",
+      "period": "September 2024 - Present",
+      "bullets": [
+        "Developed a VR-ready full-stack web and desktop application that embeds existing CAD models into interactive documentation, including automated pipelines to convert CAD to OBJ/GLB, extract metadata, and transform Word to HTML/CSS, eliminating manual conversion.",
+        "Enhanced a production wind asset management platform with Azure SSO and SMTP integration, managing Dockerised deployments, CI/CD pipelines, and Google Cloud Kubernetes infrastructure to ensure availability and security.",
+        "Extended an internal lifecycle simulation tool written in Python by adding new functionality, a REST API, and a web interface to increase usability for non-technical colleagues while contributing to Agile SCRUM sprints.",
+        "Delivered interdisciplinary engineering and advisory scopes across offshore wind projects, collaborating as part of a global team."
+      ]
+    },
+    {
+      "company": "Cummins",
+      "role": "Design Engineering Placement",
+      "location": "Darlington, UK",
+      "period": "June 2022 - June 2024",
+      "bullets": [
+        "Developed engine components from concept to production, ensuring designs complied with new European and American regulations.",
+        "Applied generative CAD (Creo) workflows in collaboration with CFD and FEA specialists to optimise complex geometries for performance and manufacturability.",
+        "Led research and feasibility analysis for new European-market technology, developing concepts and cost evaluations.",
+        "Managed a global, interdisciplinary team to implement a 7-Step solution to a product issue, chairing meetings to share results, review progress, and successfully mitigate risk."
+      ]
+    }
+  ],
+  "projectGroups": [
+    {
+      "heading": null,
+      "items": [
+        {
+          "name": "Machine Learning",
+          "description": "Extended Masters year group project by training a machine learning model to predict erosion and corrosion."
+        },
+        {
+          "name": "Operational Analysis",
+          "description": "Built a full-stack Python/TypeScript/Docker application enabling non-technical users to run wind plant system design simulations, with automated post-processing for metrics and Gantt charts plus CI/CD deployment."
+        },
+        {
+          "name": "NextCMMS",
+          "description": "Developing an enterprise-grade CMMS in Go, PostgreSQL, and Next.js with a flexible physical/EAV schema, role-based authentication (OAuth, 2FA), and planned 3D model ingest and IoT metering."
+        }
+      ]
+    }
+  ],
+  "education": [
+    {
+      "title": "Mechanical Engineering (Industrial) MEng, First Class Honours",
+      "detail": "University of Leeds, 2019 - 2024. Achieved first-class honours with a 77% average while continuing placement work part time in the final year; represented the university in rugby."
+    },
+    {
+      "title": "Dissertation",
+      "detail": "Consulted with medical startup Eventum Orthopaedics to validate prototype medical hardware (grade 78.5%)."
+    },
+    {
+      "title": "Research Publication",
+      "detail": "Co-authored paper on erosion-corrosion of additively manufactured materials presented at EuroCorr2025."
+    },
+    {
+      "title": "A-Levels",
+      "detail": "Ashby School | Physics A*, Chemistry A*, Mathematics A, Further Mathematics A (AS-Level)."
+    }
+  ],
+  "interestGroups": [
+    {
+      "title": "Tech",
+      "items": [
+        "Self-taught programmer since early teens, building games and robotics projects with a Raspberry Pi and following emerging AI for engineering workflows."
+      ]
+    },
+    {
+      "title": "Sport",
+      "items": [
+        "Enjoy rugby and competitive swimming; avid Formula 1 fan following technical developments."
+      ]
+    },
+    {
+      "title": "Other",
+      "items": [
+        "Keen musician | Grade 8 cornet, played in orchestras; currently learning piano."
+      ]
+    }
+  ]
+}
