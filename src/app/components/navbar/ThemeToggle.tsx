@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-
+import { Sun, Moon } from "react-feather";
 import styles from "./ThemeToggle.module.css";
 
 type ThemeMode = "light" | "dark";
@@ -101,21 +101,35 @@ const ThemeToggle = () => {
     applyTheme(nextMode);
   };
 
+  if (!mounted) {
+    return (
+      <div className={styles.themeToggle}>
+        <Sun
+          size={24}
+          color="currentColor"
+          style={{ cursor: "pointer", opacity: 0.5 }}
+          aria-label="Loading theme toggle"
+        />
+      </div>
+    );
+  }
+
   return (
-    <button
-      type="button"
-      className={styles.toggle}
-      data-mode={isDark ? "dark" : "light"}
-      onClick={handleToggle}
-      aria-label={label}
-      aria-pressed={isDark}
-    >
-      <span className={styles.sun} aria-hidden />
-      <span className={styles.moon} aria-hidden />
-      <span className={styles.knob} aria-hidden>
-        <span className={styles.knobCutout} />
-      </span>
-    </button>
+    <div className={styles.themeToggle} onClick={handleToggle} role="button" tabIndex={0} aria-label={label}>
+      {isDark ? (
+        <Moon
+          size={24}
+          color="currentColor"
+          style={{ cursor: "pointer" }}
+        />
+      ) : (
+        <Sun
+          size={24}
+          color="currentColor"
+          style={{ cursor: "pointer" }}
+        />
+      )}
+    </div>
   );
 };
 

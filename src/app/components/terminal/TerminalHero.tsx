@@ -29,6 +29,9 @@ const TerminalHero = () => {
   const fullText = useMemo(buildFullText, []);
   const [displayText, setDisplayText] = useState(() => prompt);
   const [typingComplete, setTypingComplete] = useState(false);
+  const [isMinimized, setIsMinimized] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
     if (typeof window === "undefined") {
@@ -118,22 +121,60 @@ const TerminalHero = () => {
     ? `${styles.cursor} ${styles.cursorIdle}`
     : styles.cursor;
 
+  // Terminal control handlers
+  const handleClose = () => {
+    setIsVisible(false);
+  };
+
+  const handleMinimize = () => {
+    setIsMinimized(!isMinimized);
+  };
+
+  const handleFullscreen = () => {
+    setIsFullscreen(!isFullscreen);
+  };
+
+  // Don't render if closed
+  if (!isVisible) {
+    return null;
+  }
+
   return (
-    <div className={styles.terminal} aria-label="Portfolio terminal output">
+    <div 
+      className={`${styles.terminal} ${isMinimized ? styles.minimized : ''} ${isFullscreen ? styles.fullscreen : ''}`} 
+      aria-label="Portfolio terminal output"
+    >
       <div className={styles.terminalHeader}>
-        <div className={styles.terminalLights} aria-hidden="true">
-          <span className={styles.terminalLight} />
-          <span className={styles.terminalLight} />
-          <span className={styles.terminalLight} />
+        <div className={styles.terminalLights}>
+          <button 
+            className={`${styles.terminalLight} ${styles.closeButton}`}
+            onClick={handleClose}
+            aria-label="Close terminal"
+            title="Close"
+          />
+          <button 
+            className={`${styles.terminalLight} ${styles.minimizeButton}`}
+            onClick={handleMinimize}
+            aria-label={isMinimized ? "Restore terminal" : "Minimize terminal"}
+            title={isMinimized ? "Restore" : "Minimize"}
+          />
+          <button 
+            className={`${styles.terminalLight} ${styles.fullscreenButton}`}
+            onClick={handleFullscreen}
+            aria-label={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
+            title={isFullscreen ? "Exit Fullscreen" : "Fullscreen"}
+          />
         </div>
         <span className={styles.terminalTitle}>portfolio — bash</span>
       </div>
-      <div className={styles.terminalBody}>
-        <pre className={styles.terminalOutput} aria-live="polite">
-          {displayText}
-          <span className={cursorClassName} aria-hidden="true" />
-        </pre>
-      </div>
+      {!isMinimized && (
+        <div className={styles.terminalBody}>
+          <pre className={styles.terminalOutput} aria-live="polite">
+            {displayText}
+            <span className={cursorClassName} aria-hidden="true" />
+          </pre>
+        </div>
+      )}
     </div>
   );
 };
