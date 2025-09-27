@@ -235,6 +235,7 @@ const TimelineList = ({ renderRows }: { renderRows: RenderRow[] }) => {
                     width={entry.image.width}
                     height={entry.image.height}
                     className={styles.minimalImage}
+                    loading="lazy"
                     unoptimized={entry.image.src.startsWith("data:")}
                   />
                 </div>
@@ -291,6 +292,7 @@ const TimelineList = ({ renderRows }: { renderRows: RenderRow[] }) => {
                       width={entry.image.width}
                       height={entry.image.height}
                       className={styles.cardAsideImage}
+                      loading="lazy"
                       unoptimized={entry.image.src.startsWith("data:")}
                     />
                   </div>

@@ -273,7 +273,7 @@ const buildExperienceEntries = (items: ExperienceEntry[]): TimelineEntry[] => {
         location: item.location,
         tags: ["Experience"],
         link: selectExperienceLink(company),
-        image: buildMonogramImage(company),
+        image: undefined,
         era: computeEra(startIso),
       } satisfies TimelineEntry;
     });
@@ -298,7 +298,7 @@ const buildProjectEntries = (items: ProjectEntry[]): TimelineEntry[] => {
         category: item.category,
         tags: ["Project", ...(item.category ? [item.category] : [])],
         link: selectPrimaryLink(item),
-        image: buildProjectImage(item) ?? buildMonogramImage(item.title ?? item.slug),
+        image: buildProjectImage(item),
         variant: startIso ? (new Date(startIso).getFullYear() <= 2014 ? "minimal" : "default") : "default",
         era: computeEra(startIso),
       } satisfies TimelineEntry;
@@ -349,7 +349,7 @@ const buildNowEntry = (entries: TimelineEntry[]): TimelineEntry => {
       href: "mailto:rn.patton@outlook.com",
       label: "Say hello",
     },
-    image: buildMonogramImage("Now"),
+    image: undefined,
     era: "current",
   } satisfies TimelineEntry;
 };
