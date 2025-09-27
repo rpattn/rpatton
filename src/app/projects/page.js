@@ -6,7 +6,7 @@ export default function ProjectsPage() {
   return (
     <>
       <Header />
-      <main className="min-h-screen bg-transparent pb-10">
+      <main className="min-h-screen bg-transparent pb-10 pt-16">
         <ProjectsGallery />
       </main>
       <TopHeader />

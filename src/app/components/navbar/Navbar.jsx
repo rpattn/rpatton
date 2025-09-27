@@ -8,97 +8,309 @@ import ThemeToggle from "./ThemeToggle";
 import { usePathname } from 'next/navigation'
 
 const Navbar = () => {
-  const [navbar, setNavbar] = useState(false);
-  const menu = [
-    { name: "Home", url: "/" },
-    {
-      name: "Projects",
-      url: "/#projects",
-      dropdown: [
-        { name: "SearchMap", url: "/projects/searchmap" },
-        { name: "VisEng", url: "/projects/viseng" },
-      ],
-    },
-    { name: "CV", url: "/cv" },
-    { name: "Contact", url: "/contact" },
-  ];
-
-  const [drop1, setDrop1] = useState(false)
-  const [menuOpenBool, setMenu] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [showNavbar, setShowNavbar] = useState(true);
+  const [drop1, setDrop1] = useState(false);
+  const [menuOpenBool, setMenu] = useState(false);
   const router = usePathname();
 
+  // Scroll handling for navbar show/hide animation
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      // Show navbar when scrolling up or at top
+      if (currentScrollY < lastScrollY || currentScrollY < 100) {
+        setShowNavbar(true);
+      } 
+      // Hide navbar when scrolling down and past 100px
+      else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setShowNavbar(false);
+        setDrop1(false); // Close dropdown when hiding navbar
+      }
+
+      // Add background when scrolled
+      setIsScrolled(currentScrollY > 20);
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY]);
+
   function toggleMenu() {
-    setMenu(!menuOpenBool)
+    setMenu(!menuOpenBool);
   }
 
   function dropdownEnter() {
-    setDrop1(true)
+    setDrop1(true);
   }
 
   function dropdownLeave() {
-    setDrop1(false)
+    setDrop1(false);
   }
 
-  function toggleDropdown() {setDrop1(!drop1)}
+  function toggleDropdown() {
+    setDrop1(!drop1);
+  }
   
   return (
-<div className="sm:grid xl:grid-cols-10 lg:px-32 xl:px-16 md:px-4 px-2" >
-<div className={`xl:col-start-1 ${(router=="/cv")? "xl:col-span-2" : "xl:col-span-1"}  hidden lg:block`}></div>
-<div className={`${(router=="/cv")? "xl:col-start-3 xl:col-span-7" : "xl:col-start-2 xl:col-span-8"}`}>
-    <nav  className="border-gray-200 mt-4 mb-2">
-    <div className=" mx-auto flex flex-wrap items-center justify-between">
-        <a href="#" className="flex"> {/*inline svg logo*/}
-            <span className="self-center ml-1 text-2xl font-semibold whitespace-nowrap">Robert Patton</span>
-        </a>
-        <div className="flex items-center gap-3">
-          <ThemeToggle />
-          <button data-collapse-toggle="mobile-menu" onClick={toggleMenu} type="button" className="md:hidden ml-3 mr-2 text-gray-400 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-lg inline-flex items-center justify-center" aria-controls="mobile-menu-2" aria-expanded="false">
-            <span className="sr-only">Open main menu</span>
-            <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd"></path></svg>
-            <svg className="hidden w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
-          </button>
-        </div>
-        <div className={`${(menuOpenBool)? "block":"hidden md:block"} w-full md:w-auto`} id="mobile-menu">
-        <ul className="flex-col md:flex-row flex md:space-x-8 mt-4 md:mt-0 md:text-sm md:font-medium">
-            <li>
-            <a href="/" className={`${(router=="/")? "bg-blue-700 md:text-blue-700 text-white": "text-gray-700 md:hover:text-blue-700"} md:bg-transparent dark:text-gray-200 text-lg pl-3 pr-4 py-2  md:p-0 rounded focus:outline-none flex items-center justify-between w-full md:w-auto`} aria-current="page">Home</a>
-            </li>
-            <li>
-                <button id="dropdownNavbarLink" onMouseEnter={dropdownEnter} onClick={toggleDropdown}  data-dropdown-toggle="dropdownNavbar"  className={`dark:text-gray-200 ${(router=="/projects")? "bg-blue-700 md:text-blue-700 text-white": "text-gray-700 md:hover:text-blue-700"} md:bg-transparent text-lg pl-3 pr-4 py-2  md:p-0 rounded focus:outline-none flex items-center justify-between w-full md:w-auto`} >
-                  Projects <svg className="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd"></path></svg></button>
+    <header 
+      className={`fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ease-in-out ${
+        showNavbar ? 'translate-y-0' : '-translate-y-full'
+      }`}
+    >
+      <nav className={`transition-all duration-300 ease-in-out ${
+        isScrolled 
+          ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg border-b border-gray-200/20 dark:border-gray-700/20' 
+          : 'bg-transparent'
+      }`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            {/* Logo */}
+            <div className="flex-shrink-0">
+              <Link href="/" className="text-xl font-bold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                Robert Patton
+              </Link>
+            </div>
 
-                <div id="dropdownNavbar" onMouseLeave={dropdownLeave} className={` ${(drop1)? "fixed":"hidden"} bg-white text-base z-10 list-none divide-y divide-gray-100 rounded shadow my-2`}>
-                    <ul className="py-1 dark:bg-gray-800" aria-labelledby="dropdownLargeButton">
-                    <li className="dark:bg-black">
-                        <a href="/#projects" onClick={dropdownLeave} className="dark:text-gray-200 dark:bg-gray-800 text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">Overview</a>
-                    </li>
-                    <li>
-                        <a href="/projects/tech"  onClick={dropdownLeave} className="dark:text-gray-200 text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">Tech Projects</a>
-                    </li>
-                    <li>
-                        <a href="/projects/uol"  onClick={dropdownLeave} className="dark:text-gray-200 text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">University Projects</a>
-                    </li>
-                    <li>
-                        <a href="/projects/other"  onClick={dropdownLeave} className="dark:text-gray-200 text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">Other Projects</a>
-                    </li>
-                    </ul>
-                    <div className="py-1 dark:bg-gray-800">
-                    <a href="/projects" className="dark:text-gray-200 text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">All Projects</a>
+            {/* Desktop Navigation */}
+            <div className="hidden md:block">
+              <div className="ml-10 flex items-baseline space-x-8">
+                <Link
+                  href="/"
+                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                    router === '/'
+                      ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20'
+                      : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800/50'
+                  }`}
+                >
+                  Home
+                </Link>
+
+                {/* Projects Dropdown */}
+                <div className="relative">
+                  <button
+                    onMouseEnter={dropdownEnter}
+                    onClick={toggleDropdown}
+                    className={`px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center ${
+                      router.startsWith('/projects')
+                        ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20'
+                        : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800/50'
+                    }`}
+                  >
+                    Projects
+                    <svg className="ml-1 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                    </svg>
+          </button>
+
+                  {/* Dropdown Menu */}
+                  <div
+                    onMouseLeave={dropdownLeave}
+                    className={`absolute left-0 mt-2 w-56 rounded-md shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5 transition-all duration-200 ${
+                      drop1 
+                        ? 'opacity-100 translate-y-0 visible' 
+                        : 'opacity-0 -translate-y-2 invisible'
+                    }`}
+                  >
+                    <div className="py-1">
+                      <Link
+                        href="/#projects"
+                        onClick={dropdownLeave}
+                        className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                      >
+                        Overview
+                      </Link>
+                      <Link
+                        href="/projects/tech"
+                        onClick={dropdownLeave}
+                        className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                      >
+                        Tech Projects
+                      </Link>
+                      <Link
+                        href="/projects/uol"
+                        onClick={dropdownLeave}
+                        className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                      >
+                        University Projects
+                      </Link>
+                      <Link
+                        href="/projects/other"
+                        onClick={dropdownLeave}
+                        className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                      >
+                        Other Projects
+                      </Link>
+                      <div className="border-t border-gray-100 dark:border-gray-700">
+                        <Link
+                          href="/projects"
+                          onClick={dropdownLeave}
+                          className="block px-4 py-2 text-sm font-medium text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                        >
+                          All Projects
+                        </Link>
+                      </div>
+                    </div>
                     </div>
                 </div>
-            </li>
-            <li>
-            <a href="/cv"  className={`dark:text-gray-200 ${(router=="/cv")? "bg-blue-700 md:text-blue-700 text-white": "text-gray-700 md:hover:text-blue-700"} md:bg-transparent text-lg pl-3 pr-4 py-2  md:p-0 rounded focus:outline-none flex items-center justify-between w-full md:w-auto`} >CV</a>
-            </li>
-            <li>
-            <a href="#"  className={`dark:text-gray-200 ${(router=="/contact")? "bg-blue-700 md:text-blue-700 text-white": "text-gray-700 md:hover:text-blue-700"} md:bg-transparent text-lg pl-3 pr-4 py-2  md:p-0 rounded focus:outline-none flex items-center justify-between w-full md:w-auto`} >Contact</a>
-            </li>
-        </ul>
+
+                <Link
+                  href="/cv"
+                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                    router === '/cv'
+                      ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20'
+                      : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800/50'
+                  }`}
+                >
+                  CV
+                </Link>
+
+                <Link
+                  href="/contact"
+                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                    router === '/contact'
+                      ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20'
+                      : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800/50'
+                  }`}
+                >
+                  Contact
+                </Link>
+              </div>
+            </div>
+
+            {/* Right side - Theme toggle and mobile menu */}
+            <div className="flex items-center space-x-4">
+              {/* Theme toggle - always rightmost on large screens */}
+              <div className="hidden md:block">
+                <ThemeToggle />
+              </div>
+
+              {/* Mobile menu button and theme toggle */}
+              <div className="md:hidden flex items-center space-x-2">
+                <ThemeToggle />
+                <button
+                  onClick={toggleMenu}
+                  className="p-2 rounded-md text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                  aria-expanded={menuOpenBool}
+                  aria-label="Toggle menu"
+                >
+                  {menuOpenBool ? (
+                    <RxCross1 className="h-6 w-6" />
+                  ) : (
+                    <AiOutlineMenu className="h-6 w-6" />
+                  )}
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Mobile Navigation */}
+          <div className={`md:hidden transition-all duration-300 ease-in-out ${
+            menuOpenBool 
+              ? 'max-h-96 opacity-100' 
+              : 'max-h-0 opacity-0 overflow-hidden'
+          }`}>
+            <div className="px-2 pt-2 pb-3 space-y-1 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md rounded-lg mt-2 shadow-lg border border-gray-200/20 dark:border-gray-700/20">
+              <Link
+                href="/"
+                className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                  router === '/'
+                    ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20'
+                    : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800/50'
+                }`}
+                onClick={() => setMenu(false)}
+              >
+                Home
+              </Link>
+
+              {/* Mobile Projects Dropdown */}
+              <div>
+                <button
+                  onClick={toggleDropdown}
+                  className={`w-full flex justify-between items-center px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                    router.startsWith('/projects')
+                      ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20'
+                      : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800/50'
+                  }`}
+                >
+                  Projects
+                  <svg className={`h-4 w-4 transition-transform ${drop1 ? 'rotate-180' : ''}`} fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                  </svg>
+                </button>
+                
+                <div className={`transition-all duration-200 ${drop1 ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
+                  <div className="ml-4 mt-2 space-y-1">
+                    <Link
+                      href="/#projects"
+                      className="block px-3 py-2 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800/50 rounded-md transition-colors"
+                      onClick={() => { setMenu(false); setDrop1(false); }}
+                    >
+                      Overview
+                    </Link>
+                    <Link
+                      href="/projects/tech"
+                      className="block px-3 py-2 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800/50 rounded-md transition-colors"
+                      onClick={() => { setMenu(false); setDrop1(false); }}
+                    >
+                      Tech Projects
+                    </Link>
+                    <Link
+                      href="/projects/uol"
+                      className="block px-3 py-2 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800/50 rounded-md transition-colors"
+                      onClick={() => { setMenu(false); setDrop1(false); }}
+                    >
+                      University Projects
+                    </Link>
+                    <Link
+                      href="/projects/other"
+                      className="block px-3 py-2 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800/50 rounded-md transition-colors"
+                      onClick={() => { setMenu(false); setDrop1(false); }}
+                    >
+                      Other Projects
+                    </Link>
+                    <Link
+                      href="/projects"
+                      className="block px-3 py-2 text-sm font-medium text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800/50 rounded-md transition-colors border-t border-gray-200 dark:border-gray-700 mt-2 pt-2"
+                      onClick={() => { setMenu(false); setDrop1(false); }}
+                    >
+                      All Projects
+                    </Link>
+                  </div>
         </div>
     </div>
-    </nav>
+
+              <Link
+                href="/cv"
+                className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                  router === '/cv'
+                    ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20'
+                    : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800/50'
+                }`}
+                onClick={() => setMenu(false)}
+              >
+                CV
+              </Link>
+
+              <Link
+                href="/contact"
+                className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                  router === '/contact'
+                    ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20'
+                    : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800/50'
+                }`}
+                onClick={() => setMenu(false)}
+              >
+                Contact
+              </Link>
+            </div>
 </div>
 </div>
+      </nav>
+    </header>
   );
 };
 export default Navbar;

@@ -321,7 +321,7 @@ const Page = () => {
   return (
     <>
       <Header />
-      <main className={styles.page}>
+      <main className={`${styles.page} pt-16`}>
         <section className={styles.hero} aria-labelledby="hero-title">
           <h1 id="hero-title" className={styles.heroTitleSr}>
             Rob Patton - systems engineer building automation-first tooling
