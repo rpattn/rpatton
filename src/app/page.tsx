@@ -67,6 +67,7 @@ type RenderRow = {
   columnIndex: number;
   topColumns: (string | null)[];
   bottomColumns: (string | null)[];
+  mergeFromIndices: number[];
 };
 
 const buildRenderRows = (rows: TimelineGraphRow[]): RenderRow[] => {
@@ -106,6 +107,20 @@ const buildRenderRows = (rows: TimelineGraphRow[]): RenderRow[] => {
 
     const bottomColumns = columns.slice();
 
+    // Map merge indices from timeline column indices to render column indices
+    const mappedMergeFromIndices: number[] = [];
+    row.mergeFromIndices.forEach((originalIndex) => {
+      // Find the branch key at this original index in row.columnsBefore
+      const branchKey = row.columnsBefore[originalIndex];
+      if (branchKey) {
+        // Find this branch's render column index
+        const renderColumnIndex = topColumns.indexOf(branchKey);
+        if (renderColumnIndex >= 0) {
+          mappedMergeFromIndices.push(renderColumnIndex);
+        }
+      }
+    });
+
     renderRows.push({
       entry: row.entry,
       branchKey: row.branchKey,
@@ -114,6 +129,7 @@ const buildRenderRows = (rows: TimelineGraphRow[]): RenderRow[] => {
       columnIndex,
       topColumns,
       bottomColumns,
+      mergeFromIndices: mappedMergeFromIndices,
     });
   });
 
@@ -156,6 +172,42 @@ const renderGraph = (row: RenderRow) => {
     );
   };
 
+  const drawMergeLine = (
+    fromColumnIndex: number,
+    toColumnIndex: number,
+    color: string
+  ) => {
+    const fromX = columnX(fromColumnIndex);
+    const toX = columnX(toColumnIndex);
+    const startY = halfHeight;
+    const endY = halfHeight;
+    
+    // Create a git-style curved merge using cubic bezier
+    // The curve should arc gracefully from source to target
+    const distance = Math.abs(toX - fromX);
+    const direction = toX > fromX ? 1 : -1;
+    
+    // Control points create a smooth S-curve or gentle arc
+    const control1X = fromX + direction * distance * 0.4;
+    const control1Y = startY - distance * 0.15; // Slight upward curve
+    const control2X = toX - direction * distance * 0.4;
+    const control2Y = endY - distance * 0.15;
+    
+    const pathData = `M ${fromX} ${startY} C ${control1X} ${control1Y} ${control2X} ${control2Y} ${toX} ${endY}`;
+    
+    segments.push(
+      <path
+        key={`merge-${fromColumnIndex}-${toColumnIndex}`}
+        d={pathData}
+        stroke={color}
+        strokeWidth={2.5}
+        strokeLinecap="round"
+        fill="none"
+        opacity={0.8}
+      />
+    );
+  };
+
   for (let index = 0; index < maxColumns; index += 1) {
     const topKey = row.topColumns[index] ?? null;
     const bottomKey = row.bottomColumns[index] ?? null;
@@ -169,6 +221,14 @@ const renderGraph = (row: RenderRow) => {
       drawVertical(index, halfHeight, viewBoxHeight, resolveBranchColor(bottomKey));
     }
   }
+
+  // Draw merge lines from merging branches to the current branch
+  row.mergeFromIndices.forEach((fromColumnIndex) => {
+    const fromBranchKey = row.topColumns[fromColumnIndex];
+    if (fromBranchKey) {
+      drawMergeLine(fromColumnIndex, row.columnIndex, resolveBranchColor(fromBranchKey));
+    }
+  });
 
   const nodeLeft = columnX(row.columnIndex) - 8;
 

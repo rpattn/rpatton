@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect } from "react";
-import { render } from "react-dom";
 
 const TypeText = ({text}) => {
     const targetText = text;

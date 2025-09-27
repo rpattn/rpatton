@@ -409,19 +409,38 @@ const buildGraphRows = (entries: TimelineEntry[]): TimelineGraphRow[] => {
     const columnsCurrent = activeBranches.slice();
 
     const mergeFromIndices: number[] = [];
+    const endedBranches: string[] = [];
+    
     if (entry.type === "experience" && columnsBefore.length > 0) {
-      mergeFromIndices.push(
-        ...columnsBefore
-          .map((key, idx) => (key !== branchKey ? idx : -1))
-          .filter((idx) => idx >= 0)
-      );
+      // Find uol and tech branches to merge into experience
+      const branchesToMerge = ["project-uol", "project-tech"];
+      
+      branchesToMerge.forEach(branchToMerge => {
+        const branchIndex = columnsBefore.indexOf(branchToMerge);
+        if (branchIndex >= 0) {
+          mergeFromIndices.push(branchIndex);
+          // Mark these branches as ended since they merge into experience
+          endedBranches.push(branchToMerge);
+        }
+      });
     }
 
-    const endedBranches: string[] = [];
     const columnsAfter = [...columnsCurrent];
 
+    // Remove ended branches from columnsAfter and activeBranches
+    endedBranches.forEach(branchKey => {
+      const removalIndex = columnsAfter.indexOf(branchKey);
+      if (removalIndex >= 0) {
+        columnsAfter.splice(removalIndex, 1);
+      }
+      const activeRemovalIndex = activeBranches.indexOf(branchKey);
+      if (activeRemovalIndex >= 0) {
+        activeBranches.splice(activeRemovalIndex, 1);
+      }
+    });
+
     const lastIndex = branchLastIndex.get(branchKey) ?? index;
-    if (lastIndex === index) {
+    if (lastIndex === index && !endedBranches.includes(branchKey)) {
       endedBranches.push(branchKey);
       const removalIndex = columnsAfter.indexOf(branchKey);
       if (removalIndex >= 0) {

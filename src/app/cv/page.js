@@ -24,7 +24,7 @@ const bulletIconClass = "m-1 bulletIcon";
 
 
 
-export default function RootLayout({ children }) {
+export default function Page() {
 
   const { ref: topSentinelRef, inView: topInView } = useInView({ threshold: 1 });
 
@@ -116,7 +116,7 @@ export default function RootLayout({ children }) {
 
       <Header />
 
-      {children}
+
 
 
 
@@ -129,6 +129,8 @@ export default function RootLayout({ children }) {
           <Navigation activeSection={activeSection} isPinned={isPinned} />
 
         </div>
+
+
 
 
 
@@ -186,6 +188,8 @@ export default function RootLayout({ children }) {
 
 
 
+
+
             <section id="skills" ref={skillsRef} className="mt-10">
 
               <h1 className="font-bold tracking-tight text-gray-900 dark:text-gray-200 text-4xl mb-1">Skills</h1>
@@ -213,6 +217,8 @@ export default function RootLayout({ children }) {
               </div>
 
             </section>
+
+
 
 
 
@@ -281,6 +287,8 @@ export default function RootLayout({ children }) {
               ))}
 
             </section>
+
+
 
 
 
@@ -356,6 +364,8 @@ export default function RootLayout({ children }) {
 
 
 
+
+
             <section id="education" ref={educationRef} className="mt-10">
 
               <h1 className="font-bold tracking-tight text-gray-900 dark:text-gray-200 text-4xl mb-1">
@@ -389,6 +399,8 @@ export default function RootLayout({ children }) {
               </ul>
 
             </section>
+
+
 
 
 
@@ -439,6 +451,8 @@ export default function RootLayout({ children }) {
         </div>
 
       </main>
+
+
 
 
 
