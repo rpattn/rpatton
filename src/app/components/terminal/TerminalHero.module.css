@@ -136,6 +136,8 @@
   font-size: clamp(0.95rem, 2.4vw, 1.05rem);
   line-height: 1.65;
   color: var(--terminal-text);
+  /* Add bottom padding to ensure predictions dropdown is visible */
+  padding-bottom: 8rem;
 }
 
 .terminalSection {
@@ -147,6 +149,10 @@
   white-space: pre-wrap;
   word-break: break-word;
   min-height: 1.65em;
+}
+
+.terminalInputContainer {
+  position: relative;
 }
 
 .terminalInputLine {
@@ -182,6 +188,65 @@
 
 .terminalInput::selection {
   background-color: rgba(59, 130, 246, 0.3);
+}
+
+.predictionsDropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--terminal-bg);
+  border: 1px solid var(--terminal-border);
+  border-radius: 0.5rem;
+  box-shadow: 0 8px 32px -8px var(--terminal-shadow);
+  backdrop-filter: blur(6px);
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+  margin-top: 0.25rem;
+}
+
+/* Alternative positioning when dropdown would be cut off at bottom */
+.predictionsDropdown.dropdownAbove {
+  top: auto;
+  bottom: 100%;
+  margin-top: 0;
+  margin-bottom: 0.25rem;
+}
+
+.predictionItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+.predictionItem:last-child {
+  border-bottom: none;
+}
+
+.predictionItem:hover,
+.predictionSelected {
+  background-color: rgba(59, 130, 246, 0.1);
+}
+
+.predictionCommand {
+  font-family: inherit;
+  font-weight: 600;
+  color: var(--terminal-text);
+  font-size: 0.9rem;
+}
+
+.predictionDescription {
+  font-family: inherit;
+  color: var(--terminal-subtle);
+  font-size: 0.8rem;
+  margin-left: 1rem;
+  text-align: right;
+  opacity: 0.8;
 }
 
 .terminalOutput {
@@ -260,6 +325,13 @@
 :global(body.dark) .terminalInput::selection,
 :global(html.dark) .terminalInput::selection {
   background-color: rgba(99, 102, 241, 0.3);
+}
+
+:global(body.dark) .predictionItem:hover,
+:global(body.dark) .predictionSelected,
+:global(html.dark) .predictionItem:hover,
+:global(html.dark) .predictionSelected {
+  background-color: rgba(99, 102, 241, 0.15);
 }
 
 :global(body.dark) .terminalLight,
@@ -350,6 +422,11 @@
 
   :root:not([data-theme]) .terminalInput::selection {
     background-color: rgba(99, 102, 241, 0.3);
+  }
+
+  :root:not([data-theme]) .predictionItem:hover,
+  :root:not([data-theme]) .predictionSelected {
+    background-color: rgba(99, 102, 241, 0.15);
   }
 
 }

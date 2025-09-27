@@ -26,8 +26,17 @@ const TerminalHero = () => {
   const [showCursor, setShowCursor] = useState(true);
   const [isCommandTyping, setIsCommandTyping] = useState(false);
   const [typingTrigger, setTypingTrigger] = useState(0);
+  const [shouldSkipTyping, setShouldSkipTyping] = useState(false);
+  const [commandHistory, setCommandHistory] = useState<string[]>([]);
+  const [historyIndex, setHistoryIndex] = useState(-1);
+  const [tempInput, setTempInput] = useState("");
+  const [predictions, setPredictions] = useState<string[]>([]);
+  const [selectedPrediction, setSelectedPrediction] = useState(-1);
+  const [showPredictions, setShowPredictions] = useState(false);
+  const [dropdownAbove, setDropdownAbove] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const terminalBodyRef = useRef<HTMLDivElement>(null);
+  const predictionsRef = useRef<HTMLDivElement>(null);
 
   const initialMessage = [
     "Welcome to Rob's Portfolio Terminal!",
@@ -63,6 +72,7 @@ const TerminalHero = () => {
       clearTimer();
       setTypedText(fullInitialText);
       setTypingComplete(true);
+      setShouldSkipTyping(false);
     };
 
     const runTyping = () => {
@@ -72,8 +82,15 @@ const TerminalHero = () => {
 
       let index = 0;
       const typeNext = () => {
+        // Check if we should skip typing
+        if (shouldSkipTyping) {
+          finishImmediately();
+          return;
+        }
+
         if (index >= fullInitialText.length) {
           setTypingComplete(true);
+          setShouldSkipTyping(false);
           return;
         }
 
@@ -86,6 +103,7 @@ const TerminalHero = () => {
           timeoutId = window.setTimeout(typeNext, delay);
         } else {
           setTypingComplete(true);
+          setShouldSkipTyping(false);
         }
       };
 
@@ -122,7 +140,7 @@ const TerminalHero = () => {
       }
       clearTimer();
     };
-  }, [fullInitialText, showInitialMessage]);
+  }, [fullInitialText, showInitialMessage, shouldSkipTyping]);
 
   // Cursor blinking effect
   useEffect(() => {
@@ -168,6 +186,7 @@ const TerminalHero = () => {
           : entry
       ));
       setIsCommandTyping(false);
+      setShouldSkipTyping(false);
     };
 
     const runTyping = () => {
@@ -176,6 +195,12 @@ const TerminalHero = () => {
       
       let index = 0;
       const typeNext = () => {
+        // Check if we should skip typing
+        if (shouldSkipTyping) {
+          finishImmediately();
+          return;
+        }
+
         if (index >= fullOutputText.length) {
           setHistory(prev => prev.map((entry, entryIndex) => 
             entryIndex === prev.length - 1 
@@ -183,6 +208,7 @@ const TerminalHero = () => {
               : entry
           ));
           setIsCommandTyping(false);
+          setShouldSkipTyping(false);
           return;
         }
 
@@ -207,6 +233,7 @@ const TerminalHero = () => {
               : entry
           ));
           setIsCommandTyping(false);
+          setShouldSkipTyping(false);
         }
       };
 
@@ -222,7 +249,7 @@ const TerminalHero = () => {
     return () => {
       clearTimer();
     };
-  }, [typingTrigger]);
+  }, [typingTrigger, shouldSkipTyping]);
 
   // Focus input when terminal becomes visible or restored, and typing is complete
   useEffect(() => {
@@ -237,6 +264,35 @@ const TerminalHero = () => {
       terminalBodyRef.current.scrollTop = terminalBodyRef.current.scrollHeight;
     }
   }, [history, typedText]);
+
+  // Global keydown listener for skipping typing animations
+  useEffect(() => {
+    const handleGlobalKeyDown = (e: Event) => {
+      const keyboardEvent = e as unknown as KeyboardEvent;
+      if (keyboardEvent.key === "Enter" && ((!typingComplete && showInitialMessage) || isCommandTyping)) {
+        keyboardEvent.preventDefault();
+        setShouldSkipTyping(true);
+      }
+    };
+
+    document.addEventListener("keydown", handleGlobalKeyDown);
+    return () => document.removeEventListener("keydown", handleGlobalKeyDown);
+  }, [typingComplete, showInitialMessage, isCommandTyping]);
+
+  // Check dropdown positioning when predictions are shown
+  useEffect(() => {
+    if (showPredictions && inputRef.current && terminalBodyRef.current) {
+      const inputRect = inputRef.current.getBoundingClientRect();
+      const terminalRect = terminalBodyRef.current.getBoundingClientRect();
+      
+      // Calculate available space below input
+      const spaceBelow = terminalRect.bottom - inputRect.bottom;
+      const dropdownHeight = 200; // max-height of dropdown
+      
+      // If there's not enough space below, show above
+      setDropdownAbove(spaceBelow < dropdownHeight + 20);
+    }
+  }, [showPredictions, predictions.length]);
 
   const executeCommand = (cmd: string) => {
     const trimmedCmd = cmd.trim().toLowerCase();
@@ -263,23 +319,143 @@ const TerminalHero = () => {
     }
   };
 
-  const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter" && !isCommandTyping) {
-      const command = currentInput;
-      const output = executeCommand(command);
-      
-      if (command.trim().toLowerCase() !== "clear") {
-        setHistory(prev => [...prev, { 
-          command, 
-          output, 
-          isTyping: true, 
-          typedOutput: "" 
-        }]);
-        setTypingTrigger(prev => prev + 1);
+  const getCommandPredictions = (input: string) => {
+    if (!input.trim()) {
+      return [];
+    }
+
+    const availableCommands = Object.keys(commands);
+    const inputLower = input.toLowerCase().trim();
+    
+    // Filter commands that start with the input
+    const matches = availableCommands.filter(cmd => 
+      cmd.toLowerCase().startsWith(inputLower)
+    );
+
+    // Sort by length (shorter matches first) and alphabetically
+    return matches.sort((a, b) => {
+      if (a.length !== b.length) {
+        return a.length - b.length;
       }
-      
-      setCurrentInput("");
-      setShowInitialMessage(false);
+      return a.localeCompare(b);
+    });
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (isCommandTyping) {
+      e.preventDefault();
+      return;
+    }
+
+    switch (e.key) {
+      case "Enter":
+        // If a prediction is selected, use it
+        if (showPredictions && selectedPrediction >= 0 && predictions[selectedPrediction]) {
+          setCurrentInput(predictions[selectedPrediction]);
+          setShowPredictions(false);
+          setSelectedPrediction(-1);
+          setDropdownAbove(false);
+          return;
+        }
+
+        const command = currentInput.trim();
+        if (command) {
+          // Add to command history (avoid duplicates of the most recent command)
+          setCommandHistory(prev => {
+            const filtered = prev.filter(cmd => cmd !== command);
+            return [...filtered, command];
+          });
+        }
+        
+        const output = executeCommand(command);
+        
+        if (command && command.toLowerCase() !== "clear") {
+          setHistory(prev => [...prev, { 
+            command, 
+            output, 
+            isTyping: true, 
+            typedOutput: "" 
+          }]);
+          setTypingTrigger(prev => prev + 1);
+        }
+        
+        setCurrentInput("");
+        setShowInitialMessage(false);
+        setHistoryIndex(-1);
+        setTempInput("");
+        setShowPredictions(false);
+        setSelectedPrediction(-1);
+        setDropdownAbove(false);
+        break;
+
+      case "ArrowUp":
+        e.preventDefault();
+        if (showPredictions && predictions.length > 0) {
+          // Navigate predictions
+          setSelectedPrediction(prev => 
+            prev <= 0 ? predictions.length - 1 : prev - 1
+          );
+        } else if (commandHistory.length > 0) {
+          // Navigate command history
+          const newIndex = historyIndex === -1 
+            ? commandHistory.length - 1 
+            : Math.max(0, historyIndex - 1);
+          
+          if (historyIndex === -1) {
+            setTempInput(currentInput);
+          }
+          
+          setHistoryIndex(newIndex);
+          setCurrentInput(commandHistory[newIndex]);
+          setShowPredictions(false);
+          setDropdownAbove(false);
+        }
+        break;
+
+      case "ArrowDown":
+        e.preventDefault();
+        if (showPredictions && predictions.length > 0) {
+          // Navigate predictions
+          setSelectedPrediction(prev => 
+            prev >= predictions.length - 1 ? 0 : prev + 1
+          );
+        } else if (historyIndex !== -1) {
+          // Navigate command history
+          const newIndex = historyIndex + 1;
+          
+          if (newIndex >= commandHistory.length) {
+            setHistoryIndex(-1);
+            setCurrentInput(tempInput);
+          } else {
+            setHistoryIndex(newIndex);
+            setCurrentInput(commandHistory[newIndex]);
+          }
+        }
+        break;
+
+      case "Tab":
+        e.preventDefault();
+        if (showPredictions && predictions.length > 0) {
+          const prediction = predictions[selectedPrediction >= 0 ? selectedPrediction : 0];
+          setCurrentInput(prediction);
+          setShowPredictions(false);
+          setSelectedPrediction(-1);
+          setDropdownAbove(false);
+        }
+        break;
+
+      case "Escape":
+        e.preventDefault();
+        if (showPredictions) {
+          setShowPredictions(false);
+          setSelectedPrediction(-1);
+          setDropdownAbove(false);
+        } else {
+          setHistoryIndex(-1);
+          setCurrentInput(tempInput);
+          setTempInput("");
+        }
+        break;
     }
   };
 
@@ -368,7 +544,7 @@ const TerminalHero = () => {
                     {entry.isTyping && (
                       <span className={styles.cursor} aria-hidden="true" />
                     )}
-                  </pre>
+          </pre>
                 ) : (
                   entry.output.map((line, lineIndex) => (
                     <div key={lineIndex} className={styles.terminalLine}>
@@ -381,20 +557,70 @@ const TerminalHero = () => {
 
             {/* Current input line - only show after typing is complete or initial message is hidden */}
             {(typingComplete || !showInitialMessage) && !isCommandTyping && (
-              <div className={styles.terminalInputLine}>
-                <span className={styles.prompt}>{prompt}</span>
-                <input
-                  ref={inputRef}
-                  type="text"
-                  value={currentInput}
-                  onChange={(e) => setCurrentInput(e.target.value)}
-                  onKeyPress={handleKeyPress}
-                  className={styles.terminalInput}
-                  autoComplete="off"
-                  spellCheck={false}
-                  aria-label="Terminal command input"
-                  disabled={isCommandTyping}
-                />
+              <div className={styles.terminalInputContainer}>
+                <div className={styles.terminalInputLine}>
+                  <span className={styles.prompt}>{prompt}</span>
+                  <input
+                    ref={inputRef}
+                    type="text"
+                    value={currentInput}
+                    onChange={(e) => {
+                      const value = e.target.value;
+                      setCurrentInput(value);
+                      
+                      // Reset history navigation when user types
+                      if (historyIndex !== -1) {
+                        setHistoryIndex(-1);
+                        setTempInput("");
+                      }
+
+                      // Update predictions
+                      const newPredictions = getCommandPredictions(value);
+                      setPredictions(newPredictions);
+                      setShowPredictions(newPredictions.length > 0 && value.trim().length > 0);
+                      setSelectedPrediction(-1);
+                    }}
+                    onKeyDown={handleKeyDown}
+                    className={styles.terminalInput}
+                    autoComplete="off"
+                    spellCheck={false}
+                    aria-label="Terminal command input"
+                    disabled={isCommandTyping}
+                  />
+                </div>
+                
+                {/* Predictions dropdown */}
+                {showPredictions && predictions.length > 0 && (
+                  <div 
+                    ref={predictionsRef}
+                    className={`${styles.predictionsDropdown} ${
+                      dropdownAbove ? styles.dropdownAbove : ''
+                    }`}
+                  >
+                    {predictions.map((prediction, index) => (
+                      <div
+                        key={prediction}
+                        className={`${styles.predictionItem} ${
+                          index === selectedPrediction ? styles.predictionSelected : ''
+                        }`}
+                        onClick={() => {
+                          setCurrentInput(prediction);
+                          setShowPredictions(false);
+                          setSelectedPrediction(-1);
+                          setDropdownAbove(false);
+                          if (inputRef.current) {
+                            inputRef.current.focus();
+                          }
+                        }}
+                      >
+                        <span className={styles.predictionCommand}>{prediction}</span>
+                        <span className={styles.predictionDescription}>
+                          {commands[prediction as keyof typeof commands]?.description || ''}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             )}
           </div>
