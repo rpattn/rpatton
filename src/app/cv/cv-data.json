@@ -45,7 +45,9 @@
         "Enhanced a production wind asset management platform with Azure SSO and SMTP integration, managing Dockerised deployments, CI/CD pipelines, and Google Cloud Kubernetes infrastructure to ensure availability and security.",
         "Extended an internal lifecycle simulation tool written in Python by adding new functionality, a REST API, and a web interface to increase usability for non-technical colleagues while contributing to Agile SCRUM sprints.",
         "Delivered interdisciplinary engineering and advisory scopes across offshore wind projects, collaborating as part of a global team."
-      ]
+      ],
+      "startDate": "2024-09-01",
+      "endDate": null
     },
     {
       "company": "Cummins",
@@ -57,7 +59,9 @@
         "Applied generative CAD (Creo) workflows in collaboration with CFD and FEA specialists to optimise complex geometries for performance and manufacturability.",
         "Led research and feasibility analysis for new European-market technology, developing concepts and cost evaluations.",
         "Managed a global, interdisciplinary team to implement a 7-Step solution to a product issue, chairing meetings to share results, review progress, and successfully mitigate risk."
-      ]
+      ],
+      "startDate": "2022-06-01",
+      "endDate": "2024-06-01"
     }
   ],
   "projectGroups": [

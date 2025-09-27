@@ -1,0 +1,108 @@
+.sidebar {
+  position: sticky;
+  top: 6rem;
+  align-self: start;
+  display: grid;
+  gap: 1.5rem;
+}
+
+.sidebarHeading {
+  font-size: 0.9rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--timeline-eyebrow, #0ea5e9);
+}
+
+.sidebarList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.4rem;
+}
+
+.sidebarItem {
+  border-left: 3px solid transparent;
+  padding: 0 0 0 0.5rem;
+  display: grid;
+  gap: 0.15rem;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.sidebarLink {
+  display: flex;
+  flex-direction: column;    /* stack spans vertically */
+  align-items: flex-start;   /* align left */
+  color: inherit;
+  text-decoration: none;
+  overflow: hidden;
+}
+
+.sidebarItem span:last-child {
+  max-height: 0;                  /* collapse vertically */
+  opacity: 0;
+  overflow: hidden;
+  transform: translateY(-5px);    /* start slightly higher */
+  transition: 
+    max-height 0.4s ease, 
+    opacity 0.4s ease, 
+    transform 0.4s ease;
+}
+
+.sidebarItem:hover span:last-child, .sidebarItem.sidebarItemActive span:last-child {
+  max-height: 50px;               /* enough for your text line */
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.sidebarItemTitle {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--timeline-text-strong, #0f172a);
+}
+
+.sidebarItemMeta {
+  font-size: 0.78rem;
+  color: var(--timeline-text-muted, #475569);
+}
+
+.sidebarItemActive {
+  border-left-color: currentColor;
+  color: inherit;
+}
+
+.sidebarItemActive .sidebarItemTitle {
+  color: inherit;
+}
+
+.sidebarLegend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  font-size: 0.78rem;
+  color: var(--timeline-text-muted, #475569);
+}
+
+.sidebarLegendSwatch {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 0.35rem;
+}
+
+@media (max-width: 900px) {
+  .sidebar {
+    position: static;
+    display: grid;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+  }
+
+  .sidebarList {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+}

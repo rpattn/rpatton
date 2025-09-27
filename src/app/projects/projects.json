@@ -54,7 +54,11 @@
           "w": 529,
           "h": 629
         }
-      ]
+      ],
+      "timeline": {
+        "startDate": "2023-07-01",
+        "endDate": "2024-02-01"
+      }
     },
     {
       "slug": "nextcmms",
@@ -99,7 +103,10 @@
           "w": 529,
           "h": 529
         }
-      ]
+      ],
+      "timeline": {
+        "startDate": "2023-11-01"
+      }
     },
     {
       "slug": "ddm",
@@ -133,9 +140,16 @@
         "Automated parametric CAD → 3D pipeline",
         "Metadata extraction & doc integration"
       ],
-      "images": [{"src": "/images/ddm_demo.png"}]
-    },
+      "images": [
         {
+          "src": "/images/ddm_demo.png"
+        }
+      ],
+      "timeline": {
+        "startDate": "2024-05-01"
+      }
+    },
+    {
       "slug": "ml",
       "title": "Machine Learning",
       "summary": "Extended a Masters group project by training ML models to predict erosion and corrosion in additively manufactured metals.",
@@ -179,7 +193,11 @@
           "w": 797,
           "h": 878
         }
-      ]
+      ],
+      "timeline": {
+        "startDate": "2024-02-01",
+        "endDate": "2024-06-30"
+      }
     },
     {
       "slug": "searchmap",
@@ -215,7 +233,11 @@
           "w": 529,
           "h": 529
         }
-      ]
+      ],
+      "timeline": {
+        "startDate": "2022-10-01",
+        "endDate": "2023-03-01"
+      }
     },
     {
       "slug": "dissertation",
@@ -251,7 +273,11 @@
           "w": 424,
           "h": 424
         }
-      ]
+      ],
+      "timeline": {
+        "startDate": "2023-09-01",
+        "endDate": "2024-05-15"
+      }
     },
     {
       "slug": "turbine",
@@ -292,7 +318,11 @@
           "w": 738,
           "h": 231
         }
-      ]
+      ],
+      "timeline": {
+        "startDate": "2022-03-01",
+        "endDate": "2022-06-30"
+      }
     },
     {
       "slug": "feasandbox",
@@ -328,7 +358,11 @@
           "w": 826,
           "h": 826
         }
-      ]
+      ],
+      "timeline": {
+        "startDate": "2021-06-01",
+        "endDate": "2021-10-31"
+      }
     },
     {
       "slug": "daringdash",
@@ -369,7 +403,11 @@
           "w": 723,
           "h": 260
         }
-      ]
+      ],
+      "timeline": {
+        "startDate": "2020-09-01",
+        "endDate": "2021-01-31"
+      }
     },
     {
       "slug": "volunteering",
@@ -405,7 +443,11 @@
           "w": 654,
           "h": 654
         }
-      ]
+      ],
+      "timeline": {
+        "startDate": "2019-07-01",
+        "endDate": "2019-08-15"
+      }
     },
     {
       "slug": "trussbridge",
@@ -441,7 +483,11 @@
           "w": 672,
           "h": 672
         }
-      ]
+      ],
+      "timeline": {
+        "startDate": "2018-11-01",
+        "endDate": "2019-01-31"
+      }
     },
     {
       "slug": "mcf1",
@@ -482,7 +528,11 @@
           "w": 901,
           "h": 351
         }
-      ]
+      ],
+      "timeline": {
+        "startDate": "2018-06-01",
+        "endDate": "2018-09-30"
+      }
     },
     {
       "slug": "wing",
@@ -523,7 +573,11 @@
           "w": 678,
           "h": 240
         }
-      ]
+      ],
+      "timeline": {
+        "startDate": "2017-10-01",
+        "endDate": "2018-03-31"
+      }
     },
     {
       "slug": "games",
@@ -564,7 +618,11 @@
           "w": 678,
           "h": 240
         }
-      ]
+      ],
+      "timeline": {
+        "startDate": "2015-04-01",
+        "endDate": "2016-08-31"
+      }
     },
     {
       "slug": "apps",
@@ -600,7 +658,11 @@
           "w": 675,
           "h": 675
         }
-      ]
+      ],
+      "timeline": {
+        "startDate": "2016-09-01",
+        "endDate": "2017-03-31"
+      }
     },
     {
       "slug": "pi",
@@ -641,7 +703,11 @@
           "w": 678,
           "h": 240
         }
-      ]
+      ],
+      "timeline": {
+        "startDate": "2014-02-01",
+        "endDate": "2014-12-31"
+      }
     }
   ]
 }
