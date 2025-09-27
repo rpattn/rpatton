@@ -1,0 +1,122 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+
+import styles from "./ThemeToggle.module.css";
+
+type ThemeMode = "light" | "dark";
+
+const resolveSystemTheme = (): ThemeMode => {
+  if (typeof window === "undefined") {
+    return "light";
+  }
+
+  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+};
+
+const applyTheme = (mode: ThemeMode) => {
+  if (typeof document === "undefined") {
+    return;
+  }
+
+  const root = document.documentElement;
+  const body = document.body;
+
+  root.classList.toggle("dark", mode === "dark");
+  root.dataset.theme = mode;
+  root.style.colorScheme = mode;
+  if (body) {
+    body.classList.toggle("dark", mode === "dark");
+    body.dataset.theme = mode;
+  }
+};
+
+const ThemeToggle = () => {
+  const [theme, setTheme] = useState<ThemeMode>("light");
+  const [mounted, setMounted] = useState(false);
+  const [userOverride, setUserOverride] = useState(false);
+  const overrideRef = useRef(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const stored = window.localStorage.getItem("theme");
+    const hasStored = stored === "dark" || stored === "light";
+    const initialMode: ThemeMode = hasStored ? (stored as ThemeMode) : resolveSystemTheme();
+
+    setTheme(initialMode);
+    applyTheme(initialMode);
+    setMounted(true);
+    setUserOverride(hasStored);
+    overrideRef.current = hasStored;
+
+    const handlePreferenceChange = (event: MediaQueryListEvent) => {
+      if (overrideRef.current) {
+        return;
+      }
+
+      const nextMode: ThemeMode = event.matches ? "dark" : "light";
+      setTheme(nextMode);
+      applyTheme(nextMode);
+    };
+
+    if (typeof mediaQuery.addEventListener === "function") {
+      mediaQuery.addEventListener("change", handlePreferenceChange);
+    } else {
+      mediaQuery.addListener(handlePreferenceChange);
+    }
+
+    return () => {
+      if (typeof mediaQuery.removeEventListener === "function") {
+        mediaQuery.removeEventListener("change", handlePreferenceChange);
+      } else {
+        mediaQuery.removeListener(handlePreferenceChange);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!mounted || typeof window === "undefined") {
+      return;
+    }
+
+    if (userOverride) {
+      window.localStorage.setItem("theme", theme);
+    } else {
+      window.localStorage.removeItem("theme");
+    }
+  }, [theme, userOverride, mounted]);
+
+  const isDark = theme === "dark";
+  const label = `Activate ${isDark ? "light" : "dark"} mode`;
+
+  const handleToggle = () => {
+    const nextMode: ThemeMode = isDark ? "light" : "dark";
+    overrideRef.current = true;
+    setUserOverride(true);
+    setTheme(nextMode);
+    applyTheme(nextMode);
+  };
+
+  return (
+    <button
+      type="button"
+      className={styles.toggle}
+      data-mode={isDark ? "dark" : "light"}
+      onClick={handleToggle}
+      aria-label={label}
+      aria-pressed={isDark}
+    >
+      <span className={styles.sun} aria-hidden />
+      <span className={styles.moon} aria-hidden />
+      <span className={styles.knob} aria-hidden>
+        <span className={styles.knobCutout} />
+      </span>
+    </button>
+  );
+};
+
+export default ThemeToggle;
