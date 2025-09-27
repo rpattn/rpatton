@@ -203,7 +203,7 @@ const TimelineList = ({ renderRows }: { renderRows: RenderRow[] }) => {
   }));
 
   return (
-    <section className={styles.timelineSection} aria-labelledby="timeline-heading">
+    <section className={`${styles.timelineSection} max-w-[var(--content-max-width)] mx-auto`} aria-labelledby="timeline-heading">
       <div className={styles.timelineHeader}>
         <p className={styles.timelineEyebrow}>Git-style timeline</p>
         <h2 id="timeline-heading" className={styles.timelineTitle}>
@@ -322,7 +322,8 @@ const Page = () => {
     <>
       <Header />
       <main className={`${styles.page} pt-16`}>
-        <section className={styles.hero} aria-labelledby="hero-title">
+        <section className={`${styles.hero} max-w-[var(--content-max-width)] mx-auto px-[var(--content-padding-x-sm)] sm:px-[var(--content-padding-x-md)] lg:px-[var(--content-padding-x-lg)] xl:px-[var(--content-padding-x-xl)]`}
+          aria-labelledby="hero-title">
           <h1 id="hero-title" className={styles.heroTitleSr}>
             Rob Patton - systems engineer building automation-first tooling
           </h1>

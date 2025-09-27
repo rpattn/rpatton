@@ -120,7 +120,7 @@ export default function RootLayout({ children }) {
 
 
 
-      <main className="min-h-screen grid xl:grid-cols-10 md:px-32 px-6 xl:px-16 splashCard mb-20 pt-16">
+      <main className="min-h-screen grid xl:grid-cols-10 mb-20 pt-16 max-w-[var(--content-max-width)] mx-auto px-[var(--content-padding-x-sm)] sm:px-[var(--content-padding-x-md)] lg:px-[var(--content-padding-x-lg)] xl:px-[var(--content-padding-x-xl)]">
 
         <div ref={topSentinelRef} className="col-span-full h-0" />
 

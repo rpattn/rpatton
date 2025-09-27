@@ -4,7 +4,16 @@
 
 html{scroll-behavior:smooth}
 
+/* Theme variables will be loaded from separate CSS files */
+
 :root {
+  /* Global layout variables */
+  --content-max-width: 1280px;
+  --content-padding-x-sm: 1.5rem; /* px-6 (default for small screens) */
+  --content-padding-x-md: 2.5rem; /* md:px-10 */
+  --content-padding-x-lg: 4rem; /* lg:px-16 */
+  --content-padding-x-xl: 8rem; /* xl:px-32 */
+
   --foreground-rgb: 0, 0, 0;
   --background-end-rgb: 253, 253, 253;
   --background-start-rgb: 253, 253, 253;

@@ -1,11 +1,11 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 import { RxCross1 } from "react-icons/rx";
 import Link from "next/link";
 import Dropdown from "./Dropdown";
 import ThemeToggle from "./ThemeToggle";
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -13,7 +13,9 @@ const Navbar = () => {
   const [showNavbar, setShowNavbar] = useState(true);
   const [drop1, setDrop1] = useState(false);
   const [menuOpenBool, setMenu] = useState(false);
-  const router = usePathname();
+  const currentPath = usePathname();
+  const router = useRouter();
+  const dropdownTimeoutRef = useRef(null);
 
   // Scroll handling for navbar show/hide animation
   useEffect(() => {
@@ -44,11 +46,18 @@ const Navbar = () => {
   }
 
   function dropdownEnter() {
+    if (dropdownTimeoutRef.current) {
+      clearTimeout(dropdownTimeoutRef.current);
+      dropdownTimeoutRef.current = null;
+    }
     setDrop1(true);
   }
 
   function dropdownLeave() {
-    setDrop1(false);
+    dropdownTimeoutRef.current = window.setTimeout(() => {
+      setDrop1(false);
+      dropdownTimeoutRef.current = null;
+    }, 150);
   }
 
   function toggleDropdown() {
@@ -66,7 +75,7 @@ const Navbar = () => {
           ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg border-b border-gray-200/20 dark:border-gray-700/20' 
           : 'bg-transparent'
       }`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[var(--content-max-width)] mx-auto px-[var(--content-padding-x-sm)] sm:px-[var(--content-padding-x-md)] lg:px-[var(--content-padding-x-lg)] xl:px-[var(--content-padding-x-xl)]">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <div className="flex-shrink-0">
@@ -81,7 +90,7 @@ const Navbar = () => {
                 <Link
                   href="/"
                   className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                    router === '/'
+                    currentPath === '/'
                       ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20'
                       : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800/50'
                   }`}
@@ -90,12 +99,12 @@ const Navbar = () => {
                 </Link>
 
                 {/* Projects Dropdown */}
-                <div className="relative">
+                <div className="relative" onMouseLeave={dropdownLeave}>
                   <button
                     onMouseEnter={dropdownEnter}
-                    onClick={toggleDropdown}
+                    onClick={() => { toggleDropdown(); router.push('/projects'); }}
                     className={`px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center ${
-                      router.startsWith('/projects')
+                      currentPath.startsWith('/projects')
                         ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20'
                         : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800/50'
                     }`}
@@ -108,8 +117,8 @@ const Navbar = () => {
 
                   {/* Dropdown Menu */}
                   <div
-                    onMouseLeave={dropdownLeave}
-                    className={`absolute left-0 mt-2 w-56 rounded-md shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5 transition-all duration-200 ${
+                    onMouseEnter={dropdownEnter}
+                    className={`absolute left-0 top-full w-56 rounded-md shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5 transition-all duration-200 ${
                       drop1 
                         ? 'opacity-100 translate-y-0 visible' 
                         : 'opacity-0 -translate-y-2 invisible'
@@ -160,7 +169,7 @@ const Navbar = () => {
                 <Link
                   href="/cv"
                   className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                    router === '/cv'
+                    currentPath === '/cv'
                       ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20'
                       : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800/50'
                   }`}
@@ -171,7 +180,7 @@ const Navbar = () => {
                 <Link
                   href="/contact"
                   className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                    router === '/contact'
+                    currentPath === '/contact'
                       ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20'
                       : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800/50'
                   }`}
@@ -217,7 +226,7 @@ const Navbar = () => {
               <Link
                 href="/"
                 className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
-                  router === '/'
+                  currentPath === '/'
                     ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20'
                     : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800/50'
                 }`}
@@ -231,7 +240,7 @@ const Navbar = () => {
                 <button
                   onClick={toggleDropdown}
                   className={`w-full flex justify-between items-center px-3 py-2 rounded-md text-base font-medium transition-colors ${
-                    router.startsWith('/projects')
+                    currentPath.startsWith('/projects')
                       ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20'
                       : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800/50'
                   }`}
@@ -286,7 +295,7 @@ const Navbar = () => {
               <Link
                 href="/cv"
                 className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
-                  router === '/cv'
+                  currentPath === '/cv'
                     ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20'
                     : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800/50'
                 }`}
@@ -298,7 +307,7 @@ const Navbar = () => {
               <Link
                 href="/contact"
                 className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
-                  router === '/contact'
+                  currentPath === '/contact'
                     ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20'
                     : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800/50'
                 }`}

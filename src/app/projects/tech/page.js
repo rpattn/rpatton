@@ -1,5 +1,5 @@
-import Header from "@/app/components/navbar/Header";
-import TopHeader from "@/app/components/navbar/TopHeader";
+import Header from "../../components/navbar/Header";
+import TopHeader from "../../components/navbar/TopHeader";
 import ProjectsGallery from "../AllProjects";
 
 const SUMMARY = "I have always had a passion for engineering and technology, and have completed projects ranging from data visualisation tools to automation apps.";
@@ -10,12 +10,14 @@ export default function TechProjectsPage() {
     <>
       <Header />
       <main className="min-h-screen bg-transparent pb-10 pt-16">
-        <ProjectsGallery
-          categorySlug="tech"
-          pageTitle="Tech Projects"
-          pageSummary={SUMMARY}
-          pageDetails={DETAILS}
-        />
+        <div className="max-w-[var(--content-max-width)] mx-auto px-[var(--content-padding-x-sm)] sm:px-[var(--content-padding-x-md)] lg:px-[var(--content-padding-x-lg)] xl:px-[var(--content-padding-x-xl)]">
+          <ProjectsGallery
+            categorySlug="tech"
+            pageTitle="Tech Projects"
+            pageSummary={SUMMARY}
+            pageDetails={DETAILS}
+          />
+        </div>
       </main>
       <TopHeader />
     </>

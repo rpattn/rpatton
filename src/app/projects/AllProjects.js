@@ -593,7 +593,7 @@ const ProjectsGallery = ({
     : introProject?.details ?? null;
 
   return (
-    <div className="mx-auto w-full max-w-6xl px-4 pb-24 pt-12 sm:px-8 lg:px-12">
+    <div className="mx-auto w-full pb-24 pt-12">
       <header className="mb-12 space-y-4 text-center lg:text-left">
         <p className="text-xs font-semibold uppercase tracking-[0.35em] text-indigo-600 dark:text-indigo-400">
           Projects
