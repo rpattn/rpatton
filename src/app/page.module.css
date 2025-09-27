@@ -19,11 +19,14 @@
   --timeline-minimal-text: #1f2937;
   --timeline-minimal-muted: rgba(31, 41, 55, 0.68);
   --timeline-minimal-description: #4b5563;
-  --timeline-location-dot: rgba(148, 163, 184, 0.7);
+  --timeline-location-dot: #94a3b8b3;
   display: flex;
   flex-direction: column;
   gap: 4rem;
-  padding: 3rem 1.5rem 6rem;
+  padding-bottom: 6rem; /* Keep bottom padding */
+  padding-top: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
   color: var(--timeline-text-strong);
 }
 
@@ -36,6 +39,12 @@
 @media (min-width: 1024px) {
   .page {
     padding: 5rem 4.5rem 8rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero {
+    padding-top: 2rem; /* Add top padding to hero on small screens */
   }
 }
 

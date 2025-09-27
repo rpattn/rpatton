@@ -383,8 +383,8 @@ const Page = () => {
   return (
     <>
       <Header />
-      <main className={`${styles.page} pt-16`}>
-        <section className={`${styles.hero} max-w-[var(--content-max-width)] mx-auto px-[var(--content-padding-x-sm)] sm:px-[var(--content-padding-x-md)] lg:px-[var(--content-padding-x-lg)] xl:px-[var(--content-padding-x-xl)]`}
+      <main className={`${styles.page} pt-8`}>
+        <section className={`${styles.hero} max-w-[var(--content-max-width)] mx-auto sm:px-0 lg:px-[var(--content-padding-x-lg)] xl:px-[var(--content-padding-x-xl)]`}
           aria-labelledby="hero-title">
           <h1 id="hero-title" className={styles.heroTitleSr}>
             Rob Patton - systems engineer building automation-first tooling
