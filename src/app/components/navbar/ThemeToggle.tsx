@@ -24,7 +24,7 @@ const applyTheme = (mode: ThemeMode) => {
 
   root.classList.toggle("dark", mode === "dark");
   root.dataset.theme = mode;
-  root.style.colorScheme = mode;
+  root.style.setProperty("color-scheme", mode);
   if (body) {
     body.classList.toggle("dark", mode === "dark");
     body.dataset.theme = mode;

@@ -456,8 +456,9 @@
   --timeline-location-dot: rgba(148, 163, 184, 0.55);
 }
 
+/* System preference fallback - only when no user override */
 @media (prefers-color-scheme: dark) {
-  .page {
+  :root:not([data-theme]) .page {
     --timeline-text-strong: #e2e8f0;
     --timeline-text-muted: #cbd5f5;
     --timeline-text-meta: #94a3b8;
