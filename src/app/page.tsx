@@ -6,7 +6,10 @@ import TopHeader from "./components/navbar/TopHeader";
 import buildTimeline, { TimelineGraphRow, resolveBranchColor } from "../lib/timeline";
 import TimelineSidebar, { TimelineSidebarItem } from "./components/timeline/TimelineSidebar";
 import TerminalHero from "./components/terminal/TerminalHero";
-import projectsData from "./projects/projects.json";
+import type { ProjectsData, ProjectImage } from "../types/projects";
+import projectsDataJson from "./projects/projects.json";
+
+const projectsData: ProjectsData = projectsDataJson as ProjectsData;
 
 import styles from "./page.module.css";
 
@@ -299,8 +302,8 @@ const FeaturedProjects = () => {
               <Image
                 src={project.images[0].src}
                 alt={`${project.title} preview`}
-                width={(project.images[0] as any).w || 400}
-                height={(project.images[0] as any).h || 300}
+                width={project.images[0].w || 400}
+                height={project.images[0].h || 300}
                 className={styles.featuredCardImg}
                 loading="lazy"
               />
