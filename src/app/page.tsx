@@ -6,6 +6,7 @@ import TopHeader from "./components/navbar/TopHeader";
 import buildTimeline, { TimelineGraphRow, resolveBranchColor } from "../lib/timeline";
 import TimelineSidebar, { TimelineSidebarItem } from "./components/timeline/TimelineSidebar";
 import TerminalHero from "./components/terminal/TerminalHero";
+import projectsData from "./projects/projects.json";
 
 import styles from "./page.module.css";
 
@@ -253,6 +254,98 @@ const renderGraph = (row: RenderRow) => {
   );
 };
 
+const FeaturedProjects = () => {
+  // Get the first three projects that have images
+  const featuredProjects = projectsData.projects
+    .filter(project => project.images && project.images.length > 0)
+    .slice(0, 3);
+
+  const getTypeLabel = (category: string) => {
+    const typeLabels: { [key: string]: string } = {
+      tech: "Technical Project",
+      research: "Research Project", 
+      uol: "University Project",
+      other: "Other Project"
+    };
+    return typeLabels[category] || "Project";
+  };
+
+  const buildLinkTarget = (href: string) => {
+    if (href.startsWith("http")) {
+      return {
+        target: "_blank",
+        rel: "noopener noreferrer",
+      };
+    }
+    return {};
+  };
+
+  return (
+    <section className={`${styles.featuredSection} max-w-[var(--content-max-width)] mx-auto`} aria-labelledby="featured-projects-heading">
+      <div className={styles.featuredHeader}>
+        <p className={styles.timelineEyebrow}>Selected work</p>
+        <h2 id="featured-projects-heading" className={styles.timelineTitle}>
+          Featured Projects
+        </h2>
+        <p className={styles.timelineSubtitle}>
+          A showcase of recent technical projects spanning full-stack development, machine learning, and engineering automation.
+        </p>
+      </div>
+
+      <div className={styles.featuredGrid}>
+        {featuredProjects.map((project) => (
+          <article key={project.slug} className={styles.featuredCard}>
+            <div className={styles.featuredCardImage}>
+              <Image
+                src={project.images[0].src}
+                alt={`${project.title} preview`}
+                width={(project.images[0] as any).w || 400}
+                height={(project.images[0] as any).h || 300}
+                className={styles.featuredCardImg}
+                loading="lazy"
+              />
+            </div>
+            <div className={styles.featuredCardContent}>
+              <span className={styles.featuredCardEyebrow}>
+                {getTypeLabel(project.category)}
+              </span>
+              <h3 className={styles.featuredCardTitle}>
+                {project.title}
+              </h3>
+              <p className={styles.featuredCardDescription}>
+                {project.summary}
+              </p>
+              <div className={styles.featuredCardFooter}>
+                {project.links?.live && (
+                  <Link 
+                    href={project.links.live} 
+                    className={styles.featuredCardLink}
+                    {...buildLinkTarget(project.links.live)}
+                  >
+                    View Project
+                  </Link>
+                )}
+                <Link 
+                  href="/projects" 
+                  className={styles.featuredCardLinkSecondary}
+                >
+                  Learn More
+                </Link>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+      
+      <div className={styles.featuredFooter}>
+        <Link href="/projects" className={styles.featuredViewAll}>
+          View All Projects
+        </Link>
+      </div>
+    </section>
+  );
+};
+
 const TimelineList = ({ renderRows }: { renderRows: RenderRow[] }) => {
   const sidebarItems: TimelineSidebarItem[] = renderRows.map((row) => ({
     id: row.entry.id,
@@ -391,6 +484,8 @@ const Page = () => {
           </h1>
           <TerminalHero />
         </section>
+
+        <FeaturedProjects />
 
         <TimelineList renderRows={renderRows} />
       </main>
