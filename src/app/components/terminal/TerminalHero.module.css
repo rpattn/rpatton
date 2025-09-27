@@ -126,6 +126,62 @@
   min-height: 28rem;
   display: flex;
   align-items: stretch;
+  overflow-y: auto;
+  max-height: 70vh;
+}
+
+.terminalContent {
+  width: 100%;
+  font-family: "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: clamp(0.95rem, 2.4vw, 1.05rem);
+  line-height: 1.65;
+  color: var(--terminal-text);
+}
+
+.terminalSection {
+  margin-bottom: 1rem;
+}
+
+.terminalLine {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  min-height: 1.65em;
+}
+
+.terminalInputLine {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.prompt {
+  color: var(--terminal-text);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.command {
+  color: var(--terminal-text);
+  opacity: 0.9;
+}
+
+.terminalInput {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--terminal-text);
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  flex: 1;
+  padding: 0;
+  margin: 0;
+  caret-color: var(--terminal-text);
+}
+
+.terminalInput::selection {
+  background-color: rgba(59, 130, 246, 0.3);
 }
 
 .terminalOutput {
@@ -199,6 +255,11 @@
   --terminal-shadow: rgba(2, 6, 23, 0.85);
   --terminal-text: #f8fafc;
   --terminal-subtle: rgba(203, 213, 225, 0.8);
+}
+
+:global(body.dark) .terminalInput::selection,
+:global(html.dark) .terminalInput::selection {
+  background-color: rgba(99, 102, 241, 0.3);
 }
 
 :global(body.dark) .terminalLight,
@@ -285,6 +346,10 @@
 
   :root:not([data-theme]) .fullscreenButton:hover {
     background-color: #16a34a;
+  }
+
+  :root:not([data-theme]) .terminalInput::selection {
+    background-color: rgba(99, 102, 241, 0.3);
   }
 
 }

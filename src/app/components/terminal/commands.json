@@ -1,0 +1,162 @@
+{
+  "help": {
+    "description": "Show available commands",
+    "output": [
+      "Available commands:",
+      "",
+      "help        - Show this help message",
+      "about       - Learn about Rob Patton",
+      "skills      - View technical skills",
+      "projects    - List featured projects",
+      "contact     - Get contact information",
+      "resume      - View resume/CV details",
+      "clear       - Clear the terminal screen",
+      "whoami      - Display current user",
+      "pwd         - Print working directory",
+      "ls          - List directory contents",
+      "",
+      "Type any command to get started!"
+    ]
+  },
+  "about": {
+    "description": "Learn about Rob Patton",
+    "output": [
+      "# Rob Patton",
+      "Senior Systems Engineer & Product Builder",
+      "",
+      "I'm passionate about building automation-first tools that help",
+      "fast-moving teams ship resilient products. My background spans",
+      "systems engineering, robotics analytics, and product leadership.",
+      "",
+      "Key focus areas:",
+      "• Automation-first workflow design",
+      "• Immersive analytics for robotics",
+      "• Collaborative product leadership",
+      "• Full-stack development",
+      "",
+      "Location: Remote (US / UK friendly)",
+      "Latest commit: shipping resilient tools for fast-moving teams."
+    ]
+  },
+  "skills": {
+    "description": "View technical skills",
+    "output": [
+      "Technical Skills & Technologies:",
+      "",
+      "Languages:",
+      "• Python, JavaScript/TypeScript, C++, C#, Java",
+      "• SQL, MATLAB, R",
+      "",
+      "Frameworks & Tools:",
+      "• React, Next.js, Node.js",
+      "• Docker, Kubernetes",
+      "• Git, CI/CD pipelines",
+      "• Linux/Unix systems",
+      "",
+      "Specializations:",
+      "• Systems automation & orchestration",
+      "• Data analytics & visualization",
+      "• Robotics & embedded systems",
+      "• Cloud architecture (AWS, Azure)",
+      "",
+      "Engineering Practices:",
+      "• Test-driven development",
+      "• Infrastructure as code",
+      "• Agile methodologies",
+      "• Performance optimization"
+    ]
+  },
+  "projects": {
+    "description": "List featured projects",
+    "output": [
+      "Featured Projects:",
+      "",
+      "🎓 University of Leeds Projects:",
+      "• Computational Fluid Dynamics simulations",
+      "• Bridge structural analysis & optimization",
+      "• Wind turbine aerodynamic modeling",
+      "• Aircraft wing design optimization",
+      "",
+      "🤖 Technical Projects:",
+      "• Raspberry Pi automation systems",
+      "• Game development & graphics programming",
+      "• Mobile app development",
+      "• Machine learning implementations",
+      "",
+      "🔬 Research & Development:",
+      "• Advanced manufacturing process modeling",
+      "• Robotics control systems",
+      "• Data visualization tools",
+      "",
+      "Visit /projects for detailed case studies and technical deep-dives!"
+    ]
+  },
+  "contact": {
+    "description": "Get contact information",
+    "output": [
+      "Contact Information:",
+      "",
+      "📧 Email: rob@robpatton.dev",
+      "🌐 Portfolio: https://robpatton.dev",
+      "💼 LinkedIn: Available upon request",
+      "📱 GitHub: Available upon request",
+      "",
+      "🌍 Location: Remote (US / UK friendly)",
+      "⏰ Timezone: Flexible across US/UK hours",
+      "",
+      "Feel free to reach out about:",
+      "• Collaboration opportunities",
+      "• Technical consulting",
+      "• Product development",
+      "• Systems architecture discussions"
+    ]
+  },
+  "resume": {
+    "description": "View resume/CV details",
+    "output": [
+      "Resume Summary:",
+      "",
+      "Rob Patton - Senior Systems Engineer",
+      "",
+      "Experience Highlights:",
+      "• 5+ years in systems engineering & automation",
+      "• Led cross-functional product development teams",
+      "• Specialized in robotics analytics & immersive tools",
+      "• Built scalable automation workflows",
+      "",
+      "Education:",
+      "• Engineering degree with focus on computational methods",
+      "• Continuous learning in modern tech stacks",
+      "",
+      "Recent Achievements:",
+      "• Shipped resilient tools for fast-moving teams",
+      "• Implemented automation-first workflow designs",
+      "• Delivered collaborative product leadership",
+      "",
+      "For detailed CV, visit: /cv"
+    ]
+  },
+  "whoami": {
+    "description": "Display current user",
+    "output": ["rob"]
+  },
+  "pwd": {
+    "description": "Print working directory",
+    "output": ["/home/rob/portfolio"]
+  },
+  "ls": {
+    "description": "List directory contents",
+    "output": [
+      "projects/",
+      "skills/",
+      "cv/",
+      "README.md",
+      "package.json",
+      "contact.txt"
+    ]
+  },
+  "clear": {
+    "description": "Clear the terminal screen",
+    "output": ["clear"]
+  }
+}
