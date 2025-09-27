@@ -5,6 +5,7 @@ import Header from "./components/navbar/Header";
 import TopHeader from "./components/navbar/TopHeader";
 import buildTimeline, { TimelineGraphRow, resolveBranchColor } from "../lib/timeline";
 import TimelineSidebar, { TimelineSidebarItem } from "./components/timeline/TimelineSidebar";
+import TerminalHero from "./components/terminal/TerminalHero";
 
 import styles from "./page.module.css";
 
@@ -313,43 +314,19 @@ const TimelineList = ({ renderRows }: { renderRows: RenderRow[] }) => {
   );
 };
 
-const buildHeroDescription = (renderRows: RenderRow[]) => {
-  const highlights = renderRows
-    .filter((row) => row.entry.type === "project")
-    .slice(0, 3)
-    .map((row) => row.entry.title);
-
-  return highlights.length > 0
-    ? `Recent branches include ${highlights.join(", ")}.`
-    : "Exploring new ideas across engineering and product.";
-};
 
 const Page = () => {
   const rows = buildTimeline();
   const renderRows = buildRenderRows(rows);
-  const heroDescription = buildHeroDescription(renderRows);
-
   return (
     <>
       <Header />
       <main className={styles.page}>
-        <section className={styles.hero}>
-          <div className={styles.heroContent}>
-            <p className={styles.heroEyebrow}>Git-style history</p>
-            <h1 className={styles.heroTitle}>Rob Patton</h1>
-            <p className={styles.heroLead}>
-              A branching journey from early engineering experiments to present-day immersive
-              tooling and automation.
-            </p>
-            {heroDescription ? (
-              <p className={styles.heroDescription}>{heroDescription}</p>
-            ) : null}
-            <div className={styles.heroMeta}>
-              <span>Newest to oldest, one node at a time</span>
-              <span aria-hidden>•</span>
-              <span>Follow connections across project branches</span>
-            </div>
-          </div>
+        <section className={styles.hero} aria-labelledby="hero-title">
+          <h1 id="hero-title" className={styles.heroTitleSr}>
+            Rob Patton - systems engineer building automation-first tooling
+          </h1>
+          <TerminalHero />
         </section>
 
         <TimelineList renderRows={renderRows} />
